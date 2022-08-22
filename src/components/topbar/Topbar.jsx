@@ -1,7 +1,25 @@
 import "./topbar.css";
+import { useNavigate } from 'react-router-dom'
 
 export default function Topbar() {
   const user = true;
+
+  //navigatge
+  const navigate = useNavigate()
+
+  // 버튼 누르면 해당 주소로 route
+  const handleHome =()=>{
+    navigate("/");
+  }
+
+  const handleUserProfile =()=>{
+    navigate("/user/profile");
+  }
+
+  const handleCommunity =()=>{
+    navigate("/board");
+  }
+
   return (
     <div className="top">
       <div className="topLeft">
@@ -9,11 +27,9 @@ export default function Topbar() {
       </div>
       <div className="topCenter">
         <ul className="topList">
-          <li className="topListItem">
-              HOME
-          </li>
-          <li className="topListItem">Mypage</li>
-          <li className="topListItem">Community</li>
+          <li className="topListItem" onClick={handleHome}>HOME</li>
+          <li className="topListItem" onClick={handleUserProfile}>Mypage</li>
+          <li className="topListItem" onClick={handleCommunity}>Community</li>
           <li className="topListItem">Lodging</li>
           <li className="topListItem">Flight</li>
           <li className="topListItem">Rentcar</li>

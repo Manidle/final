@@ -1,0 +1,43 @@
+.container {
+    /* width: 100%; */
+    /* height: calc(100vh - 100px); */
+    /* min-height: 200px; */
+    height: 25vw;
+    /* background-color: #d1411e; */
+    background-color: rgba(237,144,187,0.4) ;
+    /* overflow: hidden; */
+    position: relative;
+    /* display: flex; */
+    /* justify-content: space-between; */
+    z-index: 1;
+    max-width: 1024px;
+    /* flex-direction: column; */
+}
+
+.arrowContainer {
+    /* position: absolute; */
+    /* width: 10%;
+    height: 20%; */
+    /* top: 0;
+    bottom: 0; */
+    margin: auto;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.imageContainer {
+    /* width: 300vh; */
+    height: 100%;
+    display: flex;
+    /* transition: all 0.5s; */
+    /* background-size: cover; */
+    justify-content: center;
+    /* visibility: visible; */
+    max-width: 1024px;
+    transition: 0.5s;
+}
+
+.slideImage{
+    transition: 1s !important;
+    object-fit: cover;
+}
