@@ -6,7 +6,7 @@
   top: 0;
   display: flex;
   align-items: center;
-  z-index: 999;
+  z-index: 3;
   font-family: "Josefin Sans", sans-serif;
 }
 
@@ -18,10 +18,7 @@
   justify-content: center;
 }
 
-.topIcon {
-  font-size: 20px;
-  margin-right: 10px;
-  color: #444;
+.topLeftItem{
   cursor: pointer;
 }
 
@@ -38,9 +35,7 @@
 }
 
 .topListItem {
-  margin-right: 20px;
-  font-size: 20px;
-  font-weight: 300;
+  margin: 0 1vh 0 1vh;
   cursor: pointer;
 }
 
@@ -48,22 +43,10 @@
   color: gray;
 }
 
-.github {
-  width: 100px;
-  height: 50px;
-}
-
 .topImg {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 15px;
-  cursor: pointer;
-}
-
-.topSearchIcon {
-  font-size: 18px;
-  color: #666;
   cursor: pointer;
 }

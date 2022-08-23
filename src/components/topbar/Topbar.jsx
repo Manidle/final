@@ -1,5 +1,10 @@
 import "./topbar.css";
+import * as React from 'react';
 import { useNavigate } from 'react-router-dom'
+import HomeIcon from '@mui/icons-material/Home';
+import ForumIcon from '@mui/icons-material/Forum';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import { Button, Menu, MenuItem } from "@mui/material";
 
 export default function Topbar() {
   const user = true;
@@ -20,29 +25,58 @@ export default function Topbar() {
     navigate("/board");
   }
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <div className="top">
       <div className="topLeft">
-        <img className="github" src="https://images.velog.io/images/ggombee/post/3f32ac8f-9aa3-4cfe-93a0-44b59d7fde2a/github.jpg"/>
+        <GitHubIcon className="topLeftItem" color="disabled" onClick={()=>window.open('https://github.com/Manidle')}/>
       </div>
       <div className="topCenter">
         <ul className="topList">
-          <li className="topListItem" onClick={handleHome}>HOME</li>
-          <li className="topListItem" onClick={handleUserProfile}>Mypage</li>
-          <li className="topListItem" onClick={handleCommunity}>Community</li>
-          <li className="topListItem">Lodging</li>
-          <li className="topListItem">Flight</li>
-          <li className="topListItem">Rentcar</li>
-          {user && <li className="topListItem">LOGOUT</li>}
+          <li className="topListItem" onClick={handleHome}><HomeIcon />  </li>
+          <li className="topListItem" onClick={handleCommunity}><ForumIcon /></li>
         </ul>
       </div>
       <div className="topRight">
         {user ? (
-            <img
-              className="topImg"
-              src="https://avatars.githubusercontent.com/u/102516088?v=4"
-              alt=""
-            />
+          <ul className="topList">
+            <div className="topListItem">
+              <Button
+                id="basic-button"
+                aria-controls={open ? 'basic-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+                onClick={handleClick}
+              >
+                <img
+                  className="topImg"
+                  src="https://avatars.githubusercontent.com/u/102516088?v=4"
+                  alt=""
+                />
+              </Button>
+              <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                  'aria-labelledby': 'basic-button',
+                }}
+              >
+                <MenuItem onClick={handleUserProfile}>내 정보</MenuItem>
+                <MenuItem onClick={handleClose}>내가 쓴 글</MenuItem>
+                <MenuItem onClick={handleClose}>로그아웃</MenuItem>
+              </Menu>
+            </div>
+          </ul>
         ) : (
           <ul className="topList">
             <li className="topListItem">
@@ -53,7 +87,6 @@ export default function Topbar() {
             </li>
           </ul>
         )}
-        <i className="topSearchIcon fas fa-search"></i>
       </div>
     </div>
   );

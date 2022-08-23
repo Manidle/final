@@ -26,8 +26,8 @@ const Featured = () => {
             {
                 images.map(
                     (image, i)=>
-                    <div style={{width:'80%', marginLeft:'10%', marginRight:'10%'}}>
-                        <img src={image.src} style={{width:'100%',height:'30vw', minHeight:'200px' ,maxHeight:'400px'}} />
+                    <div style={{width:'80%', height:"30vw", maxHeight:"400px" , marginLeft:'10%', marginRight:'10%'}}>
+                        <img src={image.src} style={{width:'100%', objectFit:"cover", minHeight:'200px' ,maxHeight:'400px'}} />
                     </div>
                 )
             }
