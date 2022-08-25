@@ -1,0 +1,25 @@
+.communityContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.communityWrapper{
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+
+.boardFooter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.boardSearchbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -6,6 +6,7 @@ import { DateRange } from 'react-date-range'
 import { format, setDate} from 'date-fns'
 import RoomItem from '../../components/roomitem/RoomItem'
 import Searchbar from '../../components/searchbar/Searchbar'
+import { Bed, CalendarMonth, Hail } from '@mui/icons-material'
 
 
 const Roomlist = () => {
@@ -52,62 +53,88 @@ const Roomlist = () => {
         <Topbar/>
         <div className="listContainer">
             <div className="listWrapper">
+                <div className="listRooms">
+                    <h1 className="listRoomsTitle">지금 가장 인기있는 숙소</h1>
+                    <div className="listRoomsItemContainer">
+                        <RoomItem />
+                        <RoomItem />
+                        <RoomItem />
+                    </div>
+                </div>
+                {/* 검색바 */}
                 <div className="listSearch">
-                    <h1 className="listTitle">ㅁㄴㅇㄹ</h1>
-                    <div className="listItem">
-                        <label>목적지</label>
-                        <input placeholder={destination} type="text" onChange={e=>setDestination(e.target.value)}/>
-                    </div>
-                    <div className="listItem">
-                        <label>여행 기간</label>
-                        <span onClick={handleDate}>
-                            {`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(date[0].endDate, "MM/dd/yyyy")}`}
-                        </span>
-                        {openDate && <DateRange
-                            onChange={(item) =>setDate([item.selection])}
-                            minDate={new Date()}
-                            ranges={date}
-                        />}
-                    </div>
-                    <div className="listItem">
-                        <label>인원 수</label>
-                        <span onClick={handleOptions} className="headerSearchText">{`${options.adult} adult, ${options.children} children, ${options.room} room`}</span>
-                        {openOptions && <div className="options">
-                            <div className="optionItem">
-                                <span className="optionText">Adult</span>
-                                <div className="optioncounter">
-                                    <button disabled={options.adult <= 1} className="optionCounterButton" onClick={()=>handleOption("adult", "d")}>-</button>
-                                    <span className="optioncounterNumber">{options.adult}</span>
-                                    <button className="optionCounterButton" onClick={()=>handleOption("adult", "i")}>+</button>
+                    <div className="listHeaderSearch">
+                        {/* 지역 */}
+                        <div className="listHeaderSearchItem">
+                            <Bed className="listHeaderIcon"/>
+                            <input
+                                type="text"
+                                placeholder={destination}
+                                className='listHeaderSearchInput'
+                                onChange={e=>setDestination(e.target.value)}
+                            />
+                        </div>
+
+                        {/* 달력 */}
+                        <div className="listHeaderSearchItem">
+                            <CalendarMonth className="listHeaderIcon"/>
+                            <span onClick={()=>handleDate()} className="listHeaderSearchText">{`${format(date[0].startDate, "yy.MM.dd")} ~ ${format(date[0].endDate, "yy.MM.dd")}`}</span>
+                            {openDate && <DateRange
+                                editableDateInputs={true}
+                                onChange={(item) => setDate([item.selection])}
+                                moveRangeOnFirstSelection={false}
+                                ranges={date}
+                                className="date"
+                                minDate={new Date()}
+                            />}
+                        </div>
+
+                        {/* 인원 */}
+                        <div className="listHeaderSearchItem">
+                            <Hail className="listHeaderIcon"/>
+                            <span onClick={()=>handleOptions()} className="listHeaderSearchText">여행 인원</span>
+                            {openOptions && <div className="options">
+                                <div className="optionItem">
+                                    <span className="optionText">성인</span>
+                                    <div className="optioncounter">
+                                        <button disabled={options.adult <= 1} className="optionCounterButton" onClick={()=>handleOption("adult", "d")}>-</button>
+                                        <span className="optioncounterNumber">{options.adult}</span>
+                                        <button className="optionCounterButton" onClick={()=>handleOption("adult", "i")}>+</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="optionItem">
-                                <span className="optionText">Children</span>
-                                <div className="optioncounter">
-                                    <button disabled={options.children <= 0} className="optionCounterButton" onClick={()=>handleOption("children", "d")}>-</button>
-                                    <span className="optioncounterNumber">{options.children}</span>
-                                    <button className="optionCounterButton" onClick={()=>handleOption("children", "i")}>+</button>
+                                <div className="optionItem">
+                                    <span className="optionText">유아</span>
+                                    <div className="optioncounter">
+                                        <button disabled={options.children <= 0} className="optionCounterButton" onClick={()=>handleOption("children", "d")}>-</button>
+                                        <span className="optioncounterNumber">{options.children}</span>
+                                        <button className="optionCounterButton" onClick={()=>handleOption("children", "i")}>+</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="optionItem">
-                                <span className="optionText">Room</span>
-                                <div className="optioncounter">
-                                    <button disabled={options.room <= 1} className="optionCounterButton" onClick={()=>handleOption("room", "d")}>-</button>
-                                    <span className="optioncounterNumber">{options.room}</span>
-                                    <button className="optionCounterButton" onClick={()=>handleOption("room", "i")}>+</button>
+                                <div className="optionItem">
+                                    <span className="optionText">방 갯수</span>
+                                    <div className="optioncounter">
+                                        <button disabled={options.room <= 1} className="optionCounterButton" onClick={()=>handleOption("room", "d")}>-</button>
+                                        <span className="optioncounterNumber">{options.room}</span>
+                                        <button className="optionCounterButton" onClick={()=>handleOption("room", "i")}>+</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>}
+                            </div>}
+                        </div>
+
+                        {/* 검색 버튼 */}
+                        <div className="listHeaderSearchItem">
+                            <button className="listHeaderButton" onClick={handleSearch}>검색</button>
+                        </div>
                     </div>
-                    <button onClick={handleSearch}>재검색</button>
-                </div> {/* 검색창 끝 */}
+                </div>{/* 검색 바 끝 */}
 
                 <div className="listRooms">
                     <h1 className="listRoomsTitle">객실</h1>
-                    <RoomItem />
-                    <RoomItem />
-                    <RoomItem />
-                    <RoomItem />
+                    <div className="listRoomsItemContainer">
+                        <RoomItem />
+                        <RoomItem />
+                        <RoomItem />
+                    </div>
                 </div>
             </div>
         </div>

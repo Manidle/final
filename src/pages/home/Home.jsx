@@ -16,7 +16,7 @@ const Home = () => {
         <div className="homeContainer">
             <Featured/>
             <Searchbar/>
-            <h1 className="homeTitle">핫한 게시글</h1>
+            <h1 className="homeTitle"></h1>
             <HotPost/>
         </div>
         <Footer/>

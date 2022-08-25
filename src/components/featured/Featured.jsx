@@ -21,17 +21,21 @@ const Featured = () => {
     ]
 
   return (
-    <>      
-        <Carousel indicators={true} animation="slide">
-            {
-                images.map(
-                    (image, i)=>
-                    <div style={{width:'80%', height:"30vw", maxHeight:"400px" , marginLeft:'10%', marginRight:'10%'}}>
-                        <img src={image.src} style={{width:'100%', objectFit:"cover", minHeight:'200px' ,maxHeight:'400px'}} />
-                    </div>
-                )
-            }
-        </Carousel>
+    <>
+        <div className="carouselContainer">
+            <div className="carouselWrapper">
+                <Carousel indicators={true} animation="slide">
+                    {
+                        images.map(
+                            (image, i)=>
+                            <div style={{width:'80%', height:"30vw", maxHeight:"400px" , marginLeft:'10%', marginRight:'10%'}}>
+                                <img src={image.src} style={{width:'100%', objectFit:"cover", minHeight:'200px' ,maxHeight:'400px'}} />
+                            </div>
+                        )
+                    }
+                </Carousel>
+            </div>
+        </div>
     </>
   )
 }
