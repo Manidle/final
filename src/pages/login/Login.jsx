@@ -3,6 +3,7 @@ import Topbar from "../../components/topbar/Topbar";
 import { useNavigate } from 'react-router-dom'
 import "./login.css";
 import Footer from "../../components/footer/Footer";
+import { Container } from "@mui/material";
 
 export default function Login() {
 
@@ -15,7 +16,7 @@ export default function Login() {
   }
 
   return (
-    <>
+    <Container maxWidth="lg">
       {/* <Navbar/> */}
       <Topbar/>
       <div className="login">
@@ -30,6 +31,6 @@ export default function Login() {
           <button className="loginRegisterButton" onClick={handleRoute}>Register</button>
       </div>
       <Footer/>
-    </>
+    </Container>
   );
 }

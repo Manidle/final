@@ -1,4 +1,4 @@
-import { Box, Button, Modal, Typography } from '@mui/material';
+import { Box, Button, Container, Modal, Typography } from '@mui/material';
 import Carousel from 'react-material-ui-carousel'
 import React from 'react'
 import Footer from '../../components/footer/Footer';
@@ -48,7 +48,7 @@ const Rooms = () => {
 
 
   return (
-    <>
+    <Container maxWidth="lg">
       <Topbar/>
       <div className="roomDetail">
         <div className='imageModal'>
@@ -113,7 +113,7 @@ const Rooms = () => {
         </div>
       </div>
       <Footer/>
-    </>
+    </Container>
   )
 }
 

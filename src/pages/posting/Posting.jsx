@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from '@mui/material'
+import { Box, Button, Container, TextField } from '@mui/material'
 import React from 'react'
 import CourseCheckbox from '../../components/coursecheckbox/CourseCheckbox'
 import Topbar from '../../components/topbar/Topbar'
@@ -12,7 +12,7 @@ const Posting = () => {
       };
 
   return (
-    <>
+    <Container maxWidth="lg">
         <Topbar/>
         <div className="postingContainer">
             <div className="postingWrapper">
@@ -42,7 +42,7 @@ const Posting = () => {
                 </div>
             </div>
         </div>
-    </>
+    </Container>
   )
 }
 

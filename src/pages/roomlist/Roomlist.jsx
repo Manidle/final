@@ -7,6 +7,7 @@ import { format, setDate} from 'date-fns'
 import RoomItem from '../../components/roomitem/RoomItem'
 import Searchbar from '../../components/searchbar/Searchbar'
 import { Bed, CalendarMonth, Hail } from '@mui/icons-material'
+import { Container } from '@mui/material'
 
 
 const Roomlist = () => {
@@ -49,7 +50,7 @@ const Roomlist = () => {
 
     
   return (
-    <>
+    <Container maxWidth="lg">
         <Topbar/>
         <div className="listContainer">
             <div className="listWrapper">
@@ -138,7 +139,7 @@ const Roomlist = () => {
                 </div>
             </div>
         </div>
-    </>
+    </Container>
   )
 }
 

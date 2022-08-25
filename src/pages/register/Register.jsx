@@ -5,6 +5,7 @@ import "./register.css"
 import Footer from "../../components/footer/Footer"
 import { useState, useEffect } from "react"
 import axios from "axios"
+import { Container } from "@mui/material"
 
 export default function Register() {
 
@@ -39,7 +40,7 @@ export default function Register() {
   }
     
   return (
-    <>
+    <Container maxWidth="lg">
       <Topbar/>
       <div className="register">
         <span className="registerTitle">Register</span>
@@ -58,6 +59,6 @@ export default function Register() {
         <button className="registerLoginButton" onClick={handleRoute}>Login</button>
       </div>
       <Footer/>
-    </>
+    </Container>
   )
 }

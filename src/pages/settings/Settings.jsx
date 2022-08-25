@@ -3,6 +3,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Topbar from "../../components/topbar/Topbar";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
+import { Container } from "@mui/material";
 
 export default function Settings() {
 
@@ -12,7 +13,7 @@ export default function Settings() {
   // 새로운 pw 를 새로 만들어서 그걸로 pw 를 바꾸도록.
 
   return (
-    <>
+    <Container maxWidth="lg">
       <Topbar/>
       {/* <Navbar/> */}
       <div className="settings">
@@ -55,6 +56,6 @@ export default function Settings() {
         <Sidebar />
       </div>
       <Footer/>
-    </>
+    </Container>
   );
 }

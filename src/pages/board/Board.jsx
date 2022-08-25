@@ -1,4 +1,4 @@
-import { Button, Input, InputAdornment, Pagination, Stack, TextField } from '@mui/material'
+import { Button, Container, Input, InputAdornment, Pagination, Stack, TextField } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -19,7 +19,7 @@ const Community = () => {
     }
 
   return (
-    <>
+    <Container maxWidth="lg">
         <Topbar/>
         <div className="communityContainer">
             <div className="communityWrapper">
@@ -56,7 +56,7 @@ const Community = () => {
                 </div>
             </div>
         </div>
-    </>
+    </Container>
   )
 }
 

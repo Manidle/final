@@ -5,12 +5,17 @@ import Featured from '../../components/featured/Featured'
 import Searchbar from '../../components/searchbar/Searchbar'
 import HotPost from '../../components/hotpost/HotPost'
 import Footer from '../../components/footer/Footer'
+import { Container, createTheme, ThemeProvider } from '@mui/material'
 
 
 
 const Home = () => {
+  const theme = createTheme
+  
+
+
   return (
-    <>
+      <Container maxWidth="lg">
         <Topbar/>
         {/* <Navbar/> */}
         <div className="homeContainer">
@@ -20,7 +25,7 @@ const Home = () => {
             <HotPost/>
         </div>
         <Footer/>
-    </>
+      </Container>
   )
 }
 
