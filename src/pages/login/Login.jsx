@@ -2,7 +2,8 @@ import Topbar from "../../components/topbar/Topbar";
 import { useNavigate } from 'react-router-dom'
 import "./login.css";
 import Footer from "../../components/footer/Footer";
-import { Container } from "@mui/material";
+import { Button, Container, Icon, IconButton, TextField } from "@mui/material";
+import { Google } from "@mui/icons-material";
 
 export default function Login() {
 
@@ -17,16 +18,26 @@ export default function Login() {
   return (
     <Container maxWidth="lg">
       <Topbar/>
-      <div className="login">
-        <span className="loginTitle">Login</span>
-        <form className="loginForm">
-          <label>Id</label>
-          <input className="loginInput" type="text" placeholder="Enter your Id..." />
-          <label>Password</label>
-          <input className="loginInput" type="password" placeholder="Enter your Password..." />
-          <button className="loginButton">Login</button>
-        </form>
-          <button className="loginRegisterButton" onClick={handleRoute}>Register</button>
+      <div className="loginBackground">
+        <div className="loginContainer">
+          <div className="loginWrapper">
+            <div className="loginTitleContainer">
+              <span className="loginTitle">Login</span>
+            </div>
+            <div className="topLine"></div>
+            <form className="loginForm">
+              <TextField id="standard-basic" label="아이디" variant="standard" margin="normal" size="small" />
+              <TextField id="standard-basic" label="비밀번호" variant="standard" margin="normal" size="small" />
+              <Button className="loginButton" variant="contained" >로그인</Button>
+              <div className="underLine"></div>
+              <Button className="loginRegisterButton" onClick={handleRoute}>아직 가입하지 않으셨나요?</Button>
+              <div className="otherLogin">
+                <IconButton className="google"><img src="https://upload.wikimedia.org/wikipedia/commons/0/09/IOS_Google_icon.png" height="40px" width="40px" /></IconButton>
+                <IconButton className="google"><img src="https://m.gelatofactory.co.kr/web/upload/img/m/ico-kakao.png" height="40px" width="40px" /></IconButton>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
       <Footer/>
     </Container>
