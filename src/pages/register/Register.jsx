@@ -1,4 +1,3 @@
-import Navbar from "../../components/navbar/Navbar"
 import Topbar from "../../components/topbar/Topbar"
 import { useNavigate } from 'react-router-dom'
 import "./register.css"

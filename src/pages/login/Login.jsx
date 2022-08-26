@@ -1,4 +1,3 @@
-import Navbar from "../../components/navbar/Navbar";
 import Topbar from "../../components/topbar/Topbar";
 import { useNavigate } from 'react-router-dom'
 import "./login.css";
@@ -17,7 +16,6 @@ export default function Login() {
 
   return (
     <Container maxWidth="lg">
-      {/* <Navbar/> */}
       <Topbar/>
       <div className="login">
         <span className="loginTitle">Login</span>

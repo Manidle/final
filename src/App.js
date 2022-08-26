@@ -1,6 +1,4 @@
 import './App.css';
-import Topbar from './components/topbar/Topbar';
-import Navbar from './components/navbar/Navbar';
 import Login from './pages/login/Login'
 import Register from './pages/register/Register'
 import Settings from './pages/settings/Settings'
@@ -14,13 +12,6 @@ import Posting from './pages/posting/Posting';
 
 function App() {
   return (
-    // <div className="App">
-    //   <Topbar/>
-    //     <Navbar />      
-    //     <Login/>
-    //     <Register/>
-    //     <Settings/>
-    // </div>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home/> }/>

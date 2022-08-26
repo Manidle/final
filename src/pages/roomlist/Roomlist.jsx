@@ -5,7 +5,6 @@ import Topbar from '../../components/topbar/Topbar'
 import { DateRange } from 'react-date-range'
 import { format, setDate} from 'date-fns'
 import RoomItem from '../../components/roomitem/RoomItem'
-import Searchbar from '../../components/searchbar/Searchbar'
 import { Bed, CalendarMonth, Hail } from '@mui/icons-material'
 import { Container } from '@mui/material'
 

@@ -1,5 +1,4 @@
 import React from 'react'
-import Navbar from '../../components/navbar/Navbar'
 import Topbar from '../../components/topbar/Topbar'
 import Featured from '../../components/featured/Featured'
 import Searchbar from '../../components/searchbar/Searchbar'
@@ -17,7 +16,6 @@ const Home = () => {
   return (
       <Container maxWidth="lg">
         <Topbar/>
-        {/* <Navbar/> */}
         <div className="homeContainer">
             <Featured/>
             <Searchbar/>
