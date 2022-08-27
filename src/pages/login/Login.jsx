@@ -2,8 +2,7 @@ import Topbar from "../../components/topbar/Topbar";
 import { useNavigate } from 'react-router-dom'
 import "./login.css";
 import Footer from "../../components/footer/Footer";
-import { Button, Container, Icon, IconButton, TextField } from "@mui/material";
-import { Google } from "@mui/icons-material";
+import { Button, Container, IconButton, TextField } from "@mui/material";
 
 export default function Login() {
 
@@ -32,8 +31,8 @@ export default function Login() {
               <div className="underLine"></div>
               <Button className="loginRegisterButton" onClick={handleRoute}>아직 가입하지 않으셨나요?</Button>
               <div className="otherLogin">
-                <IconButton className="google"><img src="https://upload.wikimedia.org/wikipedia/commons/0/09/IOS_Google_icon.png" height="40px" width="40px" /></IconButton>
-                <IconButton className="google"><img src="https://m.gelatofactory.co.kr/web/upload/img/m/ico-kakao.png" height="40px" width="40px" /></IconButton>
+                <IconButton className="google"><img src="https://upload.wikimedia.org/wikipedia/commons/0/09/IOS_Google_icon.png" height="40px" width="40px" alt="google"/></IconButton>
+                <IconButton className="google"><img src="https://m.gelatofactory.co.kr/web/upload/img/m/ico-kakao.png" height="40px" width="40px" alt="kakao"/></IconButton>
               </div>
             </form>
           </div>

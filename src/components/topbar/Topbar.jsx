@@ -5,6 +5,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import ForumIcon from '@mui/icons-material/Forum';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { Button, Menu, MenuItem } from "@mui/material";
+import { DirectionsCar, Train } from "@mui/icons-material";
 
 export default function Topbar() {
   const user = true;
@@ -43,6 +44,9 @@ export default function Topbar() {
         <ul className="topList">
           <li className="topListItem" onClick={handleHome}><HomeIcon />  </li>
           <li className="topListItem" onClick={handleCommunity}><ForumIcon /></li>
+          <li className="topListItem" ><DirectionsCar /></li>
+          <li className="topListItem" ><Train /></li>
+
         </ul>
       </div>
       <div className="topRight">

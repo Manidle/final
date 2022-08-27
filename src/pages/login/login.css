@@ -10,6 +10,12 @@
   background-size: cover;
 }
 
+.loginContainer{
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 45px;
+  border-radius: 30px;
+}
+
 .loginWrapper{
   align-items: center;
 }
