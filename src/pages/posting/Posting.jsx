@@ -1,6 +1,5 @@
-import { Box, Button, Container, TextField } from '@mui/material'
+import { Button, Container, TextField } from '@mui/material'
 import React from 'react'
-import CourseCheckbox from '../../components/coursecheckbox/CourseCheckbox'
 import Topbar from '../../components/topbar/Topbar'
 import './posting.css'
 

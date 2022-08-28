@@ -84,7 +84,7 @@ const Roomlist = () => {
                                 onChange={(item) => setDate([item.selection])}
                                 moveRangeOnFirstSelection={false}
                                 ranges={date}
-                                className="date"
+                                className="listDate"
                                 minDate={new Date()}
                             />}
                         </div>
@@ -93,7 +93,7 @@ const Roomlist = () => {
                         <div className="listHeaderSearchItem">
                             <Hail className="listHeaderIcon"/>
                             <span onClick={()=>handleOptions()} className="listHeaderSearchText">여행 인원</span>
-                            {openOptions && <div className="options">
+                            {openOptions && <div className="listOptions">
                                 <div className="optionItem">
                                     <span className="optionText">성인</span>
                                     <div className="optioncounter">

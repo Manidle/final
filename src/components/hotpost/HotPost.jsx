@@ -1,5 +1,4 @@
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
-import { display } from '@mui/system';
 import React from 'react'
 import './hotPost.css'
 
