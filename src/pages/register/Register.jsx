@@ -21,23 +21,55 @@ export default function Register() {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [userNickname, setUserNickname] = useState("");
+
+  const data = []
 
   // user 데이터 보내기
   function userSignIn(){
+    
     axios.post('http://localhost:8080/join',
       {
-        userId:userId,
+        loginId:userId,
         password:password,
-        email:email
-      }
+        nickname:userNickname,
+        userInfoDTO:{
+            profileImg:"img url",
+            email:email,
+        }
+    }
     )
     .catch(function(error) {
       console.log("user 보내기 실패");
       console.log(error);
+      console.log(userId);
+      console.log(userNickname);
+      console.log(password);
+      console.log(email);
     });
-    // user 등록 후 login 페이지로 이동
-    handleLoginRoute();
+    // user 등록 후 팝업이나 알림창이 뜬 뒤에 login 페이지로 이동
+    // handleLoginRoute();
   }
+
+  // const onSubmitHandler = async (e) => {
+  //   e.preventDefault();
+
+  //   const user = {
+  //     email,
+  //     password,
+  //   };
+
+  //   try {
+  //     const response = await instance.post("/signin", JSON.stringify(user));
+  //     if (response.status === 200) {
+  //       localStorage.setItem("access_token", response.data.access_token);
+  //       navigate("/todo");
+  //     }
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
+
     
   return (
     <Container maxWidth="lg">
@@ -55,10 +87,11 @@ export default function Register() {
             <form className="registerForm">
               {/* user 서식 */}
               <TextField id="standard-basic" label="아이디" variant="standard" margin="normal" size="small" onChange={(e)=>{setUserId(e.target.value);}} />
+              <TextField id="standard-basic" label="닉네임" variant="standard" margin="normal" size="small" onChange={(e)=>{setUserNickname(e.target.value);}} />
               <TextField id="standard-basic" label="이메일" variant="standard" margin="normal" size="small" type="email" onChange={(e)=>{setEmail(e.target.value);}} />
               <TextField id="standard-basic" label="비밀번호" variant="standard" margin="normal" size="small" type="password" onChange={(e)=>{setPassword(e.target.value);}} />
               {/* user 보내는 버튼 */}
-              <Button className="registerButton" variant="contained" onClick={()=>userSignIn()}>가입하기</Button>
+              <Button type="button" className="registerButton" variant="contained" onClick={()=>userSignIn()}>가입하기</Button>
               <div className="underLine"></div>
               <Button className="loginRegisterButton" onClick={handleLoginRoute}>이미 가입하셨나요?</Button>
             </form>
