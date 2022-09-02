@@ -16,21 +16,36 @@ const Posting = () => {
     const [postTitle, setPostTitle] = useState("");
     const [postArticle, setPostArticle] = useState("");
 
-
     // 게시글 data 보내기
     function postSubmit(){
-        axios.post('http://localhost:8080/board/posting',
-            {
-                title:postTitle,
-                userid:"1"
-            }
-        )
+        axios.post('http://localhost:8080/post/posting', {
+            title:postTitle,
+            contents:postArticle,
+            likeCount:0,
+            boardId:1,
+            userId:1
+        }
+            )
         .catch(function(error){
-            console.log("post 보내기 실패");
-            console.log(error);
-            console.log(postTitle);
-            console.log(postArticle);
-        })
+            if (error.response) {
+              // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
+              console.log("첫번째 에러");
+              console.log(error.response.data);
+            }
+            else if (error.request) {
+                // 요청이 이루어 졌으나 응답을 받지 못했습니다.
+                // `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
+                // Node.js의 http.ClientRequest 인스턴스입니다.
+                console.log("두번째 에러");
+                console.log(error.request);
+            }
+            else {
+                // 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
+                console.log("세번째 에러");
+              console.log('Error', error.message);
+            }
+            console.log(error.config);
+          })
     }
 
   return (

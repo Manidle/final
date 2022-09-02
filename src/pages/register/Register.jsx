@@ -38,6 +38,8 @@ export default function Register() {
             email:email,
         }
     }
+    // userInfo 를 넣지 않으면 가입이 안되므로,
+    // img 와 email 을 ""(빈값)으로 넣고, 회원 수정에서 추가할 수 있도록, 필수가 아니니까.
     )
     .catch(function(error) {
       console.log("user 보내기 실패");
@@ -47,6 +49,7 @@ export default function Register() {
       console.log(password);
       console.log(email);
     });
+    // 성공했을 땐 
     // user 등록 후 팝업이나 알림창이 뜬 뒤에 login 페이지로 이동
     // handleLoginRoute();
   }
