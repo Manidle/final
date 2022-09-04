@@ -16,7 +16,7 @@ const Notice = () => {
                 data: {
                     data: {notice},
                 },
-            } = await axios.get('http://localhost:8080/post/findall')
+            } = await axios.get('http://localhost:8080/post')
         .then((response)=>{
             setNotice(response.data)
             console.log(notice);
@@ -25,7 +25,7 @@ const Notice = () => {
         setIsLoading(false);
         }
         getPosts();
-    }, )
+    }, [] )
 
   return (
     <Container maxWidth="lg">
