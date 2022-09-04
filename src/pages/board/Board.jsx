@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import BoardCategory from '../../components/boardcategory/BoardCategory'
 import Topbar from '../../components/topbar/Topbar'
 import './board.css'
+import Notice from '../../components/Notice/Notice';
 
 const Community = () => {
 
@@ -27,6 +28,7 @@ const Community = () => {
                     <BoardCategory/>
                 </div>
                 <div className="communityBoard">
+                    <Notice/>
                     <ol className="communityPosts">게시글1</ol>
                     <ol className="communityPosts">게시글2</ol>
                     <ol className="communityPosts">게시글3</ol>
