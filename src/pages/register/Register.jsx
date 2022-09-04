@@ -28,7 +28,7 @@ export default function Register() {
   // user 데이터 보내기
   function userSignIn(){
     
-    axios.post('http://localhost:8080/join',
+    axios.post('http://localhost:8080/user',
       {
         loginId:userId,
         password:password,

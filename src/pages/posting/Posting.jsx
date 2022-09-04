@@ -18,7 +18,7 @@ const Posting = () => {
 
     // 게시글 data 보내기
     function postSubmit(){
-        axios.post('http://localhost:8080/post/posting', {
+        axios.post('http://localhost:8080/post', {
             title:postTitle,
             contents:postArticle,
             likeCount:0,

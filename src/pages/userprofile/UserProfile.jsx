@@ -1,38 +1,25 @@
+import { Button, Card, CardActions, CardContent, Container, Typography } from '@mui/material'
 import React from 'react'
-import './userProfile.css'
 import Topbar from '../../components/topbar/Topbar'
-import { Container, TextField } from '@mui/material'
 
 const UserProfile = () => {
   return (
     <Container maxWidth="lg">
-      <Topbar/>
-      <div>UserProfile
-        내가 작성한글(post)
-        내가 쓴 댓글(reply)
-        내가 좋아요 한 글(like)
-        내 정보 수정
-        회원탈퇴
-      </div>
-      <div className="profileContainer">
-        <div className="profileWrapper">
-          <div className="leftProfile">
-            <div className="profileUserNickname">닉네임</div>
-            <div className="profileUserImage">이미지</div>
-            <button className="profileImageUpdateButton">프로필 사진 업데이트</button>
-          </div>
-          <div className="rightProfile">
-            <TextField id="standard-basic" label="아이디" variant="standard" margin="normal" size="small" />
-            <TextField id="standard-basic" label="비밀번호" variant="standard" margin="normal" size="small" />
-            <TextField id="standard-basic" label="닉네임" variant="standard" margin="normal" size="small" />
-            <TextField id="standard-basic" label="이메일" variant="standard" margin="normal" size="small" />
-            <div className="profileUserId"></div>
-            <div className="profileUserPassword"></div>
-            <div className="profileUserEmail"></div>
-            <button className="profileUpdateButton">정보 변경</button>
-          </div>
-        </div>
-      </div>
+        <Topbar/>
+        <Typography component="h2" gutterBottom>
+            내 정보
+        </Typography>
+        <Card elevation="5">
+            <CardContent>
+                <Typography variant='body1' component="p">
+                    이미지 내 정보가 간략하게 나타날 겁니다. 아이디, 이메일 비밀번호 닉네임
+                </Typography>
+
+            </CardContent>
+            <CardActions>
+                <Button size="small">Learn More</Button>
+            </CardActions>
+        </Card>
     </Container>
   )
 }

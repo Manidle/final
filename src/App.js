@@ -1,12 +1,12 @@
 import './App.css';
 import Login from './pages/login/Login'
 import Register from './pages/register/Register'
-import Settings from './pages/settings/Settings'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/home/Home'
 import Rooms from './pages/rooms/Rooms';
 import Roomlist from './pages/roomlist/Roomlist'
-import UserProfile from './pages/userprofile/UserProfile';
+import UserProfile from './pages/userprofile/UserProfile.jsx'
+import UserSetting from './pages/usersetting/UserSetting.jsx'
 import Board from './pages/board/Board';
 import Posting from './pages/posting/Posting';
 
@@ -22,7 +22,7 @@ function App() {
             {/* 유저 프로필 보기*/}
             <Route path="/user/profile" element={<UserProfile /> }/>
             {/* 유저 프로필 수정*/}
-            <Route path="/user/update" element={<Settings /> }/>
+            <Route path="/user/update" element={<UserSetting /> }/>
             {/* 객실 검색시 리스트 출력 */}
             <Route path='/rooms' element={<Roomlist/> }/>
             {/* 객실 클릭시 해당 객실 페이지로 */}
