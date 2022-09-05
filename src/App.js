@@ -9,6 +9,7 @@ import UserProfile from './pages/userprofile/UserProfile.jsx'
 import UserSetting from './pages/usersetting/UserSetting.jsx'
 import Board from './pages/board/Board';
 import Posting from './pages/posting/Posting';
+import PostDetail from './pages/postdetail/PostDetail';
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
             <Route path="/rooms/:id" element={<Rooms />}/>
             {/* Community 클릭 시 게시판으로 */}
             <Route path='/board' element={<Board/>}/>
+            {/* 게시글 detail */}
+            <Route path='/post/:id' element={<PostDetail />} />
             {/* 게시글 등록 버튼 클릭 시 게시판 등록화면으로 */}
             <Route path='/posting' element={<Posting/>}/>
 
