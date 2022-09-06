@@ -10,7 +10,7 @@ const PostDetail = () => {
             <div className="postWrapper">
                 <div className="postTopContainer">
                     <div className="postBoard">
-                        게시글 > 경주 같은 경로 표시
+                        게시글  경주 같은 경로 표시
                     </div>
                     <div className="postTitle">
                         게시글 제목
@@ -27,7 +27,9 @@ const PostDetail = () => {
                         </div>
                     </div>
                 </div>
-                <div className="postDetailContainer"></div>
+                <div className="postDetailContainer">
+                    게시글내용
+                </div>
 
 
                 <div className="replyContainer">
@@ -35,8 +37,22 @@ const PostDetail = () => {
                         <div className="inputReply">
                             <input type="text" className="replyInput" />
                         </div>
+                        <button className="replySubmitButton">입력</button>
                         <div className="replyDisply">
-                            댓글 표시
+                            <div className="replyTopContainer">
+                                <div className="replyUser">
+                                    댓글작성자
+                                </div>
+                                <div className="replyTime">
+                                    댓글작성시간
+                                </div>
+                                <button className="replyDeleteButtto">삭제</button>
+                            </div>
+                            <div className="replyContentsContainer">
+                                <div className="replyContents">
+                                    댓글 표시
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
