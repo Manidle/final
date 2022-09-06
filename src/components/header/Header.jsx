@@ -39,7 +39,7 @@ const Header = () => {
             {/* 로고 */}
             <Button
                 id="basic-button"
-            >   
+            >
                 <img src="image/logo.png" alt="logo" className="logo" height="50px" width="50px" onClick={handleHome} />        
             </Button>
         </Grid>
@@ -50,32 +50,32 @@ const Header = () => {
             {user ? (
             <ul className="topList">
                 <div className="topListItem">
-                <Button
-                    id="basic-button"
-                    aria-controls={open ? 'basic-menu' : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? 'true' : undefined}
-                    onClick={handleClick}
-                >
-                    <img
-                    className="topImg"
-                    src="https://avatars.githubusercontent.com/u/102516088?v=4"
-                    alt=""
-                    />
-                </Button>
-                <Menu
-                    id="basic-menu"
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                    MenuListProps={{
-                    'aria-labelledby': 'basic-button',
-                    }}
-                >
-                    <MenuItem onClick={handleUserProfile}>내 정보</MenuItem>
-                    <MenuItem onClick={handleClose}>내가 쓴 글</MenuItem>
-                    <MenuItem onClick={handleClose}>로그아웃</MenuItem>
-                </Menu>
+                    <Button
+                        id="basic-button"
+                        aria-controls={open ? 'basic-menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? 'true' : undefined}
+                        onClick={handleClick}
+                    >
+                        <img
+                        className="topImg"
+                        src="https://avatars.githubusercontent.com/u/102516088?v=4"
+                        alt=""
+                        />
+                    </Button>
+                    <Menu
+                        id="basic-menu"
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                        MenuListProps={{
+                        'aria-labelledby': 'basic-button',
+                        }}
+                    >
+                        <MenuItem onClick={handleUserProfile}>내 정보</MenuItem>
+                        <MenuItem onClick={handleClose}>내가 쓴 글</MenuItem>
+                        <MenuItem onClick={handleClose}>로그아웃</MenuItem>
+                    </Menu>
                 </div>
             </ul>
             ) : (

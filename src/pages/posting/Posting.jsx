@@ -1,5 +1,6 @@
 import { PhotoCamera } from '@mui/icons-material'
-import { Button, Container, IconButton, TextField } from '@mui/material'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import { Box, Button, Container, IconButton, TextField, Modal, Typography } from '@mui/material'
 import axios from 'axios'
 import React, { useState } from 'react'
 import Header from '../../components/header/Header'
@@ -48,6 +49,23 @@ const Posting = () => {
           })
     }
 
+    // Modal
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    const modalStyle = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+      };
+
   return (
     <Container maxWidth="lg">
         <Header/>
@@ -69,6 +87,22 @@ const Posting = () => {
                         <input hidden accept="image/*" type="file" />
                         <PhotoCamera />
                     </IconButton>
+                    {/* 코스 추가용 Modal */}
+                    <Button onClick={handleOpen}>
+                        <AddCircleOutlineIcon />
+                    </Button>
+                    <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <Box sx={modalStyle}>
+                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                                카테고리바, 검색창, 검색버튼, 검색결과  가 나올 곳
+                            </Typography>
+                        </Box>
+                    </Modal>
                 </div>
                 <div className="postingItem">
                     <TextField
