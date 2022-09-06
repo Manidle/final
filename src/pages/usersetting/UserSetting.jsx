@@ -1,12 +1,12 @@
 import React from 'react'
 import './userSetting.css'
-import Topbar from '../../components/topbar/Topbar'
 import { Container, TextField } from '@mui/material'
+import Header from '../../components/header/Header'
 
 const UserProfile = () => {
   return (
     <Container maxWidth="lg">
-      <Topbar/>
+      <Header/>
       <div>UserProfile
         내가 작성한글(post)
         내가 쓴 댓글(reply)

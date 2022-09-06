@@ -1,9 +1,9 @@
-import Topbar from "../../components/topbar/Topbar";
 import { useNavigate } from 'react-router-dom'
 import "./login.css";
 import Footer from "../../components/footer/Footer";
 import { Button, Container, IconButton, SvgIcon, TextField } from "@mui/material";
 import { Person } from "@mui/icons-material";
+import Header from "../../components/header/Header";
 
 export default function Login() {
 
@@ -17,7 +17,7 @@ export default function Login() {
 
   return (
     <Container maxWidth="lg">
-      <Topbar/>
+      <Header/>
       <div className="loginBackground">
         <div className="loginContainer">
           <div className="loginWrapper">

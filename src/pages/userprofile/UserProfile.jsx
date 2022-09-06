@@ -1,11 +1,11 @@
 import { Button, Card, CardActions, CardContent, Container, Typography } from '@mui/material'
 import React from 'react'
-import Topbar from '../../components/topbar/Topbar'
+import Header from '../../components/header/Header'
 
 const UserProfile = () => {
   return (
     <Container maxWidth="lg">
-        <Topbar/>
+        <Header/>
         <Typography component="h2" gutterBottom>
             내 정보
         </Typography>

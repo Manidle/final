@@ -1,11 +1,11 @@
 import { Container } from '@mui/material'
 import React from 'react'
-import Topbar from '../../components/topbar/Topbar'
+import Header from '../../components/header/Header'
 
 const PostDetail = () => {
   return (
     <Container maxWidth="lg">
-        <Topbar/>
+        <Header/>
         <div className="postContainer">
             <div className="postWrapper">
                 <div className="postTopContainer">

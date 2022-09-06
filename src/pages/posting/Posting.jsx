@@ -2,7 +2,7 @@ import { PhotoCamera } from '@mui/icons-material'
 import { Button, Container, IconButton, TextField } from '@mui/material'
 import axios from 'axios'
 import React, { useState } from 'react'
-import Topbar from '../../components/topbar/Topbar'
+import Header from '../../components/header/Header'
 import './posting.css'
 
 const Posting = () => {
@@ -50,7 +50,7 @@ const Posting = () => {
 
   return (
     <Container maxWidth="lg">
-        <Topbar/>
+        <Header/>
         <div className="postingContainer">
             <div className="postingWrapper">
                 <div className="postingItem">

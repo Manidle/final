@@ -2,8 +2,8 @@ import { Box, Button, Container, Modal, Typography } from '@mui/material';
 import Carousel from 'react-material-ui-carousel'
 import React from 'react'
 import Footer from '../../components/footer/Footer';
-import Topbar from '../../components/topbar/Topbar'
 import './rooms.css'
+import Header from '../../components/header/Header';
 
 const Rooms = () => {
 
@@ -49,7 +49,7 @@ const Rooms = () => {
 
   return (
     <Container maxWidth="lg">
-      <Topbar/>
+      <Header/>
       <div className="roomDetail">
         <div className='imageModal'>
           <Button onClick={handleOpen}>이미지 더보기</Button>

@@ -1,10 +1,10 @@
 import React from 'react'
-import Topbar from '../../components/topbar/Topbar'
 import Featured from '../../components/featured/Featured'
 import Searchbar from '../../components/searchbar/Searchbar'
 import HotPost from '../../components/hotpost/HotPost'
 import Footer from '../../components/footer/Footer'
 import { Container, createTheme, ThemeProvider } from '@mui/material'
+import Header from '../../components/header/Header'
 
 
 
@@ -15,7 +15,7 @@ const Home = () => {
 
   return (
       <Container maxWidth="lg">
-        <Topbar/>
+        <Header/>
         <div className="homeContainer">
             <Featured/>
             <Searchbar/>

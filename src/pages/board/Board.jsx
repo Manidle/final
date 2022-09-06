@@ -3,9 +3,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import BoardCategory from '../../components/boardcategory/BoardCategory'
-import Topbar from '../../components/topbar/Topbar'
 import './board.css'
 import Notice from '../../components/Notice/Notice';
+import Header from '../../components/header/Header';
 
 const Community = () => {
 
@@ -21,7 +21,7 @@ const Community = () => {
 
   return (
     <Container maxWidth="lg">
-        <Topbar/>
+        <Header/>
         <div className="communityContainer">
             <div className="communityWrapper">
                 <div className="comunityCategory">

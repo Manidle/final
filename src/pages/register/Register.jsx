@@ -1,4 +1,3 @@
-import Topbar from "../../components/topbar/Topbar"
 import { useNavigate } from 'react-router-dom'
 import "./register.css"
 import Footer from "../../components/footer/Footer"
@@ -6,6 +5,7 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import { Button, Container, TextField } from "@mui/material"
 import { Assignment } from "@mui/icons-material"
+import Header from "../../components/header/Header"
 
 export default function Register() {
 
@@ -76,7 +76,7 @@ export default function Register() {
     
   return (
     <Container maxWidth="lg">
-      <Topbar/>
+      <Header/>
       <div className="registerBackground">
         <div className="registerContainer">
           <div className="registerWrapper">
