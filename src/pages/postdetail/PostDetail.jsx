@@ -1,4 +1,5 @@
-import { Container, Card, CardContent, TextField } from '@mui/material'
+import { Container, Card, CardActions, Button, CardContent, TextField } from '@mui/material'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useState, useEffect } from 'react'
 import React from 'react'
 import axios from 'axios'
@@ -39,22 +40,79 @@ const PostDetail = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [reply, setReply] = useState([]);
 
+    // useEffect(()=>{
+    //     const getReplies = async () =>{
+    //         const {
+    //             data: {
+    //                 data: {reply},
+    //             },
+    //         } = await axios.get('http://localhost:8080/reply/post/1')
+    //         .then((response)=>{
+    //             setReply(response.data)
+    //             console.log(reply);
+    //         });
+    //         setReply(reply);
+    //         setIsLoading(false);
+    //     }
+    //     getReplies();
+    // }, [reply])
+
     useEffect(()=>{
-        const getReplies = async () =>{
-            const {
-                data: {
-                    data: {reply},
-                },
-            } = await axios.get('http://localhost:8080/reply/post/1')
-            .then((response)=>{
-                setReply(response.data)
-                console.log(reply);
-            });
-            setReply(reply);
-            setIsLoading(false);
-        }
-        getReplies();
-    }, [])
+        axios.get('http://localhost:8080/reply/post/1')
+        .then((response)=>{
+            setReply(response.data)
+            console.log(reply);
+        })
+        .catch(function(error){
+            if (error.response) {
+                // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
+                console.log("첫번째 에러");
+                console.log(error.response.data);
+            }
+            else if (error.request) {
+                // 요청이 이루어 졌으나 응답을 받지 못했습니다.
+                // `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
+                // Node.js의 http.ClientRequest 인스턴스입니다.
+                console.log("두번째 에러");
+                console.log(error.request);
+            }
+            else {
+                // 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
+                console.log("세번째 에러");
+            console.log('Error', error.message);
+            }
+            console.log(error.config);
+        })
+    },[])
+
+    // reply 삭제
+    const handleReplyDelete = (props) => {
+        
+        axios.delete(`http://localhost:8080/reply/${props.replyId}`)
+        .then((response)=>{
+            console.log(response);
+        })
+        .catch(function(error){
+            if (error.response) {
+                // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
+                console.log("첫번째 에러");
+                console.log(error.response.data);
+            }
+            else if (error.request) {
+                // 요청이 이루어 졌으나 응답을 받지 못했습니다.
+                // `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
+                // Node.js의 http.ClientRequest 인스턴스입니다.
+                console.log("두번째 에러");
+                console.log(error.request);
+            }
+            else {
+                // 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
+                console.log("세번째 에러");
+            console.log('Error', error.message);
+            }
+            console.log(error.config);
+        })
+    }
 
   return (
     <Container maxWidth="lg">
@@ -97,19 +155,18 @@ const PostDetail = () => {
                         <button className="replySubmitButton" onClick={replySubmit}>입력</button>
                         <div className="replyDisply">
                             <div className="replyTopContainer">
-                                <div className="replyUser">
-                                    댓글작성자
-                                </div>
                                 <div className="replyTime">
                                     댓글작성시간
                                 </div>
-                                <button className="replyDeleteButtto">삭제</button>
                             </div>
                             <div className="replyContentsContainer">
                                 <div className="replyContents">
                                     {reply.map((reply)=>(
                                         <Card>
                                             <CardContent>댓글작성자: {reply.userId}</CardContent>
+                                            <CardContent>replyId: {reply.replyId}</CardContent>
+
+                                            <CardActions><Button size="small" onClick={()=>{handleReplyDelete(reply)}}><DeleteForeverIcon/></Button></CardActions>
                                             <CardContent>댓글 내용: {reply.contents}</CardContent>
                                         </Card>
                                     ))}
