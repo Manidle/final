@@ -3,19 +3,22 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { Box, Button, Container, IconButton, TextField, Modal, Typography } from '@mui/material'
 import axios from 'axios'
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import Header from '../../components/header/Header'
 import './posting.css'
 
 const Posting = () => {
-    const [value, setValue] = React.useState('Controlled');
-
-    const handleChange = (event) => {
-        setValue(event.target.value);
-    };
+    
+    const navigate = useNavigate()
 
     // 게시글 data
     const [postTitle, setPostTitle] = useState("");
     const [postArticle, setPostArticle] = useState("");
+
+    // 게시글 작성 후 게시판으로 이동. 후에 prop 를 넣어 전체 게시판이 아닌 해당 게시판으로 이동하도록.
+    const handleAfterPosting = ()=>{
+        navigate("/board")
+    }
 
     // 게시글 data 보내기
     function postSubmit(){
@@ -25,8 +28,8 @@ const Posting = () => {
             likeCount:0,
             boardId:1,
             userId:1
-        }
-            )
+            }
+        )
         .catch(function(error){
             if (error.response) {
               // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
@@ -46,7 +49,8 @@ const Posting = () => {
               console.log('Error', error.message);
             }
             console.log(error.config);
-          })
+        })
+        handleAfterPosting();
     }
 
     // Modal
