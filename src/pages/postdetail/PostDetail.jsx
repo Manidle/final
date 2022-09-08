@@ -1,4 +1,6 @@
 import { Container, Card, CardActions, Button, CardContent, TextField, Grid } from '@mui/material'
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useState, useEffect } from 'react'
 import React from 'react'
@@ -20,7 +22,7 @@ const PostDetail = () => {
 
     useEffect(()=>{
         axios.get('http://localhost:8080/post/1')
-        .then((response)=>{
+        .then((response)=>{ 
             console.log(response.data);
             setPostBoard(response.data.boardId);
             setPostTitle(response.data.title);
@@ -162,6 +164,12 @@ const PostDetail = () => {
         })
     }
 
+    const [likeClick, setLikeClick] = useState(false);
+
+    function handleLikeClick(){
+        setLikeClick(!likeClick)
+    }
+
   return (
     <Container maxWidth="lg">
         <Header/>
@@ -182,7 +190,9 @@ const PostDetail = () => {
                             조회수 표시
                         </div>
                         <div className="postLikeCount">
-                            좋아요 표시
+                            <a onClick={handleLikeClick}>
+                                {likeClick ? <FavoriteIcon/> : <FavoriteBorderIcon/> }
+                            </a>
                         </div>
                     </div>
                 </div>
