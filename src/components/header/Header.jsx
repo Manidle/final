@@ -35,7 +35,7 @@ const Header = () => {
 
   return (
     <Grid container>
-        <Grid item xs={4}>
+        <Grid item lg={1} xs={4} >
             {/* 로고 */}
             <Button
                 id="basic-button"
@@ -43,10 +43,10 @@ const Header = () => {
                 <img src="image/logo.png" alt="logo" className="logo" height="50px" width="50px" onClick={handleHome} />        
             </Button>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item lg={10} xs={4} >
             <QuestionAnswerIcon fontSize='large' onClick={handleCommunity}/>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item lg={1} xs={4} >
             {user ? (
             <ul className="topList">
                 <div className="topListItem">
