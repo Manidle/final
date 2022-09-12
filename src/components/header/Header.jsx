@@ -1,7 +1,7 @@
 import { Button, Grid, Menu, MenuItem, SvgIcon } from '@mui/material'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { Home } from '@mui/icons-material';
+import MenuIcon from '@mui/icons-material/Menu';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 
 const Header = () => {
@@ -39,12 +39,23 @@ const Header = () => {
             {/* 로고 */}
             <Button
                 id="basic-button"
+                sx={{ display:{ xs:'none', sm:'block'}}}
             >
                 <img src="image/logo.png" alt="logo" className="logo" height="50px" width="50px" onClick={handleHome} />        
             </Button>
+            {/* 햄버거메뉴 */}
+            <Button sx={{ display:{ xs:'block', sm:'none'}}}>
+                <MenuIcon/>
+            </Button>
         </Grid>
         <Grid item lg={10} xs={4} >
-            <QuestionAnswerIcon fontSize='large' onClick={handleCommunity}/>
+            <QuestionAnswerIcon fontSize='large' onClick={handleCommunity} sx={{ display:{ xs:'none', sm:'block'}}}/>
+            <Button
+                id="basic-button"
+                sx={{ display:{ xs:'block', sm:'none'}}}
+            >
+                <img src="image/logo.png" alt="logo" className="logo" height="50px" width="50px" onClick={handleHome} />        
+            </Button>
         </Grid>
         <Grid item lg={1} xs={4} >
             {user ? (
