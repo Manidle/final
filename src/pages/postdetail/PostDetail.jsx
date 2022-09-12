@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import React from 'react'
 import axios from 'axios'
 import Header from '../../components/header/Header'
+import Reply from '../../components/reply/Reply';
 
 const PostDetail = () => {
 
@@ -211,9 +212,10 @@ const PostDetail = () => {
                     게시글 기차리스트: {postTrainList}
 
                 </Grid>
+                
+                <Reply/>
 
-
-                <div className="replyContainer">
+                {/* <div className="replyContainer">
                     <div className="replyWrapper">
                         <div className="inputReply">
                             <TextField
@@ -244,7 +246,7 @@ const PostDetail = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className="recommendPostContainer">
                     추천게시글
                 </div>
