@@ -2,18 +2,19 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { Card, CardActions, Button, CardContent, TextField } from '@mui/material'
 import axios from 'axios'
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
-const Reply = () => {
+const Reply = (props) => {
+
+
+    const postId = Number(props.postId);
 
     // reply 읽어오기
     const [isLoading, setIsLoading] = useState(true);
     const [reply, setReply] = useState([]);
 
     const getReply = async ()=>{
-        axios.get('http://localhost:8080/reply/post/1')
+        axios.get(`http://localhost:8080/reply/post/${postId}`)
         .then((response)=>{
             setReply(response.data)
             // console.log(reply);
@@ -51,7 +52,7 @@ const Reply = () => {
         axios.get('http://localhost:8080/reply', {
             params:{
                 user:1,
-                post:1,
+                post:postId,
                 contents:replyContent
             }
         })
@@ -104,49 +105,43 @@ const Reply = () => {
             console.log('Error', error.message);
             }
             console.log(error.config);
-        })
-    }
-    
-    // 게시글 좋아요
-    const [likeClick, setLikeClick] = useState(false);
-
-    function handleLikeClick(){
-        setLikeClick(!likeClick)
+            getReply();
+        });
     }
 
   return (
     <div className="replyContainer">
-                    <div className="replyWrapper">
-                        <div className="inputReply">
-                            <TextField
-                                label="댓글 내용"
-                                multiline row={3}
-                                onChange={(e)=>{setReplyContent(e.target.value);}}
-                            />
-                        </div>
-                        <button className="replySubmitButton" onClick={replySubmit}>입력</button>
-                        <div className="replyDisply">
-                            <div className="replyTopContainer">
-                                <div className="replyTime">
-                                    댓글작성시간
-                                </div>
-                            </div>
-                            <div className="replyContentsContainer">
-                                <div className="replyContents">
-                                    {reply.map((reply)=>(
-                                        <Card>
-                                            <CardContent>댓글작성자: {reply.userId}</CardContent>
-                                            <CardContent>replyId: {reply.replyId}</CardContent>
-
-                                            <CardActions><Button size="small" onClick={()=>{handleReplyDelete(reply)}}><DeleteForeverIcon/></Button></CardActions>
-                                            <CardContent>댓글 내용: {reply.contents}</CardContent>
-                                        </Card>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
+        <div className="replyWrapper">
+            <div className="inputReply">
+                <TextField
+                    label="댓글 내용"
+                    multiline row={3}
+                    onChange={(e)=>{setReplyContent(e.target.value);}}
+                />
+            </div>
+            <button className="replySubmitButton" onClick={replySubmit}>입력</button>
+            <div className="replyDisply">
+                <div className="replyTopContainer">
+                    <div className="replyTime">
+                        댓글작성시간
                     </div>
                 </div>
+                <div className="replyContentsContainer">
+                    <div className="replyContents">
+                        {reply == null ? <Card>"댓글이 없습니다."</Card> : reply.map((reply)=>(
+                            <Card key={reply.replyId}>
+                                <CardContent>댓글작성자: {reply.userId}</CardContent>
+                                <CardContent>replyId: {reply.replyId}</CardContent>
+
+                                <CardActions><Button size="small" onClick={()=>{handleReplyDelete(reply)}}><DeleteForeverIcon/></Button></CardActions>
+                                <CardContent>댓글 내용: {reply.contents}</CardContent>
+                            </Card>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
   )
 }
 
