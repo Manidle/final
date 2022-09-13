@@ -6,8 +6,13 @@ import React from 'react'
 import axios from 'axios'
 import Header from '../../components/header/Header'
 import Reply from '../../components/reply/Reply';
+import { useLocation } from 'react-router-dom';
 
 const PostDetail = () => {
+
+    // board 에서 보낸 postId 를 받아오기
+    const postProps = useLocation()
+    // console.log(postId.state.postId);
 
     // 게시글 데이터 가져오기
     const [postBoard, setPostBoard] = useState("")
@@ -21,8 +26,8 @@ const PostDetail = () => {
     const [postTrainList, setPostTrainList] = useState([])
 
     useEffect(()=>{
-        axios.get('http://localhost:8080/post/1')
-        .then((response)=>{ 
+        axios.get(`http://localhost:8080/post/${postProps.state.postId}`)
+        .then((response)=>{
             console.log(response.data);
             setPostBoard(response.data.boardId);
             setPostTitle(response.data.title);
@@ -104,7 +109,7 @@ const PostDetail = () => {
                     게시글 기차리스트: {postTrainList}
 
                 </Grid>
-                <Reply postId="1"/>
+                <Reply postId={postProps.state.postId}/>
                 <div className="recommendPostContainer">
                     추천게시글
                 </div>

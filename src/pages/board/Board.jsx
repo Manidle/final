@@ -1,7 +1,7 @@
 import { Button, Card, CardContent, Container, Input, InputAdornment, Pagination, Stack, TextField } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import BoardCategory from '../../components/boardcategory/BoardCategory'
 import './board.css'
 import Notice from '../../components/Notice/Notice';
@@ -53,8 +53,13 @@ const Community = () => {
         })
     },[])
 
+    // useLocation 으로 postDetail 에 보내기.
     function handlePostDetail(props){
-        navigate(`/post/${props}`)
+        navigate(`/post/${props}`, {
+            state:{
+                postId:props
+            }
+        })
     }
 
   return (
