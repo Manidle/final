@@ -24,6 +24,7 @@ const Reply = (props) => {
                 // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
                 console.log("첫번째 에러");
                 console.log(error.response.data);
+                setReply([]);
             }
             else if (error.request) {
                 // 요청이 이루어 졌으나 응답을 받지 못했습니다.
@@ -128,7 +129,7 @@ const Reply = (props) => {
                 </div>
                 <div className="replyContentsContainer">
                     <div className="replyContents">
-                        {reply == null ? <Card>"댓글이 없습니다."</Card> : reply.map((reply)=>(
+                        {reply.length === 0 ? <Card>"댓글이 없습니다."</Card> : reply.map((reply)=>(
                             <Card key={reply.replyId}>
                                 <CardContent>댓글작성자: {reply.userId}</CardContent>
                                 <CardContent>replyId: {reply.replyId}</CardContent>
