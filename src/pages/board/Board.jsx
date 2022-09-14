@@ -1,7 +1,7 @@
 import { Button, Card, CardContent, Container, Input, InputAdornment, Pagination, Stack, TextField } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import BoardCategory from '../../components/boardcategory/BoardCategory'
 import './board.css'
 import Notice from '../../components/Notice/Notice';
@@ -75,14 +75,11 @@ const Community = () => {
                     {posts.map((posts)=>(
                         <Card>
                             <CardContent onClick={()=>{handlePostDetail(posts.postId)}}>게시글 번호: {posts.postId}</CardContent>
-                            <CardContent>게시글제목: {posts.title}</CardContent>
+                            <CardContent onClick={()=>{handlePostDetail(posts.postId)}}>게시글제목: {posts.title}</CardContent>
                             <CardContent>게시글 작성자: {posts.user}</CardContent>
                             <CardContent>댓글 수: {posts.replyList}</CardContent>
                         </Card>
                     ))}
-                    <ol className="communityPosts">게시글1</ol>
-                    <ol className="communityPosts">게시글2</ol>
-                    <ol className="communityPosts">게시글3</ol>
                 </div>
                 <div className="boardFooter">
                     <Stack spacing={2}>
