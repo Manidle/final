@@ -16,8 +16,8 @@ const DashboardCommunity = () => {
     useEffect(()=>{
         axios.get('http://localhost:8080/board') 
         .then((response)=>{
-            setBoardData(response.data)
             console.log("게시판데이터");
+            setBoardData(response.data)
             console.log(boardData);
         })
         .catch(function(error){
@@ -25,7 +25,7 @@ const DashboardCommunity = () => {
         })
         console.log("마지막");
         console.log(boardData);
-    },[]) 
+    },[])
 
   return (
     <Box sx={{ padding:'10px'}}>

@@ -6,13 +6,21 @@ import React from 'react'
 import axios from 'axios'
 import Header from '../../components/header/Header'
 import Reply from '../../components/reply/Reply';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const PostDetail = () => {
 
     // board 에서 보낸 postId 를 받아오기
     const postProps = useLocation()
     // console.log(postId.state.postId);
+    const postId = postProps.state.postId
+
+    const navigate = useNavigate()
+
+    // 게시글 삭제 후 이동
+    const handleAfterDelete = ()=>{
+        navigate("/board")
+    }
 
     // 게시글 데이터 가져오기
     const [postBoard, setPostBoard] = useState("")
@@ -60,6 +68,33 @@ const PostDetail = () => {
             console.log(error.config);
         })
     }, [])
+
+    // 게시글 삭제
+    function deletePost(){
+        axios.delete(`http://localhost:8080/post/${postId}`)
+        .then(()=>{
+            handleAfterDelete();
+        })
+        .catch(function(error){
+            if (error.response) {
+              // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
+              console.log("첫번째 에러");            
+            }
+            else if (error.request) {
+                // 요청이 이루어 졌으나 응답을 받지 못했습니다.
+                // `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
+                // Node.js의 http.ClientRequest 인스턴스입니다.
+                console.log("두번째 에러");
+                console.log(error.request);
+            }
+            else {
+                // 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
+                console.log("세번째 에러");
+              console.log('Error', error.message);
+            }
+            console.log(error.config);
+        })
+    }
         
     // 게시글 좋아요
     const [likeClick, setLikeClick] = useState(false);
@@ -84,7 +119,7 @@ const PostDetail = () => {
                         <div className="postTime">
                             게시글 작성시간
                         </div>
-                        <div className="psotViewCount">
+                        <div className="postViewCount">
                             조회수 표시
                         </div>
                         <div className="postLikeCount">
@@ -92,6 +127,9 @@ const PostDetail = () => {
                                 {likeClick ? <FavoriteIcon/> : <FavoriteBorderIcon/> }
                             </a>
                         </div>
+                        <Button className="postDeleteButton" onClick={deletePost}>
+                            삭제
+                        </Button>
                     </div>
                 </div>
                 <div className="postDetailContainer">

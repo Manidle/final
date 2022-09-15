@@ -13,10 +13,6 @@ import DashboardCommunity from '../../components/dashboardcommunity/DashboardCom
 
 const Community = () => {
 
-    //
-    // const boardProps = useLocation()
-    // console.log(boardProps.state.boardId);
-
     //navigate
     const navigate = useNavigate()
 
