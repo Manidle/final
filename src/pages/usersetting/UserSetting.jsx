@@ -2,7 +2,7 @@ import React from 'react'
 import './userSetting.css'
 import { Box, Button, Container, Stack, TextField, Typography } from '@mui/material'
 import Header from '../../components/header/Header'
-import Dashboard from '../../components/dashboard/Dashboard'
+import DashboardMyInfo from '../../components/dashboardmyinfo/DashboardMyInfo'
 import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -61,7 +61,7 @@ const UserProfile = () => {
     <Container maxWidth="lg">
       <Header/>
       <Box display='flex' >
-        <Dashboard />
+        <DashboardMyInfo />
         <Container sx={{ display:{ xs:'inline', sm:'flex'}, justifyContent:'center', alignItems:'center'}}>
           <Box>
           </Box>

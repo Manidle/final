@@ -1,7 +1,7 @@
-import { Button, Card, CardContent, Container, Input, InputAdornment, Pagination, Stack, TextField } from '@mui/material'
+import { Button, Box, Card, CardContent, Container, Input, InputAdornment, Pagination, Stack, TextField } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import BoardCategory from '../../components/boardcategory/BoardCategory'
 import './board.css'
 import Notice from '../../components/Notice/Notice';
@@ -9,10 +9,13 @@ import Header from '../../components/header/Header';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
+import DashboardCommunity from '../../components/dashboardcommunity/DashboardCommunity';
 
 const Community = () => {
 
-    const ariaLabel = { 'aria-label': 'description' };
+    //
+    // const boardProps = useLocation()
+    // console.log(boardProps.state.boardId);
 
     //navigate
     const navigate = useNavigate()
@@ -65,47 +68,52 @@ const Community = () => {
   return (
     <Container maxWidth="lg">
         <Header/>
-        <div className="communityContainer">
-            <div className="communityWrapper">
-                <div className="comunityCategory">
-                    <BoardCategory/>
+        <Box display='flex'>
+            <DashboardCommunity />
+            <Box>
+                <div className="communityContainer">
+                    <div className="communityWrapper">
+                        <div className="comunityCategory">
+                            <BoardCategory/>
+                        </div>
+                        <div className="communityBoard">
+                            {/* <Notice/> */}
+                            {posts.length === 0 ? <Box>"첫 게시글을 작성해보세요!"</Box> : posts.map((posts)=>(
+                                <Card>
+                                    <CardContent onClick={()=>{handlePostDetail(posts.postId)}}>게시글 번호: {posts.postId}</CardContent>
+                                    <CardContent onClick={()=>{handlePostDetail(posts.postId)}}>게시글제목: {posts.title}</CardContent>
+                                    <CardContent>게시글 작성자: {posts.user}</CardContent>
+                                    <CardContent>댓글 수: {posts.replyList}</CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                        <div className="boardFooter">
+                            <Stack spacing={2}>
+                                <Pagination count={20} defaultPage={6} boundaryCount={2} />
+                            </Stack>
+                        </div>
+                        <div className="boardSearchbar">
+                            <TextField
+                                InputProps={{
+                                    startAdornment: (
+                                    <InputAdornment position="start">
+                                        <SearchIcon/>
+                                    </InputAdornment>
+                                    )
+                                }}
+                                size="small"
+                            />
+                            <Button variant="contained" color="action" className="postSearchButton">
+                                게시글 검색
+                            </Button>
+                            <Button variant="contained" color="action" className="communityPostingButton" onClick={handlePosting}>
+                                게시글 등록
+                            </Button>
+                        </div>
+                    </div>
                 </div>
-                <div className="communityBoard">
-                    <Notice/>
-                    {posts.map((posts)=>(
-                        <Card>
-                            <CardContent onClick={()=>{handlePostDetail(posts.postId)}}>게시글 번호: {posts.postId}</CardContent>
-                            <CardContent onClick={()=>{handlePostDetail(posts.postId)}}>게시글제목: {posts.title}</CardContent>
-                            <CardContent>게시글 작성자: {posts.user}</CardContent>
-                            <CardContent>댓글 수: {posts.replyList}</CardContent>
-                        </Card>
-                    ))}
-                </div>
-                <div className="boardFooter">
-                    <Stack spacing={2}>
-                        <Pagination count={20} defaultPage={6} boundaryCount={2} />
-                    </Stack>
-                </div>
-                <div className="boardSearchbar">
-                    <TextField
-                        InputProps={{
-                            startAdornment: (
-                            <InputAdornment position="start">
-                                <SearchIcon/>
-                            </InputAdornment>
-                            )
-                        }}
-                        size="small"
-                    />
-                    <Button variant="contained" color="action" className="postSearchButton">
-                        게시글 검색
-                    </Button>
-                    <Button variant="contained" color="action" className="communityPostingButton" onClick={handlePosting}>
-                        게시글 등록
-                    </Button>
-                </div>
-            </div>
-        </div>
+            </Box>
+        </Box>
     </Container>
   )
 }

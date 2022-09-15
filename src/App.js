@@ -30,6 +30,8 @@ function App() {
             <Route path="/rooms/:id" element={<Rooms />}/>
             {/* Community 클릭 시 게시판으로 */}
             <Route path='/board' element={<Board/>}/>
+            {/* 게시판 이름 클릭 시 해당 게시판으로 */}
+            <Route path='/board/:id' element={<Board/>}/>
             {/* 게시글 detail */}
             <Route path='/post/:id' element={<PostDetail />}  />
             {/* 게시글 등록 버튼 클릭 시 게시판 등록화면으로 */}
