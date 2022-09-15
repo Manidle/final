@@ -74,14 +74,14 @@ const Community = () => {
                         </div>
                         <div className="communityBoard">
                             {/* <Notice/> */}
-                            {posts.length === 0 ? <Box>"첫 게시글을 작성해보세요!"</Box> : posts.map((posts)=>(
-                                <Card>
-                                    <CardContent onClick={()=>{handlePostDetail(posts.postId)}}>게시글 번호: {posts.postId}</CardContent>
-                                    <CardContent onClick={()=>{handlePostDetail(posts.postId)}}>게시글제목: {posts.title}</CardContent>
-                                    <CardContent>게시글 작성자: {posts.user}</CardContent>
-                                    <CardContent>댓글 수: {posts.replyList}</CardContent>
-                                </Card>
-                            ))}
+                            {posts.length === 0 ? <Box padding="10px">"첫 게시글을 작성해보세요!"</Box> : posts.map((post)=>(
+                                <Box display='flex' justifyContent='space-between'>
+                                    <CardContent onClick={()=>{handlePostDetail(post.postId)}}>게시글 번호: {post.postId}</CardContent>
+                                    <CardContent onClick={()=>{handlePostDetail(post.postId)}}>게시글제목: {post.title}</CardContent>
+                                    <CardContent>게시글 작성자: {post.user}</CardContent>
+                                    <CardContent>댓글 수: {post.replyList}</CardContent>
+                                </Box>
+                            )).reverse()}
                         </div>
                         <div className="boardFooter">
                             <Stack spacing={2}>

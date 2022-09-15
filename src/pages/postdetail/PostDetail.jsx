@@ -1,4 +1,4 @@
-import { Container, Card, CardActions, Button, CardContent, TextField, Grid } from '@mui/material'
+import { Container, Card, CardActions, Button, CardContent, TextField, Grid, Divider } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useState, useEffect } from 'react'
@@ -71,14 +71,17 @@ const PostDetail = () => {
 
     // 게시글 삭제
     function deletePost(){
-        axios.delete(`http://localhost:8080/post/${postId}`)
-        .then(()=>{
+        axios.delete(`http://localhost:8080/post/${postProps.state.postId}`)
+        .then((response)=>{
+            console.log("삭제 했습니다.");
+            console.log(response);
             handleAfterDelete();
+            console.log(postId);
         })
         .catch(function(error){
             if (error.response) {
               // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
-              console.log("첫번째 에러");            
+              console.log("첫번째 에러");
             }
             else if (error.request) {
                 // 요청이 이루어 졌으나 응답을 받지 못했습니다.
@@ -132,6 +135,7 @@ const PostDetail = () => {
                         </Button>
                     </div>
                 </div>
+                <Divider/>
                 <div className="postDetailContainer">
                     게시글내용
                 </div>
@@ -147,6 +151,7 @@ const PostDetail = () => {
                 <br/>게시글 기차리스트: {postTrainList}
 
                 </Grid>
+                <Divider/>
                 <Reply postId={postProps.state.postId}/>
                 <div className="recommendPostContainer">
                     추천게시글

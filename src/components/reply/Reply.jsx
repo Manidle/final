@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Card, CardActions, Button, CardContent, TextField } from '@mui/material'
+import { Card, CardActions, Button, CardContent, TextField, Typography, Box, Divider } from '@mui/material'
 import axios from 'axios'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
@@ -113,30 +113,29 @@ const Reply = (props) => {
   return (
     <div className="replyContainer">
         <div className="replyWrapper">
-            <div className="inputReply">
+            <Typography>댓글</Typography>
+            <Box className="inputReply" display="flex">
                 <TextField
                     label="댓글 내용"
                     multiline row={3}
                     onChange={(e)=>{setReplyContent(e.target.value);}}
                 />
-            </div>
-            <button className="replySubmitButton" onClick={replySubmit}>입력</button>
+                <button className="replySubmitButton" onClick={replySubmit}>입력</button>
+            </Box>
             <div className="replyDisply">
-                <div className="replyTopContainer">
-                    <div className="replyTime">
-                        댓글작성시간
-                    </div>
-                </div>
                 <div className="replyContentsContainer">
                     <div className="replyContents">
-                        {reply.length === 0 ? <Card>"댓글이 없습니다."</Card> : reply.map((reply)=>(
-                            <Card key={reply.replyId}>
-                                <CardContent>댓글작성자: {reply.userId}</CardContent>
-                                <CardContent>replyId: {reply.replyId}</CardContent>
+                        {reply.length === 0 ? <Box padding="10px">"댓글이 없습니다."</Box> : reply.map((reply)=>(
+                            <>
+                                <Box key={reply.replyId} display="flex">
+                                    <CardContent>댓글작성자: {reply.userId}</CardContent>
+                                    <CardContent>replyId: {reply.replyId}</CardContent>
 
-                                <CardActions><Button size="small" onClick={()=>{handleReplyDelete(reply)}}><DeleteForeverIcon/></Button></CardActions>
-                                <CardContent>댓글 내용: {reply.contents}</CardContent>
-                            </Card>
+                                    <CardActions><Button size="small" onClick={() => { handleReplyDelete(reply); } }><DeleteForeverIcon /></Button></CardActions>
+                                    <CardContent>댓글 내용: {reply.contents}</CardContent>
+                                </Box>
+                                <Divider />
+                            </>
                         ))}
                     </div>
                 </div>
