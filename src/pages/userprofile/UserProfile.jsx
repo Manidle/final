@@ -1,7 +1,7 @@
 import { Button, Card, CardActions, CardContent, Container, Typography, Box } from '@mui/material'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import Dashboard from '../../components/dashboard/Dashboard'
+import DashboardMyInfo from '../../components/dashboardmyinfo/DashboardMyInfo'
 import Header from '../../components/header/Header'
 
 const UserProfile = () => {
@@ -16,7 +16,7 @@ const UserProfile = () => {
     <Container maxWidth="lg">
         <Header/>
         <Box display="flex">
-            <Dashboard/>
+            <DashboardMyInfo />
             <Container className='DetailContainer'>
                 <Container className='DetailInfo'>
                     <Typography component="h2" gutterBottom>
@@ -29,7 +29,7 @@ const UserProfile = () => {
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Button size="small" onClick={()=>{handleRoute('user/profile')}}>전체 보기</Button>
+                            <Button size="small" onClick={()=>{handleRoute('user/update')}}>전체 보기</Button>
                         </CardActions>
                     </Card>
                 </Container>

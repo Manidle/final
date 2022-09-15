@@ -4,7 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
-const Dashboard = () => {
+const DashboardMyInfo = () => {
 
     const navigate = useNavigate();
 
@@ -60,4 +60,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default DashboardMyInfo

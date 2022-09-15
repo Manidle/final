@@ -98,15 +98,15 @@ const PostDetail = () => {
                     게시글내용
                 </div>
                 <Grid>
-                    게시판: {postBoard}
-                    게시글 제목: {postTitle}
-                    게시글 내용: {postContents}
-                    게시글 좋아요 수: {postLikeCount}
-                    게시글 작성자: {postUser}
-                    게시글 숙소리스트: {postStayList}
-                    게시글 관광지리스트: {postAttractionList}
-                    게시글 렌트카리스트: {postRentCarList}
-                    게시글 기차리스트: {postTrainList}
+                <br/>게시판: {postBoard}<br/>
+                <br/>게시글 제목: {postTitle}
+                <br/>게시글 내용: {postContents}
+                <br/>게시글 좋아요 수: {postLikeCount}
+                <br/>게시글 작성자: {postUser}
+                <br/>게시글 숙소리스트: {postStayList}
+                <br/>게시글 관광지리스트: {postAttractionList}
+                <br/>게시글 렌트카리스트: {postRentCarList}
+                <br/>게시글 기차리스트: {postTrainList}
 
                 </Grid>
                 <Reply postId={postProps.state.postId}/>
