@@ -41,6 +41,12 @@ export default function Register() {
     // userInfo 를 넣지 않으면 가입이 안되므로,
     // img 와 email 을 ""(빈값)으로 넣고, 회원 수정에서 추가할 수 있도록, 필수가 아니니까.
     )
+    // 성공했을 땐 
+    // user 등록 후 팝업이나 알림창이 뜬 뒤에 login 페이지로 이동
+    .then(()=>{
+      // 알림창 띄우기
+      handleLoginRoute();
+    })
     .catch(function(error) {
       console.log("user 보내기 실패");
       console.log(error);
@@ -49,9 +55,6 @@ export default function Register() {
       console.log(password);
       console.log(email);
     });
-    // 성공했을 땐 
-    // user 등록 후 팝업이나 알림창이 뜬 뒤에 login 페이지로 이동
-    // handleLoginRoute();
   }
 
   // const onSubmitHandler = async (e) => {
@@ -91,7 +94,7 @@ export default function Register() {
               {/* user 서식 */}
               <TextField id="standard-basic" label="아이디" variant="standard" margin="normal" size="small" onChange={(e)=>{setUserId(e.target.value);}} />
               <TextField id="standard-basic" label="닉네임" variant="standard" margin="normal" size="small" onChange={(e)=>{setUserNickname(e.target.value);}} />
-              <TextField id="standard-basic" label="이메일" variant="standard" margin="normal" size="small" type="email" onChange={(e)=>{setEmail(e.target.value);}} />
+              {/* <TextField id="standard-basic" label="이메일" variant="standard" margin="normal" size="small" type="email" onChange={(e)=>{setEmail(e.target.value);}} /> */}
               <TextField id="standard-basic" label="비밀번호" variant="standard" margin="normal" size="small" type="password" onChange={(e)=>{setPassword(e.target.value);}} />
               {/* user 보내는 버튼 */}
               <Button type="button" className="registerButton" variant="contained" onClick={()=>userSignIn()}>가입하기</Button>
