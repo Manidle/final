@@ -15,7 +15,7 @@ function App() {
   return (
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home/> }/>
+            <Route exact path="/" element={<Home/> }/>
             {/* 로그인 페이지 */}
             <Route path="/login" element={<Login /> }/>
             {/* 유저 등록 페이지 */}
@@ -25,15 +25,15 @@ function App() {
             {/* 유저 프로필 수정*/}
             <Route path="/user/update" element={<UserSetting /> }/>
             {/* 객실 검색시 리스트 출력 */}
-            <Route path='/rooms' element={<Roomlist/> }/>
+            <Route exact path='/rooms' element={<Roomlist/> }/>
             {/* 객실 클릭시 해당 객실 페이지로 */}
-            <Route path="/rooms/:id" element={<Rooms />}/>
+            <Route path="/rooms/:roomId" element={<Rooms />}/>
             {/* Community 클릭 시 게시판으로 */}
-            <Route path='/board' element={<Board/>}/>
+            <Route exact path='/board' element={<Board/>}/>
             {/* 게시판 이름 클릭 시 해당 게시판으로 */}
-            <Route path='/board/:id' element={<Board/>}/>
+            <Route path='/board/:boardId' element={<Board/>}/>
             {/* 게시글 detail */}
-            <Route path='/post/:id' element={<PostDetail />}  />
+            <Route path='/post/:postId' element={<PostDetail />}  />
             {/* 게시글 등록 버튼 클릭 시 게시판 등록화면으로 */}
             <Route path='/posting' element={<Posting/>}/>
 

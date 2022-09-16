@@ -1,6 +1,6 @@
 import { PhotoCamera } from '@mui/icons-material'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { Box, Button, Container, IconButton, TextField, Modal, Typography } from '@mui/material'
+import { Box, Button, Container, IconButton, TextField, Modal, Typography, Snackbar } from '@mui/material'
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
@@ -16,8 +16,8 @@ const Posting = () => {
     const [postArticle, setPostArticle] = useState("");
 
     // 게시글 작성 후 게시판으로 이동. 후에 prop 를 넣어 전체 게시판이 아닌 해당 게시판으로 이동하도록.
-    const handleAfterPosting = ()=>{
-        navigate("/board")
+    function handleAfterPosting(){
+        handleSnackbar()
     }
 
     // 게시글 data 보내기
@@ -32,6 +32,11 @@ const Posting = () => {
         )
         .then(()=>{
             handleAfterPosting();
+        })
+        .then(()=>{
+            setTimeout(() => {
+                navigate('/board')
+            }, 2000);
         })
         .catch(function(error){
             if (error.response) {
@@ -56,9 +61,8 @@ const Posting = () => {
     }
 
     // Modal
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const [openModal, setOpenModal] = React.useState(false);
+    const handleModal = () => setOpenModal(!openModal);
 
     const modalStyle = {
         position: 'absolute',
@@ -70,10 +74,28 @@ const Posting = () => {
         border: '2px solid #000',
         boxShadow: 24,
         p: 4,
-      };
+    };
+
+    const [stateSnackbar, setStateSnackbar] = React.useState({
+        openSnackbar: false,
+        vertical: 'top',
+        horizontal: 'center',
+        });
+
+    const { vertical, horizontal, openSnackbar } = stateSnackbar;
+    const handleSnackbar = () => {
+        setStateSnackbar({ ...stateSnackbar, openSnackbar: !openSnackbar });
+    };
 
   return (
     <Container maxWidth="lg">
+        <Snackbar
+            anchorOrigin={{ vertical, horizontal }}
+            open={openSnackbar}
+            onClose={handleSnackbar}
+            message="게시글 등록에 성공했습니다!"
+            key={vertical + horizontal}
+        />
         <Header/>
         <div className="postingContainer">
             <div className="postingWrapper">
@@ -94,12 +116,12 @@ const Posting = () => {
                         <PhotoCamera />
                     </IconButton>
                     {/* 코스 추가용 Modal */}
-                    <Button onClick={handleOpen}>
+                    <Button onClick={handleModal}>
                         <AddCircleOutlineIcon />
                     </Button>
                     <Modal
-                        open={open}
-                        onClose={handleClose}
+                        open={openModal}
+                        onClose={handleModal}
                         aria-labelledby="modal-modal-title"
                         aria-describedby="modal-modal-description"
                     >
