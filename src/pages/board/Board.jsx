@@ -1,4 +1,4 @@
-import { Button, Box, Card, CardContent, Container, Input, InputAdornment, Pagination, Stack, TextField, ThemeProvider, createTheme } from '@mui/material'
+import { Button, Box, Card, CardContent, Container, Input, InputAdornment, Pagination, Stack, TextField, ThemeProvider, createTheme, ListItem } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import DashboardCommunity from '../../components/dashboardcommunity/DashboardCommunity';
+import usePagination from '../../components/Pagination';
 
 const Community = () => {
 
@@ -44,7 +45,7 @@ const Community = () => {
         axios.get('http://localhost:8080/post')
         .then((response)=>{
             console.log(response.data);
-            setPosts(response.data)
+            setPosts(response.data.reverse())
         })
         .catch(function(error){
             if (error.response) {
@@ -77,6 +78,17 @@ const Community = () => {
         })
     }
 
+    // 게시글 페이징
+    const [page, setPage] = useState(1);
+    const perPage = 10;
+    const count = Math.ceil(posts.length / perPage);
+    const postsPerPage = usePagination(posts, perPage);
+
+    const handlePage = (e, p) => {
+        setPage(p);
+        postsPerPage.jump(p);
+    }
+
   return (
     <ThemeProvider theme={theme}>
         <Container maxWidth="lg">
@@ -91,18 +103,23 @@ const Community = () => {
                             </div>
                             <div className="communityBoard">
                                 {/* <Notice/> */}
-                                {posts.length === 0 ? <Box padding="10px">"첫 게시글을 작성해보세요!"</Box> : posts.map((post)=>(
-                                    <Box display='flex' justifyContent='space-between'>
+                                {posts.length === 0 ? <Box padding="10px">"첫 게시글을 작성해보세요!"</Box> : postsPerPage.currentData().map((post)=>(
+                                    <ListItem display='flex' justifyContent='space-between' key={post.postId} >
                                         <CardContent onClick={()=>{handlePostDetail(post.postId)}}>게시글 번호: {post.postId}</CardContent>
                                         <CardContent onClick={()=>{handlePostDetail(post.postId)}}>게시글제목: {post.title}</CardContent>
                                         <CardContent>게시글 작성자: {post.user}</CardContent>
                                         <CardContent>댓글 수: {post.replyList}</CardContent>
-                                    </Box>
-                                )).reverse()}
+                                    </ListItem>
+                                ))}
                             </div>
                             <div className="boardFooter">
                                 <Stack spacing={2}>
-                                    <Pagination count={20} defaultPage={6} boundaryCount={2} />
+                                    <Pagination
+                                        size='small'
+                                        count={20}
+                                        boundaryCount={2}
+                                        onChange={handlePage}
+                                    />
                                 </Stack>
                             </div>
                             <div className="boardSearchbar">
