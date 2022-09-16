@@ -113,10 +113,10 @@ const Community = () => {
                                 ))}
                             </div>
                             <div className="boardFooter">
-                                <Stack spacing={2}>
+                                <Stack spacing={2} padding='5px' >
                                     <Pagination
                                         size='small'
-                                        count={20}
+                                        count={count}
                                         boundaryCount={2}
                                         onChange={handlePage}
                                     />
