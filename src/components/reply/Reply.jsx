@@ -1,11 +1,26 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Card, CardActions, Button, CardContent, TextField, Typography, Box, Divider } from '@mui/material'
+import { Card, CardActions, Button, CardContent, TextField, Typography, Box, Divider, createTheme, ThemeProvider } from '@mui/material'
 import axios from 'axios'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const Reply = (props) => {
 
+    const theme = createTheme({
+        palette: {
+            primary: {
+            // Purple and green play nicely together.
+            main: '#52057B',
+            },
+            secondary: {
+            // This is green.A700 as hex.
+            main: '#BC6FF1',
+            },
+            info:{
+                main: '#892CDC',
+            },
+        },
+    });
 
     const postId = Number(props.postId);
 
@@ -111,37 +126,39 @@ const Reply = (props) => {
     }
 
   return (
-    <div className="replyContainer">
-        <div className="replyWrapper">
-            <Typography>댓글</Typography>
-            <Box className="inputReply" display="flex">
-                <TextField
-                    label="댓글 내용"
-                    multiline row={3}
-                    onChange={(e)=>{setReplyContent(e.target.value);}}
-                />
-                <button className="replySubmitButton" onClick={replySubmit}>입력</button>
-            </Box>
-            <div className="replyDisply">
-                <div className="replyContentsContainer">
-                    <div className="replyContents">
-                        {reply.length === 0 ? <Box padding="10px">"댓글이 없습니다."</Box> : reply.map((reply)=>(
-                            <>
-                                <Box key={reply.replyId} display="flex">
-                                    <CardContent>댓글작성자: {reply.userId}</CardContent>
-                                    <CardContent>replyId: {reply.replyId}</CardContent>
-
-                                    <CardActions><Button size="small" onClick={() => { handleReplyDelete(reply); } }><DeleteForeverIcon /></Button></CardActions>
-                                    <CardContent>댓글 내용: {reply.contents}</CardContent>
-                                </Box>
-                                <Divider />
-                            </>
-                        ))}
+    <ThemeProvider theme={theme}>
+        <div className="replyContainer">
+            <div className="replyWrapper">
+                <Typography variant='h6' padding='10px' color='primary' >댓글</Typography>
+                <Box className="inputReply" display="flex">
+                    <TextField
+                        color='secondary'
+                        label="댓글 내용"
+                        multiline row={3}
+                        onChange={(e)=>{setReplyContent(e.target.value);}}
+                    />
+                    <Button className="replySubmitButton" color='secondary' variant='contained' onClick={replySubmit}>입력</Button>
+                </Box>
+                <div className="replyDisply">
+                    <div className="replyContentsContainer">
+                        <div className="replyContents">
+                            {reply.length === 0 ? <Box padding="10px">"댓글이 없습니다."</Box> : reply.map((reply)=>(
+                                <>
+                                    <Box key={reply.replyId} display="flex">
+                                        <CardContent>댓글작성자: {reply.userId}</CardContent>
+                                        <CardContent>replyId: {reply.replyId}</CardContent>
+                                        <CardActions><Button size="small" onClick={() => { handleReplyDelete(reply); } } ><DeleteForeverIcon color='info' /></Button></CardActions>
+                                        <CardContent>댓글 내용: {reply.contents}</CardContent>
+                                    </Box>
+                                    <Divider />
+                                </>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </ThemeProvider>
   )
 }
 

@@ -1,4 +1,4 @@
-import { Button, Box, Card, CardContent, Container, Input, InputAdornment, Pagination, Stack, TextField } from '@mui/material'
+import { Button, Box, Card, CardContent, Container, Input, InputAdornment, Pagination, Stack, TextField, ThemeProvider, createTheme } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -12,6 +12,22 @@ import { useState } from 'react';
 import DashboardCommunity from '../../components/dashboardcommunity/DashboardCommunity';
 
 const Community = () => {
+
+    const theme = createTheme({
+        palette: {
+            primary: {
+            // Purple and green play nicely together.
+            main: '#52057B',
+            },
+            secondary: {
+            // This is green.A700 as hex.
+            main: '#BC6FF1',
+            },
+            info:{
+                main: '#892CDC',
+            },
+        },
+    });
 
     //navigate
     const navigate = useNavigate()
@@ -62,55 +78,57 @@ const Community = () => {
     }
 
   return (
-    <Container maxWidth="lg">
-        <Header/>
-        <Box display='flex'>
-            <DashboardCommunity />
-            <Box>
-                <div className="communityContainer">
-                    <div className="communityWrapper">
-                        <div className="comunityCategory">
-                            <BoardCategory/>
-                        </div>
-                        <div className="communityBoard">
-                            {/* <Notice/> */}
-                            {posts.length === 0 ? <Box padding="10px">"첫 게시글을 작성해보세요!"</Box> : posts.map((post)=>(
-                                <Box display='flex' justifyContent='space-between'>
-                                    <CardContent onClick={()=>{handlePostDetail(post.postId)}}>게시글 번호: {post.postId}</CardContent>
-                                    <CardContent onClick={()=>{handlePostDetail(post.postId)}}>게시글제목: {post.title}</CardContent>
-                                    <CardContent>게시글 작성자: {post.user}</CardContent>
-                                    <CardContent>댓글 수: {post.replyList}</CardContent>
-                                </Box>
-                            )).reverse()}
-                        </div>
-                        <div className="boardFooter">
-                            <Stack spacing={2}>
-                                <Pagination count={20} defaultPage={6} boundaryCount={2} />
-                            </Stack>
-                        </div>
-                        <div className="boardSearchbar">
-                            <TextField
-                                InputProps={{
-                                    startAdornment: (
-                                    <InputAdornment position="start">
-                                        <SearchIcon/>
-                                    </InputAdornment>
-                                    )
-                                }}
-                                size="small"
-                            />
-                            <Button variant="contained" color="action" className="postSearchButton">
-                                게시글 검색
-                            </Button>
-                            <Button variant="contained" color="action" className="communityPostingButton" onClick={handlePosting}>
-                                게시글 등록
-                            </Button>
+    <ThemeProvider theme={theme}>
+        <Container maxWidth="lg">
+            <Header/>
+            <Box display='flex'>
+                <DashboardCommunity />
+                <Box>
+                    <div className="communityContainer">
+                        <div className="communityWrapper">
+                            <div className="comunityCategory">
+                                <BoardCategory/>
+                            </div>
+                            <div className="communityBoard">
+                                {/* <Notice/> */}
+                                {posts.length === 0 ? <Box padding="10px">"첫 게시글을 작성해보세요!"</Box> : posts.map((post)=>(
+                                    <Box display='flex' justifyContent='space-between'>
+                                        <CardContent onClick={()=>{handlePostDetail(post.postId)}}>게시글 번호: {post.postId}</CardContent>
+                                        <CardContent onClick={()=>{handlePostDetail(post.postId)}}>게시글제목: {post.title}</CardContent>
+                                        <CardContent>게시글 작성자: {post.user}</CardContent>
+                                        <CardContent>댓글 수: {post.replyList}</CardContent>
+                                    </Box>
+                                )).reverse()}
+                            </div>
+                            <div className="boardFooter">
+                                <Stack spacing={2}>
+                                    <Pagination count={20} defaultPage={6} boundaryCount={2} />
+                                </Stack>
+                            </div>
+                            <div className="boardSearchbar">
+                                <TextField
+                                    InputProps={{
+                                        startAdornment: (
+                                        <InputAdornment position="start">
+                                            <SearchIcon/>
+                                        </InputAdornment>
+                                        )
+                                    }}
+                                    size="small"
+                                />
+                                <Button variant="contained" color="action" className="postSearchButton">
+                                    게시글 검색
+                                </Button>
+                                <Button variant="contained" color='info' className="communityPostingButton" onClick={handlePosting}>
+                                    게시글 등록
+                                </Button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </Box>
             </Box>
-        </Box>
-    </Container>
+        </Container>
+    </ThemeProvider>
   )
 }
 

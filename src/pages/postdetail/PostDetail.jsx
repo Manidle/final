@@ -1,4 +1,4 @@
-import { Container, Card, CardActions, Button, CardContent, TextField, Grid, Divider } from '@mui/material'
+import { Container, Card, CardActions, Button, CardContent, TextField, Grid, Divider, createTheme, ThemeProvider, Typography, Box } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useState, useEffect } from 'react'
@@ -9,6 +9,23 @@ import Reply from '../../components/reply/Reply';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const PostDetail = () => {
+
+    const theme = createTheme({
+        palette: {
+            primary: {
+            // Purple and green play nicely together.
+            main: '#52057B',
+            },
+            secondary: {
+            // This is green.A700 as hex.
+            main: '#BC6FF1',
+            },
+            info:{
+                main: '#892CDC',
+            },
+        },
+        
+    });
 
     // board 에서 보낸 postId 를 받아오기
     const postProps = useLocation()
@@ -107,58 +124,61 @@ const PostDetail = () => {
     }
 
   return (
-    <Container maxWidth="lg">
-        <Header/>
-        <div className="postContainer">
-            <div className="postWrapper">
-                <div className="postTopContainer">
-                    <div className="postBoard">
-                        게시글  경주 같은 경로 표시
-                    </div>
-                    <div className="postTitle">
-                        게시글 제목
-                    </div>
-                    <div className="postTitleFooter">
-                        <div className="postTime">
-                            게시글 작성시간
+    <ThemeProvider theme={theme}>
+        <Container maxWidth="lg">
+            <Header/>
+            <div className="postContainer">
+                <Box className="postWrapper" >
+                    <Grid >
+                        <div className="postTopContainer">
+                            <Box className="postBoard" display='flex'>
+                                게시판 › <Typography color='info' fontWeight='bold'>{postBoard}</Typography>
+                            </Box>
+                            <div className="postTitle">
+                                <Typography variant='h5' fontWeight='bold' >{postTitle}</Typography>
+                            </div>
+                            <div className="postTitleFooter">
+                                <div className="postTime">
+                                    게시글 작성시간
+                                </div>
+                                <div className="postViewCount">
+                                    조회수 표시
+                                </div>
+                                <div className="postLikeCount">
+                                    <a onClick={handleLikeClick}>
+                                        {likeClick ? <FavoriteIcon color='info'/> : <FavoriteBorderIcon color='info' /> }
+                                    </a>
+                                </div>
+                                <Button className="postDeleteButton" onClick={deletePost} color='error'>
+                                    삭제
+                                </Button>
+                            </div>
                         </div>
-                        <div className="postViewCount">
-                            조회수 표시
+                        <Divider/>
+                        <Box>
+                            <br/>게시판: {postBoard}
+                            <br/>게시글 제목: {postTitle}
+                            <br/>게시글 내용: {postContents}
+                            <br/>게시글 좋아요 수: {postLikeCount}
+                            <br/>게시글 작성자: {postUser}
+                            <br/>게시글 숙소리스트: {postStayList}
+                            <br/>게시글 관광지리스트: {postAttractionList}
+                            <br/>게시글 렌트카리스트: {postRentCarList}
+                            <br/>게시글 기차리스트: {postTrainList}
+                            <br/>
+                        </Box>
+                        <Divider/>
+                        <Reply postId={postProps.state.postId}/>
+                    </Grid>
+                    <Grid xs={12} sm={4}>
+                        <div className="recommendPostContainer">
+                            추천게시글
                         </div>
-                        <div className="postLikeCount">
-                            <a onClick={handleLikeClick}>
-                                {likeClick ? <FavoriteIcon/> : <FavoriteBorderIcon/> }
-                            </a>
-                        </div>
-                        <Button className="postDeleteButton" onClick={deletePost}>
-                            삭제
-                        </Button>
-                    </div>
-                </div>
-                <Divider/>
-                <div className="postDetailContainer">
-                    게시글내용
-                </div>
-                <Grid>
-                <br/>게시판: {postBoard}<br/>
-                <br/>게시글 제목: {postTitle}
-                <br/>게시글 내용: {postContents}
-                <br/>게시글 좋아요 수: {postLikeCount}
-                <br/>게시글 작성자: {postUser}
-                <br/>게시글 숙소리스트: {postStayList}
-                <br/>게시글 관광지리스트: {postAttractionList}
-                <br/>게시글 렌트카리스트: {postRentCarList}
-                <br/>게시글 기차리스트: {postTrainList}
-
-                </Grid>
-                <Divider/>
-                <Reply postId={postProps.state.postId}/>
-                <div className="recommendPostContainer">
-                    추천게시글
-                </div>
+                    </Grid>
+                </Box>
             </div>
-        </div>
-    </Container>
+        </Container>
+    </ThemeProvider>
   )
 }
 
