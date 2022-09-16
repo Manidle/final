@@ -120,7 +120,15 @@ const PostDetail = () => {
     const [likeClick, setLikeClick] = useState(false);
 
     function handleLikeClick(){
-        setLikeClick(!likeClick)
+        axios.get('http://localhost:8080/postlike',{
+            params:{
+                user:1,
+                post:postId,
+            }
+        })
+        .then(()=>{
+            setLikeClick(!likeClick)
+        })
     }
 
   return (
@@ -128,52 +136,55 @@ const PostDetail = () => {
         <Container maxWidth="lg">
             <Header/>
             <div className="postContainer">
-                <Box className="postWrapper" >
-                    <Grid >
-                        <div className="postTopContainer">
-                            <Box className="postBoard" display='flex'>
-                                게시판 › <Typography color='info' fontWeight='bold'>{postBoard}</Typography>
+                <Box className="postWrapper" flexGrow={1}>
+                    <Grid container columns={{xs:12}}>
+                        <Grid item xs={12} sm={8} >
+                            <div className="postTopContainer">
+                                <Box className="postBoard" display='flex'>
+                                    게시판 › <Typography color='info' fontWeight='bold'>{postBoard}</Typography>
+                                </Box>
+                                <div className="postTitle">
+                                    <Typography variant='h5' fontWeight='bold' >{postTitle}</Typography>
+                                </div>
+                                <div className="postTitleFooter">
+                                    <div className="postTime">
+                                        게시글 작성시간
+                                    </div>
+                                    <div className="postViewCount">
+                                        조회수 표시
+                                    </div>
+                                    <Box className="postLikeCount" display='flex'>
+                                        <span onClick={handleLikeClick}>
+                                            {likeClick ? <FavoriteIcon color='info' onClick={()=>{setPostLikeCount(postLikeCount - 1)}} /> : <FavoriteBorderIcon color='info' onClick={()=>{setPostLikeCount(postLikeCount + 1)}} /> }
+                                        </span>
+                                        <Typography>{postLikeCount}</Typography>
+                                    </Box>
+                                    <Button className="postDeleteButton" onClick={deletePost} color='error'>
+                                        삭제
+                                    </Button>
+                                </div>
+                            </div>
+                            <Divider/>
+                            <Box>
+                                <br/>게시판: {postBoard}
+                                <br/>게시글 제목: {postTitle}
+                                <br/>게시글 내용: {postContents}
+                                <br/>게시글 좋아요 수: {postLikeCount}
+                                <br/>게시글 작성자: {postUser}
+                                <br/>게시글 숙소리스트: {postStayList}
+                                <br/>게시글 관광지리스트: {postAttractionList}
+                                <br/>게시글 렌트카리스트: {postRentCarList}
+                                <br/>게시글 기차리스트: {postTrainList}
+                                <br/>
                             </Box>
-                            <div className="postTitle">
-                                <Typography variant='h5' fontWeight='bold' >{postTitle}</Typography>
+                            <Divider/>
+                            <Reply postId={postProps.state.postId}/>
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                            <div className="recommendPostContainer">
+                                추천게시글
                             </div>
-                            <div className="postTitleFooter">
-                                <div className="postTime">
-                                    게시글 작성시간
-                                </div>
-                                <div className="postViewCount">
-                                    조회수 표시
-                                </div>
-                                <div className="postLikeCount">
-                                    <a onClick={handleLikeClick}>
-                                        {likeClick ? <FavoriteIcon color='info'/> : <FavoriteBorderIcon color='info' /> }
-                                    </a>
-                                </div>
-                                <Button className="postDeleteButton" onClick={deletePost} color='error'>
-                                    삭제
-                                </Button>
-                            </div>
-                        </div>
-                        <Divider/>
-                        <Box>
-                            <br/>게시판: {postBoard}
-                            <br/>게시글 제목: {postTitle}
-                            <br/>게시글 내용: {postContents}
-                            <br/>게시글 좋아요 수: {postLikeCount}
-                            <br/>게시글 작성자: {postUser}
-                            <br/>게시글 숙소리스트: {postStayList}
-                            <br/>게시글 관광지리스트: {postAttractionList}
-                            <br/>게시글 렌트카리스트: {postRentCarList}
-                            <br/>게시글 기차리스트: {postTrainList}
-                            <br/>
-                        </Box>
-                        <Divider/>
-                        <Reply postId={postProps.state.postId}/>
-                    </Grid>
-                    <Grid xs={12} sm={4}>
-                        <div className="recommendPostContainer">
-                            추천게시글
-                        </div>
+                        </Grid>
                     </Grid>
                 </Box>
             </div>

@@ -129,7 +129,7 @@ const Reply = (props) => {
     <ThemeProvider theme={theme}>
         <div className="replyContainer">
             <div className="replyWrapper">
-                <Typography variant='h6' padding='10px' color='primary' >댓글</Typography>
+                <Typography fontWeight='bold' padding='10px' color='primary' >댓글</Typography>
                 <Box className="inputReply" display="flex">
                     <TextField
                         color='secondary'
