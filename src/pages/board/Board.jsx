@@ -1,4 +1,4 @@
-import { Button, Box, Card, CardContent, Container, Input, InputAdornment, Pagination, Stack, TextField, ThemeProvider, createTheme, ListItem } from '@mui/material'
+import { Button, Box, Card, CardContent, Container, Input, InputAdornment, Pagination, Stack, TextField, ThemeProvider, createTheme, ListItem, Typography } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -17,14 +17,15 @@ const Community = () => {
     const theme = createTheme({
         palette: {
             primary: {
-            // Purple and green play nicely together.
+                // 가장 어두운 보라
             main: '#52057B',
             },
             secondary: {
-            // This is green.A700 as hex.
+                // 가장 밝은 보라
             main: '#BC6FF1',
             },
             info:{
+                // 중간 보라
                 main: '#892CDC',
             },
         },
@@ -104,11 +105,11 @@ const Community = () => {
                             <div className="communityBoard">
                                 {/* <Notice/> */}
                                 {posts.length === 0 ? <Box padding="10px">"첫 게시글을 작성해보세요!"</Box> : postsPerPage.currentData().map((post)=>(
-                                    <ListItem display='flex' justifyContent='space-between' key={post.postId} >
-                                        <CardContent onClick={()=>{handlePostDetail(post.postId)}}>게시글 번호: {post.postId}</CardContent>
-                                        <CardContent onClick={()=>{handlePostDetail(post.postId)}}>게시글제목: {post.title}</CardContent>
-                                        <CardContent>게시글 작성자: {post.user}</CardContent>
-                                        <CardContent>댓글 수: {post.replyList}</CardContent>
+                                    <ListItem display='flex' justifyContent='space-between' key={post.postId} dense='true' >
+                                        <Typography padding='5px' onClick={()=>{handlePostDetail(post.postId)}}>게시글 번호: {post.postId}</Typography>
+                                        <Typography padding='5px' onClick={()=>{handlePostDetail(post.postId)}}>게시글제목: {post.title}</Typography>
+                                        <Typography padding='5px' >게시글 작성자: {post.user}</Typography>
+                                        <Typography padding='5px' >댓글 수: {post.replyList}</Typography>
                                     </ListItem>
                                 ))}
                             </div>
@@ -132,11 +133,12 @@ const Community = () => {
                                         )
                                     }}
                                     size="small"
+                                    sx={{ margin:'3px'}}
                                 />
-                                <Button variant="contained" color="action" className="postSearchButton">
+                                <Button variant="contained" color="action" className="postSearchButton" sx={{ margin:'3px'}}>
                                     게시글 검색
                                 </Button>
-                                <Button variant="contained" color='info' className="communityPostingButton" onClick={handlePosting}>
+                                <Button variant="contained" color='info' className="communityPostingButton" onClick={handlePosting} sx={{ margin:'3px'}} >
                                     게시글 등록
                                 </Button>
                             </div>

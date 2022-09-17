@@ -4,6 +4,7 @@ import { Box, Button, Container, IconButton, TextField, Modal, Typography, Snack
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import CategoryBar from '../../components/CategoryBar';
 import Header from '../../components/header/Header'
 import './posting.css'
 
@@ -144,9 +145,10 @@ const Posting = () => {
                             aria-describedby="modal-modal-description"
                         >
                             <Box sx={modalStyle}>
-                                <Typography id="modal-modal-title" variant="h6" component="h2">
-                                    카테고리바, 검색창, 검색버튼, 검색결과  가 나올 곳
+                                <Typography id="modal-modal-title" variant="h6" component="h2" justifyContent='center' display='flex' fontWeight='bold' >
+                                    새로운 항목 추가하기
                                 </Typography>
+                                <CategoryBar/>
                             </Box>
                         </Modal>
                     </Box>

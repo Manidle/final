@@ -10,6 +10,7 @@ import UserSetting from './pages/usersetting/UserSetting.jsx'
 import Board from './pages/board/Board';
 import Posting from './pages/posting/Posting';
 import PostDetail from './pages/postdetail/PostDetail';
+import Search from './pages/Search/Search';
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
             <Route path='/post/:postId' element={<PostDetail />}  />
             {/* 게시글 등록 버튼 클릭 시 게시판 등록화면으로 */}
             <Route path='/posting' element={<Posting/>}/>
+            {/* s/a/t/r 검색 페이지 */}
+            <Route path='/search' element={<Search/>}/>
+
 
 
             {/* 주소를 잘못입력하면 경로가 잘못되었다는 NoMatch 라는 페이지도 만들자. */}
