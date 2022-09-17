@@ -1,6 +1,6 @@
 import { PhotoCamera } from '@mui/icons-material'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { Box, Button, Container, IconButton, TextField, Modal, Typography, Snackbar } from '@mui/material'
+import { Box, Button, Container, IconButton, TextField, Modal, Typography, Snackbar, ThemeProvider, createTheme, Stack } from '@mui/material'
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,22 @@ import Header from '../../components/header/Header'
 import './posting.css'
 
 const Posting = () => {
+
+    const theme = createTheme({
+        palette: {
+            primary: {
+            // Purple and green play nicely together.
+            main: '#52057B',
+            },
+            secondary: {
+            // This is green.A700 as hex.
+            main: '#BC6FF1',
+            },
+            info:{
+                main: '#892CDC',
+            },
+        },
+    });
     
     const navigate = useNavigate()
 
@@ -69,9 +85,8 @@ const Posting = () => {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 400,
+        width: '50%',
         bgcolor: 'background.paper',
-        border: '2px solid #000',
         boxShadow: 24,
         p: 4,
     };
@@ -88,66 +103,75 @@ const Posting = () => {
     };
 
   return (
-    <Container maxWidth="lg">
-        <Snackbar
-            anchorOrigin={{ vertical, horizontal }}
-            open={openSnackbar}
-            onClose={handleSnackbar}
-            message="게시글 등록에 성공했습니다!"
-            key={vertical + horizontal}
-        />
-        <Header/>
-        <div className="postingContainer">
-            <div className="postingWrapper">
-                <div className="postingItem">
-                    <div className="postingTitle">게시글 등록</div>
+    <ThemeProvider theme={theme}>
+        <Container maxWidth="lg">
+            <Snackbar
+                color='info'
+                anchorOrigin={{ vertical, horizontal }}
+                open={openSnackbar}
+                onClose={handleSnackbar}
+                message="게시글 등록에 성공했습니다!"
+                key={vertical + horizontal}
+            />
+            <Header/>
+            <Box className="postingContainer" >
+                <div className="postingWrapper">
+                    <Stack className="postingItem">
+                        <Typography className="postingTitle" variant='h6' fontWeight='bold' margin='5px'>게시글 등록</Typography>
+                    </Stack>
+                    <Stack className="postingItem" padding='5px' >
+                        <TextField
+                            variant='standard'
+                            label="게시글 제목"
+                            size="small"
+                            onChange={(e)=>{setPostTitle(e.target.value);}}
+                        />
+                    </Stack>
+                    <Box className="postingItem" display='flex' padding='5px'>
+                        {/* 사진 파일 추가 버튼 */}
+                        <IconButton color="default" aria-label="upload picture" component="label">
+                            <input hidden accept="image/*" type="file" />
+                            <PhotoCamera color='secondary'/>
+                        </IconButton>
+                        {/* 코스 추가용 Modal */}
+                        <IconButton onClick={handleModal}>
+                            <AddCircleOutlineIcon color='secondary'/>
+                        </IconButton>
+                        <Modal
+                            open={openModal}
+                            onClose={handleModal}
+                            aria-labelledby="modal-modal-title"
+                            aria-describedby="modal-modal-description"
+                        >
+                            <Box sx={modalStyle}>
+                                <Typography id="modal-modal-title" variant="h6" component="h2">
+                                    카테고리바, 검색창, 검색버튼, 검색결과  가 나올 곳
+                                </Typography>
+                            </Box>
+                        </Modal>
+                    </Box>
+                    <Stack className="postingItem" padding='5px'>
+                        <TextField
+                            label="내용"
+                            multiline
+                            rows={10}
+                            onChange={(e)=>{setPostArticle(e.target.value);}}
+                        />  
+                    </Stack>
+                    <Stack className="postingItem" padding='5px' >
+                        <Button
+                            variant="contained"
+                            color="info"
+                            className="postingButton"
+                            onClick={postSubmit}
+                        >
+                            게시글 등록
+                        </Button>
+                    </Stack>
                 </div>
-                <div className="postingItem">
-                    <TextField
-                        label="게시글 제목"
-                        size="small"
-                        onChange={(e)=>{setPostTitle(e.target.value);}}
-                    />
-                </div>
-                <div className="postingItem">
-                    {/* 사진 파일 추가 버튼 */}
-                    <IconButton color="default" aria-label="upload picture" component="label">
-                        <input hidden accept="image/*" type="file" />
-                        <PhotoCamera />
-                    </IconButton>
-                    {/* 코스 추가용 Modal */}
-                    <Button onClick={handleModal}>
-                        <AddCircleOutlineIcon />
-                    </Button>
-                    <Modal
-                        open={openModal}
-                        onClose={handleModal}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                    >
-                        <Box sx={modalStyle}>
-                            <Typography id="modal-modal-title" variant="h6" component="h2">
-                                카테고리바, 검색창, 검색버튼, 검색결과  가 나올 곳
-                            </Typography>
-                        </Box>
-                    </Modal>
-                </div>
-                <div className="postingItem">
-                    <TextField
-                        label="내용"
-                        multiline
-                        rows={10}
-                        onChange={(e)=>{setPostArticle(e.target.value);}}
-                    />  
-                </div>
-                <div className="postingItem">
-                    <Button variant="contained" color="action" className="postingButton" onClick={postSubmit}>
-                        게시글 등록
-                    </Button>
-                </div>
-            </div>
-        </div>
-    </Container>
+            </Box>
+        </Container>
+    </ThemeProvider>
   )
 }
 

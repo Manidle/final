@@ -35,8 +35,8 @@ const PostDetail = () => {
     const navigate = useNavigate()
 
     // 게시글 삭제 후 이동
-    const handleAfterDelete = ()=>{
-        navigate("/board")
+    function handleRoute(props){
+        navigate(`/${props}`)
     }
 
     // 게시글 데이터 가져오기
@@ -92,7 +92,7 @@ const PostDetail = () => {
         .then((response)=>{
             console.log("삭제 했습니다.");
             console.log(response);
-            handleAfterDelete();
+            handleRoute('board');
             console.log(postId);
         })
         .catch(function(error){
@@ -141,7 +141,7 @@ const PostDetail = () => {
                         <Grid item xs={12} sm={8} >
                             <div className="postTopContainer">
                                 <Box className="postBoard" display='flex'>
-                                    게시판 › <Typography color='info' fontWeight='bold'>{postBoard}</Typography>
+                                    게시판 › <Typography color='info' fontWeight='bold' onClick={()=>{handleRoute(`board/${postBoard}`)}} >{postBoard}</Typography>
                                 </Box>
                                 <div className="postTitle">
                                     <Typography variant='h5' fontWeight='bold' >{postTitle}</Typography>
