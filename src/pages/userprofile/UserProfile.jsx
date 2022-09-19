@@ -1,17 +1,10 @@
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  Container,
-  Typography,
-  Box,
-} from "@mui/material";
+import { Container, Typography, Box } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import DashboardMyInfo from "../../components/dashboardmyinfo/DashboardMyInfo";
 import Header from "../../components/header/Header";
 import MyInfo from "./MyInfo";
+import MyPostAndLike from "./MyPostAndLike";
 import Wrapper from "./Wrapper";
 
 const UserProfile = () => {
@@ -42,9 +35,7 @@ const UserProfile = () => {
               handleRoute("user/myposts");
             }}
           >
-            <Typography variant="body1" component="p">
-              내가 쓴 게시글들이 나타날 겁니다.
-            </Typography>
+            <MyPostAndLike contents="내가 쓴 게시글들이 나타날 겁니다." />
           </Wrapper>
 
           <Wrapper
@@ -53,9 +44,7 @@ const UserProfile = () => {
               handleRoute("user/mylikes");
             }}
           >
-            <Typography variant="body1" component="p">
-              내가 좋아요 누른 게시글들이 나타날 겁니다
-            </Typography>
+            <MyPostAndLike contents="내가 좋아요 누른 게시글들이 나타날 겁니다." />
           </Wrapper>
         </Container>
       </Box>

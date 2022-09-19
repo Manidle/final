@@ -4,25 +4,40 @@ import {
   CardActions,
   Button,
   Typography,
+  Box,
 } from "@mui/material";
-import { Container } from "@mui/system";
 import React from "react";
 
 const Wrapper = ({ name, children, onClick }) => {
   return (
-    <Container>
-      <Typography component="h2" gutterBottom>
-        {name}
-      </Typography>
-      <Card elevation="5">
-        <CardContent>{children}</CardContent>
+    <Card
+      variant
+      sx={{
+        backgroundColor: "#F2E2FC",
+        "&:hover": {
+          opacity: [0.9, 0.8, 0.7],
+        },
+        marginBottom: 2,
+        borderRadius: 3,
+        padding: 1,
+      }}
+    >
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <Typography padding={2}>{name}</Typography>
         <CardActions>
-          <Button size="small" onClick={onClick}>
+          <Button sx={{ color: "#892CDC", fontSize: 18 }} onClick={onClick}>
             전체 보기
           </Button>
         </CardActions>
-      </Card>
-    </Container>
+      </Box>
+      <CardContent>{children}</CardContent>
+    </Card>
   );
 };
 
