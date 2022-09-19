@@ -4,9 +4,7 @@ import {
   Avatar,
   Box,
   Button,
-  Card,
-  CardActions,
-  CardContent,
+  ButtonGroup,
   Container,
   Stack,
   TextField,
@@ -89,7 +87,7 @@ const UserProfile = () => {
             borderRadius: 3,
             marginLeft: 2,
             display: { xs: "inline", sm: "flex" },
-            justifyContent: "space-between",
+            justifyContent: "center",
             alignItems: "center",
           }}
         >
@@ -100,84 +98,168 @@ const UserProfile = () => {
               justifyContent: "center",
               alignItems: "center",
               margin: "10px",
-              marginLeft: "8rem",
               padding: "5px",
             }}
           >
-            <Typography>소울치킨 이름이 들어갈 자리</Typography>
+            <Box
+              sx={{
+                display: "block",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                }}
+              >
+                소울치킨
+              </Typography>
+              <Typography>님의 정보를 변경하세요!</Typography>
+            </Box>
             <Avatar
               alt="Profile IMG"
               src="https://avatars.githubusercontent.com/u/90738604?v=4"
-              sx={{ width: 100, height: 100 }}
-            />{" "}
-            <Button>프로필 사진 업데이트</Button>
-            <Button>프로필 사진 삭제</Button>
-          </Stack>
-          <Stack
-            sx={{
-              margin: "10px",
-              marginRight: "8rem",
-            }}
-          >
-            <TextField
-              id="standard-basic"
-              label="아이디"
-              variant="standard"
-              onChange={(e) => {
-                setUserId(e.target.value);
-              }}
-              margin="normal"
-              size="small"
-              type="text"
+              sx={{ width: "8rem", height: "8rem", marginTop: "1rem" }}
             />
-            <TextField
-              id="standard-basic"
-              label="비밀번호"
-              variant="standard"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-              margin="normal"
-              size="small"
-              type="password"
-            />
+            <ButtonGroup sx={{ marginTop: "2rem" }}>
+              <Button
+                sx={{
+                  padding: "0.5 rem, 1rem",
+                  color: "#F2E2FC",
+                  fontSize: "0.8rem",
 
-            <TextField
-              id="standard-basic"
-              label="이메일"
-              variant="standard"
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-              margin="normal"
-              size="small"
-              type="email"
-            />
-
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <TextField
-                id="standard-basic"
-                label="닉네임"
-                variant="standard"
-                onChange={(e) => {
-                  setUserNickname(e.target.value);
+                  background: "#892CDC",
+                  borderColor: "#892CDC",
+                  ":hover": {
+                    background: "#DEB7F8",
+                    color: "#892CDC",
+                    borderColor: "#892CDC",
+                  },
                 }}
-                margin="normal"
-                size="small"
-                type="text"
-              />
-
-              <Button onClick={() => updateUserProfile(5)}>정보 변경</Button>
-            </Box>
-            <Button onClick={() => deleteUser(4)}>회원 탈퇴</Button>
+              >
+                프로필 사진 업데이트
+              </Button>
+              <Button
+                sx={{
+                  padding: "0.5 rem, 1rem",
+                  color: "#892CDC",
+                  fontSize: "0.8rem",
+                  borderColor: "#892CDC",
+                  ":hover": {
+                    background: "#DEB7F8",
+                    color: "#892CDC",
+                    borderColor: "#892CDC",
+                  },
+                }}
+              >
+                프로필 사진 삭제
+              </Button>
+            </ButtonGroup>
           </Stack>
         </Container>
+
+        <Stack
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: "2rem",
+            marginTop: "3rem",
+            width: "15rem",
+          }}
+        >
+          <TextField
+            id="standard-basic"
+            label="아이디"
+            variant="standard"
+            onChange={(e) => {
+              setUserId(e.target.value);
+            }}
+            size="small"
+            type="text"
+          />
+          <TextField
+            id="standard-basic"
+            label="비밀번호"
+            variant="standard"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            size="small"
+            type="password"
+          />
+
+          <TextField
+            id="standard-basic"
+            label="이메일"
+            variant="standard"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            size="small"
+            type="email"
+          />
+          <TextField
+            id="standard-basic"
+            label="닉네임"
+            variant="standard"
+            onChange={(e) => {
+              setUserNickname(e.target.value);
+            }}
+            size="small"
+            type="text"
+          />
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginBottom: "1rem",
+              width: "15rem",
+            }}
+          ></Box>
+          <ButtonGroup
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Button
+              sx={{
+                padding: "0.5 rem, 1rem",
+                color: "#892CDC",
+                borderColor: "#892CDC",
+                fontSize: "0.8rem",
+                ":hover": {
+                  background: "#DEB7F8",
+                  color: "#892CDC",
+                  borderColor: "#892CDC",
+                },
+              }}
+              onClick={() => updateUserProfile(5)}
+            >
+              정보 변경
+            </Button>
+            <Button
+              sx={{
+                padding: "0.5 rem, 1rem",
+                color: "#F2E2FC",
+                background: "#892CDC",
+                borderColor: "#892CDC",
+                fontSize: "0.8rem",
+                ":hover": {
+                  background: "#DEB7F8",
+                  color: "#892CDC",
+                  borderColor: "#892CDC",
+                },
+              }}
+              onClick={() => deleteUser(4)}
+            >
+              회원 탈퇴
+            </Button>
+          </ButtonGroup>
+        </Stack>
       </Box>
     </Container>
   );

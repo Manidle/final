@@ -41,7 +41,7 @@ const DashboardMyInfo = ({ page }) => {
             sx={{
               display: { xs: "none", sm: "block" },
               backgroundColor: "#F2E2FC",
-
+              height: "82vh",
               minWidth: "200px",
               padding: "20px 10px 20px 40px",
               borderRadius: 3,
