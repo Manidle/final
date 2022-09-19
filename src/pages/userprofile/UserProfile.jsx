@@ -25,7 +25,7 @@ const UserProfile = () => {
     <Container maxWidth="lg">
       <Header />
       <Box display="flex">
-        <DashboardMyInfo page="login" />
+        <DashboardMyInfo page="INFO" />
         <Container className="DetailContainer">
           <Wrapper
             name="MY INFO"

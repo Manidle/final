@@ -3,13 +3,28 @@ import { Container } from "@mui/system";
 import MenuIcon from "@mui/icons-material/Menu";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
+import DashboardDetail from "./DashboardDetail.jsx";
 const DashboardMyInfo = ({ page }) => {
   const navigate = useNavigate();
 
   function handler(props) {
     navigate(`/user/${props}`);
   }
+
+  const userInfoCategories = [
+    { thisPage: "INFO", handlerUrl: "profile" },
+    { thisPage: "EDIT", handlerUrl: "update" },
+    { thisPage: "MY POST", handlerUrl: "myposts" },
+    { thisPage: "MY POST LIKE", handlerUrl: "mylikes" },
+    { thisPage: "MY REPLY", handlerUrl: "myreply" },
+  ];
+
+  const likesCategories = [
+    { thisPage: "STAY", handlerUrl: "profile" },
+    { thisPage: "ATTRACTION", handlerUrl: "profile" },
+    { thisPage: "TRAIN", handlerUrl: "profile" },
+    { thisPage: "RENTCAR", handlerUrl: "profile" },
+  ];
 
   return (
     <Box sx={{ padding: "5px" }}>
@@ -51,47 +66,15 @@ const DashboardMyInfo = ({ page }) => {
                 USER INFO
               </Typography>
               <Stack className="dashBoardMyInfoDetail">
-                <Typography
-                  color="#892CDC"
-                  className="dashboardDetail"
-                  onClick={() => {
-                    handler("profile");
-                  }}
-                >
-                  INFO
-                </Typography>
-                <Typography
-                  className="dashboardDetail"
-                  onClick={() => {
-                    handler("update");
-                  }}
-                >
-                  EDIT
-                </Typography>
-                <Typography
-                  className="dashboardDetail"
-                  onClick={() => {
-                    handler("myposts");
-                  }}
-                >
-                  MY POST
-                </Typography>
-                <Typography
-                  className="dashboardDetail"
-                  onClick={() => {
-                    handler("mylikes");
-                  }}
-                >
-                  MY POST LIKE
-                </Typography>
-                <Typography
-                  className="dashboardDetail"
-                  onClick={() => {
-                    handler("myreply");
-                  }}
-                >
-                  MY REPLY
-                </Typography>
+                {userInfoCategories.map((category) => {
+                  return (
+                    <DashboardDetail
+                      handler={() => handler(category.handlerUrl)}
+                      currentPage={page}
+                      thisPage={category.thisPage}
+                    />
+                  );
+                })}
               </Stack>
             </Stack>
             <Stack className="dashBoardSubTitle" margin="10px 0px 0px 0px">
@@ -105,10 +88,15 @@ const DashboardMyInfo = ({ page }) => {
                 </Typography>
               </div>
               <Stack className="dashBoardTravelDetail">
-                <Typography className="dashboardDetail">STAY</Typography>
-                <Typography className="dashboardDetail">ATTRACTION</Typography>
-                <Typography className="dashboardDetail">TRAIN</Typography>
-                <Typography className="dashboardDetail">RENTCAR</Typography>
+                {likesCategories.map((category) => {
+                  return (
+                    <DashboardDetail
+                      handler={() => handler(category.handlerUrl)}
+                      currentPage={page}
+                      thisPage={category.thisPage}
+                    />
+                  );
+                })}
               </Stack>
             </Stack>
           </Box>
