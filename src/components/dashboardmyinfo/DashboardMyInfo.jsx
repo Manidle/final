@@ -4,7 +4,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const DashboardMyInfo = () => {
+const DashboardMyInfo = ({ page }) => {
   const navigate = useNavigate();
 
   function handler(props) {
@@ -26,9 +26,7 @@ const DashboardMyInfo = () => {
             sx={{
               display: { xs: "none", sm: "block" },
               backgroundColor: "#F2E2FC",
-              "&:hover": {
-                opacity: [0.9, 0.8, 0.7],
-              },
+
               minWidth: "200px",
               padding: "20px 10px 20px 40px",
               borderRadius: 3,

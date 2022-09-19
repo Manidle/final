@@ -14,9 +14,6 @@ const Wrapper = ({ name, children, onClick }) => {
       variant
       sx={{
         backgroundColor: "#F2E2FC",
-        "&:hover": {
-          opacity: [0.9, 0.8, 0.7],
-        },
         marginBottom: 2,
         borderRadius: 3,
         padding: 1,

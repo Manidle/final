@@ -14,11 +14,18 @@ const UserProfile = () => {
     navigate(`/${props}`);
   }
 
+  const user = {
+    username: "soul1234",
+    nickname: "소울치킨",
+    email: "soulfever01@naver.com",
+    description: "안녕하세요 어쩌고 저쩌고 자기소개",
+  };
+
   return (
     <Container maxWidth="lg">
       <Header />
       <Box display="flex">
-        <DashboardMyInfo />
+        <DashboardMyInfo page="login" />
         <Container className="DetailContainer">
           <Wrapper
             name="MY INFO"
@@ -26,7 +33,7 @@ const UserProfile = () => {
               handleRoute("user/update");
             }}
           >
-            <MyInfo />
+            <MyInfo user={user} />
           </Wrapper>
 
           <Wrapper
