@@ -13,7 +13,7 @@ const RightSide = ({
   imgUrl,
 }) => {
   return (
-    <Wrapper>
+    <Wrapper bgColor="#F2E2FC">
       <Typography
         className="dashBoardTitle"
         fontSize={22}

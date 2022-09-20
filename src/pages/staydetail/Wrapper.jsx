@@ -8,17 +8,16 @@ import {
 } from "@mui/material";
 import React from "react";
 
-const Wrapper = ({ children }) => {
+const Wrapper = ({ children, bgColor }) => {
   return (
     <Card
       variant
       sx={{
-        backgroundColor: "#F2E2FC",
-        marginBottom: 2,
+        backgroundColor: bgColor,
+        margin: "1rem",
         borderRadius: 3,
         padding: "2rem",
         marginRight: "2rem",
-        width: "22rem",
       }}
     >
       <Box
