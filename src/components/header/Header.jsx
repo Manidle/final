@@ -1,4 +1,4 @@
-import { Box, Button, createTheme, Grid, Menu, MenuItem, SvgIcon, ThemeProvider } from '@mui/material'
+import { Box, Button, createTheme, Divider, Grid, Menu, MenuItem, SvgIcon, ThemeProvider } from '@mui/material'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -124,6 +124,7 @@ const Header = () => {
                 )}
             </Box>
         </Box>
+        <Divider />
     </ThemeProvider>
   )
 }

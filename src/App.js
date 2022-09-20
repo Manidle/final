@@ -11,6 +11,7 @@ import Board from './pages/board/Board';
 import Posting from './pages/posting/Posting';
 import PostDetail from './pages/postdetail/PostDetail';
 import Search from './pages/Search/Search';
+import AttractionDetail from './pages/attractiondetail/AttractionDetail';
 
 function App() {
   return (
@@ -39,6 +40,14 @@ function App() {
             <Route path='/posting' element={<Posting/>}/>
             {/* s/a/t/r 검색 페이지 */}
             <Route path='/search' element={<Search/>}/>
+            {/* Attraction detail */}
+            <Route path='/attraction/:attractionId' element={<AttractionDetail />} />
+            {/* Attraction detail */}
+            <Route path='/attraction/:attractionId' element={<AttractionDetail />} />
+            {/* Attraction detail */}
+            <Route path='/attraction/:attractionId' element={<AttractionDetail />} />
+            {/* Attraction detail */}
+            <Route path='/attraction/:attractionId' element={<AttractionDetail />} />
 
 
 

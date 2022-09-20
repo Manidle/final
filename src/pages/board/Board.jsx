@@ -36,14 +36,17 @@ const Community = () => {
 
     // handlePosting
     const handlePosting = () => {
-        navigate("/posting");
+        {localStorage.getItem('token') == null ?
+            navigate('/board') :
+            navigate("/posting");
+        }
     }
 
     // 게시글 전체 가져오기
     const [posts, setPosts] = useState([])
 
     useEffect(()=>{
-        axios.get('http://localhost:8080/post')
+        axios.get('http://localhost:8080/api/post')
         .then((response)=>{
             console.log(response.data);
             setPosts(response.data.reverse())

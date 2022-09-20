@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import CategoryBar from '../../components/CategoryBar';
 import Header from '../../components/header/Header'
 import './posting.css'
+import jwt_decode from 'jwt-decode';
 
 const Posting = () => {
 
@@ -37,14 +38,22 @@ const Posting = () => {
         handleSnackbar()
     }
 
+    const userData = jwt_decode(localStorage.getItem('token'));
+
     // 게시글 data 보내기
-    function postSubmit(){
-        axios.post('http://localhost:8080/post', {
+    function postSubmit(props){
+        axios.post(`http://localhost:8080/api/auth/v1/board/${props}/post/register`, {
             title:postTitle,
             contents:postArticle,
-            likeCount:0,
-            boardId:1,
-            userId:1
+            like_count:0,
+            read_count:0,
+            board_id:props,
+            user_id:userData.id,
+            },{
+                headers: {
+                    'Authorization': `${localStorage.getItem('token')}`,
+                    "Content-Type": "application/json; charset=UTF-8",
+                }
             }
         )
         .then(()=>{
@@ -165,7 +174,7 @@ const Posting = () => {
                             variant="contained"
                             color="info"
                             className="postingButton"
-                            onClick={postSubmit}
+                            onClick={()=>{postSubmit('1')}}
                         >
                             게시글 등록
                         </Button>

@@ -69,7 +69,7 @@ const CategoryBar = () => {
                     <Tab label="TRAIN" {...a11yProps(2)} />
                     <Tab label="RENTCAR" {...a11yProps(3)} />
                 </Tabs>
-            </Box>
+            </Box> 
             <TabPanel value={value} index={0}>
                 STAY 검색창
             </TabPanel>

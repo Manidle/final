@@ -25,7 +25,8 @@ const Search = () => {
     <ThemeProvider theme={theme}>
         <Container maxWidth='lg'>
             <Header/>
-            <CategoryBar/>
+            <CategoryBar stay/>
+
         </Container>
     </ThemeProvider>
   )

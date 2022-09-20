@@ -7,6 +7,7 @@ import axios from 'axios'
 import Header from '../../components/header/Header'
 import Reply from '../../components/reply/Reply';
 import { useLocation, useNavigate } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 const PostDetail = () => {
 
@@ -51,7 +52,7 @@ const PostDetail = () => {
     const [postTrainList, setPostTrainList] = useState([])
 
     useEffect(()=>{
-        axios.get(`http://localhost:8080/post/${postProps.state.postId}`)
+        axios.get(`http://localhost:8080/api/auth/v1/post/${postProps.state.postId}`)
         .then((response)=>{
             console.log(response.data);
             setPostBoard(response.data.boardId);
@@ -86,9 +87,11 @@ const PostDetail = () => {
         })
     }, [])
 
+    console.log(postLikeCount);
+
     // 게시글 삭제
     function deletePost(){
-        axios.delete(`http://localhost:8080/post/${postProps.state.postId}`)
+        axios.delete(`http://localhost:8080/api/auth/v1/post/${postProps.state.postId}`)
         .then((response)=>{
             console.log("삭제 했습니다.");
             console.log(response);
@@ -115,15 +118,20 @@ const PostDetail = () => {
             console.log(error.config);
         })
     }
+
+    const userData = jwt_decode(localStorage.getItem('token'));
         
     // 게시글 좋아요
     const [likeClick, setLikeClick] = useState(false);
 
     function handleLikeClick(){
-        axios.get('http://localhost:8080/postlike',{
+        axios.get('http://localhost:8080/api/auth/v1/like/click/post',{
             params:{
-                user:1,
+                user:userData.id,
                 post:postId,
+            },
+            headers: {
+                'Authorization': `${localStorage.getItem('token')}`
             }
         })
         .then(()=>{
