@@ -53,7 +53,7 @@ function App() {
             {/* s/a/t/r 검색 페이지 */}
             <Route path='/search/rentcar' element={<SearchRentcar />}/>
             {/* Stay detail */}
-            <Route path='/attraction/:stayId' element={<AttractionDetail />} />
+            <Route path='/stay/:stayId' element={<AttractionDetail />} />
             {/* Attraction detail */}
             <Route path='/attraction/:attractionId' element={<AttractionDetail />} />
 
