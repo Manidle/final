@@ -3,6 +3,7 @@ import {
   Container,
   createTheme,
   Divider,
+  Grid,
   ThemeProvider,
   Typography,
 } from "@mui/material";
@@ -14,6 +15,8 @@ import jwt_decode from "jwt-decode";
 import axios from "axios";
 
 import Header from "../../components/header/Header";
+import RightSide from "./RightSide";
+import LeftSide from "./LeftSide";
 
 const StayDetail = () => {
   const theme = createTheme({
@@ -122,6 +125,18 @@ const StayDetail = () => {
           </Box>
         </Box>
       </Container>
+      <br />
+      <br />
+      <br />
+      여기부터 다시 시작
+      <Grid container>
+        <Grid xs={4}>
+          <LeftSide />
+        </Grid>
+        <Grid xs={8}>
+          <RightSide />
+        </Grid>
+      </Grid>
     </ThemeProvider>
   );
 };
