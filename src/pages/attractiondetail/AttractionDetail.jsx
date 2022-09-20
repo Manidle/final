@@ -14,11 +14,8 @@ import axios from "axios";
 import { useState } from "react";
 import Header from "../../components/header/Header";
 import jwt_decode from "jwt-decode";
-import { Avatar } from "@mui/material";
 import LeftSide from "./LeftSide";
-import RoundBox from "./RoundBox";
-import WhiteRoundBox from "./WhiteRoundBox";
-import PurpleText from "./PurpleText";
+import RightSide from "./RightSide";
 
 const AttractionDetail = () => {
   const theme = createTheme({
@@ -38,7 +35,7 @@ const AttractionDetail = () => {
   });
   const date = "2022.03.21";
   const imgUrl =
-    "https://mblogthumb-phinf.pstatic.net/20140527_99/digmon2001_1401195894670dl3BX_JPEG/11.jpg?type=w2";
+    "http://news.samsungdisplay.com/wp-content/uploads/2018/08/8.jpg";
   const [attractionName, setAttractionName] = useState("소울치킨의 집");
   const [attractionAddress, setAttractionAddress] = useState("광주광역시");
   const [attractionAddressDetail, setAttractionAddressDetail] =
@@ -146,23 +143,17 @@ const AttractionDetail = () => {
           />
         </Grid>
         <Grid item xs={8}>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItem: "center",
-            }}
-          >
-            <Typography
-              className="dashBoardTitle"
-              fontSize={22}
-              fontWeight="bold"
-              margin="auto"
-              marginBottom="1rem"
-            >
-              {attractionName}
-            </Typography>{" "}
-          </Box>{" "}
+          <RightSide
+            attractionName={attractionName}
+            attractionPrice={attractionPrice}
+            attractionAddress={attractionAddress}
+            attractionAddressDetail={attractionAddressDetail}
+            attractionLikeCount={attractionLikeCount}
+            setAttractionLikeCount={setAttractionLikeCount}
+            handleLikeClick={handleLikeClick}
+            likeClick={likeClick}
+            imgUrl={imgUrl}
+          />
         </Grid>
       </Grid>
     </ThemeProvider>
