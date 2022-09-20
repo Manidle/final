@@ -35,12 +35,14 @@ const StayDetail = () => {
     },
   });
 
-  const [stayAddress, setStayAddress] = useState("");
-  const [stayCheckin, setStayCheckIn] = useState("");
-  const [stayCheckOut, setStayCheckOut] = useState("");
-  const [stayLikeCount, setStayLikeCount] = useState(0);
-  const [stayName, setStayName] = useState("");
-  const [stayPrice, setStayPrice] = useState(0);
+  const imgUrl =
+    "http://news.samsungdisplay.com/wp-content/uploads/2018/08/8.jpg";
+  const [stayAddress, setStayAddress] = useState("경기도 양평군 어쩌고");
+  const [stayCheckin, setStayCheckIn] = useState("14:00");
+  const [stayCheckOut, setStayCheckOut] = useState("10:00");
+  const [stayLikeCount, setStayLikeCount] = useState(5);
+  const [stayName, setStayName] = useState("양평 블루밍펜션");
+  const [stayPrice, setStayPrice] = useState(500);
 
   // 유저 token
   const userData = jwt_decode(localStorage.getItem("token"));
@@ -129,14 +131,31 @@ const StayDetail = () => {
       <br />
       <br />
       여기부터 다시 시작
-      <Grid container>
-        <Grid xs={4}>
-          <LeftSide />
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <Grid container>
+          <Grid xs={1}></Grid>
+          <Grid xs={3}>
+            <LeftSide />
+          </Grid>
+          <Grid xs={7}>
+            <RightSide
+              stayAddress={stayAddress}
+              stayLikeCount={stayLikeCount}
+              stayName={stayName}
+              stayPrice={stayPrice}
+              stayCheckin={stayCheckin}
+              stayCheckOut={stayCheckOut}
+              imgUrl={imgUrl}
+            />
+          </Grid>
+          <Grid xs={1}></Grid>
         </Grid>
-        <Grid xs={8}>
-          <RightSide />
-        </Grid>
-      </Grid>
+      </Box>
     </ThemeProvider>
   );
 };
