@@ -1,4 +1,4 @@
-import { Button, Box, Card, CardContent, Container, Input, InputAdornment, Pagination, Stack, TextField } from '@mui/material'
+import { Button, Box, Card, CardContent, Container, Input, InputAdornment, Pagination, Stack, TextField, ThemeProvider, createTheme, ListItem, Typography } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -10,29 +10,46 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import DashboardCommunity from '../../components/dashboardcommunity/DashboardCommunity';
+import usePagination from '../../components/Pagination';
 
 const Community = () => {
 
-    //
-    // const boardProps = useLocation()
-    // console.log(boardProps.state.boardId);
+    const theme = createTheme({
+        palette: {
+            primary: {
+                // 가장 어두운 보라
+            main: '#52057B',
+            },
+            secondary: {
+                // 가장 밝은 보라
+            main: '#BC6FF1',
+            },
+            info:{
+                // 중간 보라
+                main: '#892CDC',
+            },
+        },
+    });
 
     //navigate
     const navigate = useNavigate()
 
     // handlePosting
     const handlePosting = () => {
-        navigate("/posting");
+        {localStorage.getItem('token') == null ?
+            navigate('/board') :
+            navigate("/posting");
+        }
     }
 
     // 게시글 전체 가져오기
     const [posts, setPosts] = useState([])
 
     useEffect(()=>{
-        axios.get('http://localhost:8080/post')
+        axios.get('http://localhost:8080/api/post')
         .then((response)=>{
             console.log(response.data);
-            setPosts(response.data)
+            setPosts(response.data.reverse())
         })
         .catch(function(error){
             if (error.response) {
@@ -65,56 +82,75 @@ const Community = () => {
         })
     }
 
+    // 게시글 페이징
+    const [page, setPage] = useState(1);
+    const perPage = 10;
+    const count = Math.ceil(posts.length / perPage);
+    const postsPerPage = usePagination(posts, perPage);
+
+    const handlePage = (e, p) => {
+        setPage(p);
+        postsPerPage.jump(p);
+    }
+
   return (
-    <Container maxWidth="lg">
-        <Header/>
-        <Box display='flex'>
-            <DashboardCommunity />
-            <Box>
-                <div className="communityContainer">
-                    <div className="communityWrapper">
-                        <div className="comunityCategory">
-                            <BoardCategory/>
-                        </div>
-                        <div className="communityBoard">
-                            {/* <Notice/> */}
-                            {posts.length === 0 ? <Box>"첫 게시글을 작성해보세요!"</Box> : posts.map((posts)=>(
-                                <Card>
-                                    <CardContent onClick={()=>{handlePostDetail(posts.postId)}}>게시글 번호: {posts.postId}</CardContent>
-                                    <CardContent onClick={()=>{handlePostDetail(posts.postId)}}>게시글제목: {posts.title}</CardContent>
-                                    <CardContent>게시글 작성자: {posts.user}</CardContent>
-                                    <CardContent>댓글 수: {posts.replyList}</CardContent>
-                                </Card>
-                            ))}
-                        </div>
-                        <div className="boardFooter">
-                            <Stack spacing={2}>
-                                <Pagination count={20} defaultPage={6} boundaryCount={2} />
-                            </Stack>
-                        </div>
-                        <div className="boardSearchbar">
-                            <TextField
-                                InputProps={{
-                                    startAdornment: (
-                                    <InputAdornment position="start">
-                                        <SearchIcon/>
-                                    </InputAdornment>
-                                    )
-                                }}
-                                size="small"
-                            />
-                            <Button variant="contained" color="action" className="postSearchButton">
-                                게시글 검색
-                            </Button>
-                            <Button variant="contained" color="action" className="communityPostingButton" onClick={handlePosting}>
-                                게시글 등록
-                            </Button>
+    <ThemeProvider theme={theme}>
+        <Container maxWidth="lg">
+            <Header/>
+            <Box display='flex'>
+                <DashboardCommunity />
+                <Box>
+                    <div className="communityContainer">
+                        <div className="communityWrapper">
+                            <div className="comunityCategory">
+                                <BoardCategory/>
+                            </div>
+                            <div className="communityBoard">
+                                {/* <Notice/> */}
+                                {posts.length === 0 ? <Box padding="10px">"첫 게시글을 작성해보세요!"</Box> : postsPerPage.currentData().map((post)=>(
+                                    <ListItem display='flex' justifyContent='space-between' key={post.postId} dense='true' >
+                                        <Typography padding='5px' onClick={()=>{handlePostDetail(post.postId)}}>게시글 번호: {post.postId}</Typography>
+                                        <Typography padding='5px' onClick={()=>{handlePostDetail(post.postId)}}>게시글제목: {post.title}</Typography>
+                                        <Typography padding='5px' >게시글 작성자: {post.user}</Typography>
+                                        <Typography padding='5px' >댓글 수: {post.replyList}</Typography>
+                                    </ListItem>
+                                ))}
+                            </div>
+                            <div className="boardFooter">
+                                <Stack spacing={2} padding='5px' >
+                                    <Pagination
+                                        size='small'
+                                        count={count}
+                                        boundaryCount={2}
+                                        onChange={handlePage}
+                                    />
+                                </Stack>
+                            </div>
+                            <div className="boardSearchbar">
+                                <TextField
+                                    InputProps={{
+                                        startAdornment: (
+                                        <InputAdornment position="start">
+                                            <SearchIcon/>
+                                        </InputAdornment>
+                                        )
+                                    }}
+                                    size="small"
+                                    sx={{ margin:'3px'}}
+                                />
+                                <Button variant="contained" color="action" className="postSearchButton" sx={{ margin:'3px'}}>
+                                    게시글 검색
+                                </Button>
+                                <Button variant="contained" color='info' className="communityPostingButton" onClick={handlePosting} sx={{ margin:'3px'}} >
+                                    게시글 등록
+                                </Button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </Box>
             </Box>
-        </Box>
-    </Container>
+        </Container>
+    </ThemeProvider>
   )
 }
 
