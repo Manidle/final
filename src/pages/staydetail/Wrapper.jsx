@@ -1,33 +1,29 @@
-import {
-  Card,
-  CardContent,
-  CardActions,
-  Button,
-  Typography,
-  Box,
-} from "@mui/material";
+import { Card, CardContent, Box } from "@mui/material";
 import React from "react";
 
-const Wrapper = ({ children, bgColor }) => {
+const Wrapper = ({ children, bgColor, marginSize, aligning }) => {
   return (
     <Card
       variant
       sx={{
         backgroundColor: bgColor,
-        margin: "1rem",
-        borderRadius: 3,
-        padding: "2rem",
-        marginRight: "2rem",
+        margin: marginSize,
+        borderRadius: "1rem",
+        padding: 0,
       }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      ></Box>
-      <CardContent>{children}</CardContent>
+      <Box>
+        <CardContent
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: aligning,
+            justifyContent: "space-between",
+          }}
+        >
+          {children}
+        </CardContent>
+      </Box>
     </Card>
   );
 };

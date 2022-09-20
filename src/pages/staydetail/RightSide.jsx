@@ -13,7 +13,7 @@ const RightSide = ({
   imgUrl,
 }) => {
   return (
-    <Wrapper bgColor="#F2E2FC">
+    <Wrapper marginSize="0rem" bgColor="#F2E2FC">
       <Typography
         className="dashBoardTitle"
         fontSize={22}
@@ -26,7 +26,7 @@ const RightSide = ({
         variant="outlined"
         sx={{
           borderRadius: "2rem",
-          width: "20rem",
+          margin: "1rem",
         }}
       >
         <CardMedia component="img" src={imgUrl} />

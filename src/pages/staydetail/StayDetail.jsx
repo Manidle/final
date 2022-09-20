@@ -139,10 +139,16 @@ const StayDetail = () => {
       >
         <Grid container>
           <Grid xs={1}></Grid>
-          <Grid xs={3}>
-            <LeftSide />
+          <Grid xs={3.9}>
+            <LeftSide
+              imgUrl={imgUrl}
+              stayPrice={stayPrice}
+              stayName={stayName}
+            />
           </Grid>
-          <Grid xs={7}>
+          <Grid xs={0.2}></Grid>
+
+          <Grid xs={5.9}>
             <RightSide
               stayAddress={stayAddress}
               stayLikeCount={stayLikeCount}
