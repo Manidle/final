@@ -1,9 +1,10 @@
 import { Container, createTheme, ThemeProvider } from '@mui/material';
 import React from 'react'
+import { useState } from 'react';
 import CategoryBar from '../../components/CategoryBar';
 import Header from '../../components/header/Header';
 
-const Search = () => {
+const SearchAttraction = () => {
     const theme = createTheme({
         palette: {
             primary: {
@@ -21,15 +22,22 @@ const Search = () => {
         },
     });
 
+    const [attractionAddress, setAttractionAddress] = useState('');
+    const [attractionAddressDetail, setAttractionAddressDetail] = useState('');
+    const [attractionLikeCount, setAttractionLikeCount] = useState(0);
+    const [attractionName, setAttractionName] = useState('');
+    const [attractionPrice, setAttractionPrice] = useState(0);
+    const [attractionDetailAddress, setAttractionDetailAddress] = useState('');
+
+
   return (
     <ThemeProvider theme={theme}>
         <Container maxWidth='lg'>
             <Header/>
-            <CategoryBar/>
-
+            <CategoryBar category='attraction'/>
         </Container>
     </ThemeProvider>
   )
 }
 
-export default Search
+export default SearchAttraction

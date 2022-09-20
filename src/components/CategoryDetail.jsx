@@ -1,9 +1,8 @@
-import { Container, createTheme, ThemeProvider } from '@mui/material';
+import { createTheme, ThemeProvider, Typography } from '@mui/material';
 import React from 'react'
-import CategoryBar from '../../components/CategoryBar';
-import Header from '../../components/header/Header';
 
-const Search = () => {
+const CategoryDetail = ({ handler, currentCategory, thisCategory}) => {
+
     const theme = createTheme({
         palette: {
             primary: {
@@ -23,13 +22,12 @@ const Search = () => {
 
   return (
     <ThemeProvider theme={theme}>
-        <Container maxWidth='lg'>
-            <Header/>
-            <CategoryBar/>
-
-        </Container>
+        {currentCategory === thisCategory ?
+        <Typography onClick={()=>handler()} color='secondary'>{thisCategory}</Typography> :
+        <Typography onClick={()=>handler()} color='main'>{thisCategory}</Typography>
+    }
     </ThemeProvider>
   )
 }
 
-export default Search
+export default CategoryDetail

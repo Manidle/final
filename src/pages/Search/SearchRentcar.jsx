@@ -3,7 +3,8 @@ import React from 'react'
 import CategoryBar from '../../components/CategoryBar';
 import Header from '../../components/header/Header';
 
-const Search = () => {
+
+const SearchRentcar = () => {
     const theme = createTheme({
         palette: {
             primary: {
@@ -20,16 +21,15 @@ const Search = () => {
             },
         },
     });
-
   return (
     <ThemeProvider theme={theme}>
         <Container maxWidth='lg'>
             <Header/>
-            <CategoryBar/>
+            <CategoryBar category='rentcar'/>
 
         </Container>
     </ThemeProvider>
   )
 }
 
-export default Search
+export default SearchRentcar

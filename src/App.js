@@ -12,6 +12,10 @@ import Posting from './pages/posting/Posting';
 import PostDetail from './pages/postdetail/PostDetail';
 import Search from './pages/Search/Search';
 import AttractionDetail from './pages/attractiondetail/AttractionDetail';
+import SearchAttraction from './pages/Search/SearchAttraction';
+import SearchStay from './pages/Search/SearchStay';
+import SearchTrain from './pages/Search/SearchTrain';
+import SearchRentcar from './pages/Search/SearchRentcar';
 
 function App() {
   return (
@@ -40,12 +44,16 @@ function App() {
             <Route path='/posting' element={<Posting/>}/>
             {/* s/a/t/r 검색 페이지 */}
             <Route path='/search' element={<Search/>}/>
-            {/* Attraction detail */}
-            <Route path='/attraction/:attractionId' element={<AttractionDetail />} />
-            {/* Attraction detail */}
-            <Route path='/attraction/:attractionId' element={<AttractionDetail />} />
-            {/* Attraction detail */}
-            <Route path='/attraction/:attractionId' element={<AttractionDetail />} />
+            {/* s/a/t/r 검색 페이지 */}
+            <Route path='/search/stay' element={<SearchStay />}/>
+            {/* s/a/t/r 검색 페이지 */}
+            <Route path='/search/attraction' element={<SearchAttraction />}/>
+            {/* s/a/t/r 검색 페이지 */}
+            <Route path='/search/train' element={<SearchTrain />}/>
+            {/* s/a/t/r 검색 페이지 */}
+            <Route path='/search/rentcar' element={<SearchRentcar />}/>
+            {/* Stay detail */}
+            <Route path='/attraction/:stayId' element={<AttractionDetail />} />
             {/* Attraction detail */}
             <Route path='/attraction/:attractionId' element={<AttractionDetail />} />
 

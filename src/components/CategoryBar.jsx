@@ -1,8 +1,12 @@
-import { ThemeProvider, Box, createTheme, Tabs, Tab, AppBar, Typography } from '@mui/material';
+import { ThemeProvider, Box, createTheme, Tabs, Tab, AppBar, Typography, TextField, ListItem } from '@mui/material';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react'
+import SearchIcon from '@mui/icons-material/Search';
+import { useNavigate } from 'react-router-dom';
+import CategoryDetail from './CategoryDetail';
 
-const CategoryBar = () => {
+const CategoryBar = ({category}) => {
     const theme = createTheme({
         palette: {
             primary: {
@@ -19,81 +23,43 @@ const CategoryBar = () => {
             },
         },
     });
-    
-    const [value, setValue] = useState('1');
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
+    // tab list
+    const categoryLists = [
+        { thisCategory:'stay', Url:'stay' },
+        { thisCategory:'attraction', Url:'attraction' },
+        { thisCategory:'train', Url:'train' },
+        { thisCategory:'rentcar', Url:'rentcar' },
+    ];
 
-    function TabPanel(props) {
-        const { children, value, index, ...other } = props;
-      
-        return (
-            <div
-                role="tabpanel"
-                hidden={value !== index}
-                id={`full-width-tabpanel-${index}`}
-                aria-labelledby={`full-width-tab-${index}`}
-                {...other}
-            >
-                {value === index && (
-                <Box sx={{ p: 4 }}>
-                    <Typography>{children}</Typography>
-                </Box>
-                )}
-            </div>
-        );
+    const navigate = useNavigate();
+    function handler(props){
+        navigate(`/search/${props}`)
     }
+    
+    // 지역
+    const [destination, setDestination] = useState("");
 
-    TabPanel.propTypes = {
-        children: PropTypes.node,
-        index: PropTypes.number.isRequired,
-        value: PropTypes.number.isRequired,
-    };
 
-    function a11yProps(index) {
-        return {
-          id: `simple-tab-${index}`,
-          'aria-controls': `simple-tabpanel-${index}`,
-        };
-      }
 
   return (
     <ThemeProvider theme={theme}>
         <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }} >
-                <Tabs value={value} onChange={handleChange} textColor='secondary' indicatorColor='secondary' centered >
-                    <Tab label="STAY" {...a11yProps(0)} />
-                    <Tab label="ATTRACTION" {...a11yProps(1)} />
-                    <Tab label="TRAIN" {...a11yProps(2)} />
-                    <Tab label="RENTCAR" {...a11yProps(3)} />
-                </Tabs>
-            </Box> 
-            <TabPanel value={value} index={0}>
-                STAY 검색창
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                ATTRACTION 검색창
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-                TRAIN 검색창
-            </TabPanel>
-            <TabPanel value={value} index={3}>
-                RENTCAR 검색창
-            </TabPanel>
-            <TabPanel value={value} index={0}>
-                STAY 리스트
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                ATTRACTION 리스트
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-                TRAIN 리스트
-            </TabPanel>
-            <TabPanel value={value} index={3}>
-                RENTCAR 리스트
-            </TabPanel>
+                <Box >
+                    <Box className='categorySelect' display='flex' padding='5px'>
+                        {categoryLists.map((categories)=>(
+                            <ListItem display='flex' key={categories.thisCategory} dense='true'>
+                                <CategoryDetail
+                                    handler={()=>{handler(categories.Url)}}
+                                    currentCategory={category}
+                                    thisCategory={categories.thisCategory}
+                                />
+                            </ListItem>
+                        ))}
+                    </Box>
+                </Box>
+            </Box>
         </Box>
     </ThemeProvider>
   )
