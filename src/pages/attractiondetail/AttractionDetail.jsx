@@ -134,7 +134,7 @@ const AttractionDetail = () => {
 
       {/* 여기부터 제작 */}
       <Grid container>
-        <Grid item xs={4}>
+        <Grid item xs={5}>
           <LeftSide
             date={date}
             attractionName={attractionName}
@@ -142,7 +142,7 @@ const AttractionDetail = () => {
             attractionAddress={attractionAddress}
           />
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={7}>
           <RightSide
             attractionName={attractionName}
             attractionPrice={attractionPrice}

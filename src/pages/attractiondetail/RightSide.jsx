@@ -51,10 +51,12 @@ const RightSide = ({
                 onClick={() => {
                   setAttractionLikeCount(attractionLikeCount - 1);
                 }}
+                sx={{ paddingTop: "0.4rem" }}
               />
             ) : (
               <FavoriteBorderIcon
                 color="info"
+                sx={{ paddingTop: "0.4rem" }}
                 onClick={() => {
                   setAttractionLikeCount(attractionLikeCount + 1);
                 }}
@@ -64,6 +66,8 @@ const RightSide = ({
           <Typography
             sx={{
               marginLeft: "0.5rem",
+              color: "#892CDC",
+              fontWeight: "bold",
             }}
           >
             {attractionLikeCount}
@@ -74,7 +78,7 @@ const RightSide = ({
           sx={{
             borderRadius: "2rem",
             width: "20rem",
-            margin: "auto",
+            marginLeft: "5rem",
           }}
         >
           <CardMedia component="img" src={imgUrl} />
