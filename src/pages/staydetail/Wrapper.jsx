@@ -18,6 +18,7 @@ const Wrapper = ({ children }) => {
         borderRadius: 3,
         padding: "2rem",
         marginRight: "2rem",
+        width: "22rem",
       }}
     >
       <Box
