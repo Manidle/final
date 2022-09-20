@@ -14,6 +14,11 @@ import axios from "axios";
 import { useState } from "react";
 import Header from "../../components/header/Header";
 import jwt_decode from "jwt-decode";
+import { Avatar } from "@mui/material";
+import LeftSide from "./LeftSide";
+import RoundBox from "./RoundBox";
+import WhiteRoundBox from "./WhiteRoundBox";
+import PurpleText from "./PurpleText";
 
 const AttractionDetail = () => {
   const theme = createTheme({
@@ -31,12 +36,15 @@ const AttractionDetail = () => {
       },
     },
   });
-
-  const [attractionName, setAttractionName] = useState("");
-  const [attractionAddress, setAttractionAddress] = useState("");
-  const [attractionAddressDetail, setAttractionAddressDetail] = useState("");
-  const [attractionPrice, setAttractionPrice] = useState(0);
-  const [attractionLikeCount, setAttractionLikeCount] = useState(0);
+  const date = "2022.03.21";
+  const imgUrl =
+    "https://mblogthumb-phinf.pstatic.net/20140527_99/digmon2001_1401195894670dl3BX_JPEG/11.jpg?type=w2";
+  const [attractionName, setAttractionName] = useState("소울치킨의 집");
+  const [attractionAddress, setAttractionAddress] = useState("광주광역시");
+  const [attractionAddressDetail, setAttractionAddressDetail] =
+    useState("상무역 3번 출구");
+  const [attractionPrice, setAttractionPrice] = useState(1250);
+  const [attractionLikeCount, setAttractionLikeCount] = useState(999);
 
   // 유저 token
   const userData = jwt_decode(localStorage.getItem("token"));
@@ -104,6 +112,8 @@ const AttractionDetail = () => {
                 </Box>
               </div>
               <Divider />
+
+              {/* 전반부 */}
               <Box className="attractionDetail">
                 <br />
                 관광지 이름: {attractionName}
@@ -124,6 +134,37 @@ const AttractionDetail = () => {
           </Grid>
         </Box>
       </Container>
+
+      {/* 여기부터 제작 */}
+      <Grid container>
+        <Grid item xs={4}>
+          <LeftSide
+            date={date}
+            attractionName={attractionName}
+            attractionPrice={attractionPrice}
+            attractionAddress={attractionAddress}
+          />
+        </Grid>
+        <Grid item xs={8}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItem: "center",
+            }}
+          >
+            <Typography
+              className="dashBoardTitle"
+              fontSize={22}
+              fontWeight="bold"
+              margin="auto"
+              marginBottom="1rem"
+            >
+              {attractionName}
+            </Typography>{" "}
+          </Box>{" "}
+        </Grid>
+      </Grid>
     </ThemeProvider>
   );
 };
