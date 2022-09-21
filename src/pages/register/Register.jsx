@@ -3,9 +3,10 @@ import "./register.css";
 import Footer from "../../components/footer/Footer";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Button, Container, TextField } from "@mui/material";
+import { Button, Container, Grid, TextField } from "@mui/material";
 import { Assignment } from "@mui/icons-material";
 import Header from "../../components/header/Header";
+import LeftSide from "./LeftSide";
 
 export default function Register() {
   // navigatge
@@ -80,7 +81,16 @@ export default function Register() {
   return (
     <>
       <Header />
-      <div className="registerBackground">
+      <Grid
+        container
+        sx={{
+          background:
+            "linear-gradient(rgba(137, 135, 135, 0.5), rgba(78, 76, 76, 0.5)), url('https://www.kagoshima-kankou.com/storage/tourism_themes/12/responsive_images/ElwnvZ2u5uZda7Pjcwlk4mMtr08kLNydT8zXA6Ie__1673_1115.jpeg')",
+        }}
+      >
+        <Grid item xs={7.5}>
+          <LeftSide />
+        </Grid>
         <div className="registerContainer">
           <div className="registerWrapper">
             <div className="registerTitleIcon">
@@ -157,7 +167,7 @@ export default function Register() {
             </form>
           </div>
         </div>
-      </div>
+      </Grid>
       <Footer />
     </>
   );
