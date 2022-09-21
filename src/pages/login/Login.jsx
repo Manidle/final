@@ -17,6 +17,7 @@ import { useState, useEffect } from "react";
 import { Person } from "@mui/icons-material";
 import Header from "../../components/header/Header";
 import { Box } from "@mui/system";
+import LeftSide from "./LeftSide";
 
 export default function Login() {
   //navigatge
@@ -65,33 +66,7 @@ export default function Login() {
 
       <Grid container>
         <Grid item xs={8}>
-          <Box
-            sx={{
-              position: "fixed",
-              top: "40vh",
-              left: "10vh",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <Typography
-              fontWeight="bolder"
-              fontSize="3.5rem"
-              fontColor="#3D3D3D"
-            >
-              Tell Me Your Trip!
-            </Typography>
-            <Typography fontSize="2rem" fontWeight="normal" fontColor="#3D3D3D">
-              PLANNERGRAM
-            </Typography>
-            <Typography
-              fontSize="1.5rem"
-              fontWeight="bold"
-              fontColor="whitesmoke"
-            >
-              travel community
-            </Typography>
-          </Box>
+          <LeftSide />
         </Grid>
         <Grid item xs={4}>
           <div className="loginBackground">
