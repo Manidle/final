@@ -5,6 +5,7 @@ import axios from "axios";
 import Footer from "../../components/footer/Footer";
 import {
   Button,
+  ButtonGroup,
   Container,
   Grid,
   IconButton,
@@ -61,28 +62,35 @@ export default function Login() {
   };
 
   return (
-    <Container maxWidth="lg">
+    <>
       <Header />
 
       <Grid container>
-        <Grid item xs={8}>
+        <Grid item xs={7.5}>
           <LeftSide />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={4.5} sx={{ backgroundColor: "rgba(0,0,0,0.6)" }}>
           <div className="loginBackground">
-            <div className="loginContainer">
+            <Box
+              className="loginContainer"
+              sx={{
+                backgroundColor: "rgba(188,	111,	241, 0.7)",
+                width: "16rem",
+                height: "60%",
+                borderRadius: "15px",
+                padding: "2rem",
+              }}
+            >
               <div className="loginWrapper">
-                <div className="loginTitleIcon">
-                  <Person fontSize="large" color="disabled" />
-                </div>
                 <div className="loginTitleContainer">
-                  <span className="loginTitle">Login</span>
+                  <Typography fontSize="1.6rem" color="white">
+                    LOGIN
+                  </Typography>
                 </div>
-                <div className="topLine"></div>
                 <form className="loginForm">
                   <TextField
                     id="standard-basic"
-                    label="아이디"
+                    label="ID"
                     variant="standard"
                     margin="normal"
                     size="small"
@@ -92,7 +100,7 @@ export default function Login() {
                   />
                   <TextField
                     id="standard-basic"
-                    label="비밀번호"
+                    label="PW"
                     variant="standard"
                     margin="normal"
                     size="small"
@@ -101,21 +109,57 @@ export default function Login() {
                       setPassword(e.target.value);
                     }}
                   />
-                  <Button
-                    onClick={loginClick}
-                    className="loginButton"
-                    variant="contained"
+                  <Box
+                    sx={{
+                      padding: "1rem",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
                   >
-                    로그인
-                  </Button>
-                  <div className="underLine"></div>
-                  <Button
-                    type="button"
-                    className="loginRegisterButton"
-                    onClick={handleRoute}
-                  >
-                    아직 가입하지 않으셨나요?
-                  </Button>
+                    <Button
+                      onClick={loginClick}
+                      variant="outlined"
+                      sx={{
+                        padding: "0.5 rem, 1rem",
+                        marginRight: "0.5rem",
+                        color: "#892CDC",
+                        fontSize: "0.8rem",
+                        width: "4rem",
+                        background: "#DFBCFF",
+                        borderColor: "#892CDC",
+                        borderRadius: "0.6rem",
+                        ":hover": {
+                          background: "#ddd",
+                          color: "#892CDC",
+                          borderColor: "#892CDC",
+                        },
+                      }}
+                    >
+                      LOGIN
+                    </Button>
+                    <Button
+                      onClick={handleRoute}
+                      sx={{
+                        padding: "0.5 rem, 1rem",
+                        color: "#F2E2FC",
+                        fontSize: "0.8rem",
+                        width: "4rem",
+
+                        background: "#892CDC",
+                        borderColor: "#892CDC",
+                        borderRadius: "0.6rem",
+
+                        ":hover": {
+                          background: "#DEB7F8",
+                          color: "#892CDC",
+                          borderColor: "#892CDC",
+                        },
+                      }}
+                    >
+                      JOIN
+                    </Button>
+                  </Box>
+
                   <div className="otherLogin">
                     <IconButton className="google">
                       <img
@@ -136,12 +180,12 @@ export default function Login() {
                   </div>
                 </form>
               </div>
-            </div>
+            </Box>
           </div>
         </Grid>
       </Grid>
 
       <Footer />
-    </Container>
+    </>
   );
 }

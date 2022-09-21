@@ -1,10 +1,9 @@
 body {
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0.5)
-    ),
+  background: linear-gradient(rgba(137, 135, 135, 0.5), rgba(78, 76, 76, 0.5)),
     url("https://www.kagoshima-kankou.com/storage/tourism_themes/12/responsive_images/ElwnvZ2u5uZda7Pjcwlk4mMtr08kLNydT8zXA6Ie__1673_1115.jpeg");
   background-size: 100%;
+  margin: 0;
+  padding: 0;
 }
 .loginBackground {
   height: calc(100vh - 50px);
@@ -13,12 +12,12 @@ body {
   align-items: center;
   justify-content: center;
 }
-
+/* 
 .loginContainer {
   background-color: rgba(255, 255, 255, 0.7);
   padding: 40px 55px 40px 55px;
   border-radius: 30px;
-}
+} */
 
 .loginWrapper {
   align-items: center;
@@ -43,15 +42,6 @@ body {
 .loginForm {
   display: flex;
   flex-direction: column;
-}
-
-.loginButton {
-  margin-top: 20px;
-  background-color: lightcoral;
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-  text-align: center;
 }
 
 .loginRegisterButton {

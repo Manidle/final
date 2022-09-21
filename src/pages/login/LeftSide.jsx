@@ -13,13 +13,13 @@ const LeftSide = () => {
         flexDirection: "column",
       }}
     >
-      <Typography fontWeight="bolder" fontSize="3.5rem" fontColor="#3D3D3D">
+      <Typography fontWeight="bolder" fontSize="3em" fontColor="#3D3D3D">
         Tell Me Your Trip!
       </Typography>
-      <Typography fontSize="2rem" fontWeight="normal" fontColor="#3D3D3D">
+      <Typography fontSize="1.6em" fontWeight="normal" fontColor="#3D3D3D">
         PLANNERGRAM
       </Typography>
-      <Typography fontSize="1.5rem" fontWeight="bold" fontColor="whitesmoke">
+      <Typography fontSize="1.5em" fontWeight="bold" fontColor="whitesmoke">
         travel community
       </Typography>
     </Box>
