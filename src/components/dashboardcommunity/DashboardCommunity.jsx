@@ -4,13 +4,13 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Wrapper from "./Wrapper";
+import DashboardDetail from "./DashboardDetail";
 
-const boardList = [
-  { region: "강원도", city: ["속초", "강릉", "양양", "원주"] },
-  { region: "강원도", city: ["속초", "강릉", "양양", "원주"] },
-  { region: "강원도", city: ["속초", "강릉", "양양", "원주"] },
-  { region: "강원도", city: ["속초", "강릉", "양양", "원주"] },
-  { region: "강원도", city: ["속초", "강릉", "양양", "원주"] },
+const regionAndCitiesList = [
+  { region: "강원도1", citiList: ["속초", "강릉", "양양", "원주"] },
+  { region: "강원도2", citiList: ["속초", "강릉", "양양", "원주"] },
+  { region: "강원도3", citiList: ["속초", "강릉", "양양", "원주"] },
+  { region: "강원도4", citiList: ["속초", "강릉", "양양", "원주"] },
 ];
 
 const DashboardCommunity = () => {
@@ -117,7 +117,11 @@ const DashboardCommunity = () => {
         </Box>
       </Box>
 
-      <Wrapper>dasdads</Wrapper>
+      <Wrapper>
+        {regionAndCitiesList.map((regionAndCities) => {
+          return <DashboardDetail regionAndCities={regionAndCities} />;
+        })}
+      </Wrapper>
     </Box>
   );
 };
