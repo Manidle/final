@@ -78,7 +78,7 @@ export default function Register() {
   // };
 
   return (
-    <Container maxWidth="lg">
+    <>
       <Header />
       <div className="registerBackground">
         <div className="registerContainer">
@@ -159,6 +159,6 @@ export default function Register() {
         </div>
       </div>
       <Footer />
-    </Container>
+    </>
   );
 }
