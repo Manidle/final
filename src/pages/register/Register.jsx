@@ -92,7 +92,8 @@ export default function Register() {
         container
         sx={{
           background:
-            "linear-gradient(rgba(137, 135, 135, 0.5), rgba(78, 76, 76, 0.5)), url('https://www.kagoshima-kankou.com/storage/tourism_themes/12/responsive_images/ElwnvZ2u5uZda7Pjcwlk4mMtr08kLNydT8zXA6Ie__1673_1115.jpeg')",
+            "linear-gradient(rgba(137, 135, 135, 0.5), rgba(78, 76, 76, 0.3)), url('https://uibswiss.ch/wp-content/uploads/2016/01/00_Top-Travel-Trends-for-2018_209155915_06photo_FT.jpg')",
+          backgroundSize: "100%",
         }}
       >
         <Grid item xs={7.5}>

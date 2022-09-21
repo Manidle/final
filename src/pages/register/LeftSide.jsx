@@ -7,8 +7,8 @@ const LeftSide = () => {
     <Box
       sx={{
         position: "fixed",
-        top: "40vh",
-        left: "10vh",
+        top: "65vh",
+        left: "15vh",
         display: "flex",
         flexDirection: "column",
       }}
