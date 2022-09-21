@@ -58,7 +58,89 @@ const Community = () => {
   };
 
   // 게시글 전체 가져오기
-  const [posts, setPosts] = useState([]);
+
+  const [posts, setPosts] = useState([
+    {
+      postId: 1,
+      title: "제목입니다.",
+      replyList: [1, 1, 1, 1, 1, 1],
+      nickname: "김김김",
+      likeCount: 10,
+      readCount: 5,
+    },
+    {
+      postId: 1,
+      title: "제목입니다.",
+      replyList: [1, 1, 1, 1, 1, 1],
+      nickname: "김김김",
+      likeCount: 10,
+      readCount: 5,
+    },
+    {
+      postId: 1,
+      title: "제목입니다.",
+      replyList: [1, 1, 1, 1, 1, 1],
+      nickname: "김김김",
+      likeCount: 10,
+      readCount: 5,
+    },
+    {
+      postId: 1,
+      title: "제목입니다.",
+      replyList: [1, 1, 1, 1, 1, 1],
+      nickname: "김김김",
+      likeCount: 10,
+      readCount: 5,
+    },
+    {
+      postId: 1,
+      title: "제목입니다.",
+      replyList: [1, 1, 1, 1, 1, 1],
+      nickname: "김김김",
+      likeCount: 10,
+      readCount: 5,
+    },
+    {
+      postId: 1,
+      title: "제목입니다.",
+      replyList: [1, 1, 1, 1, 1, 1],
+      nickname: "김김김",
+      likeCount: 10,
+      readCount: 5,
+    },
+    {
+      postId: 1,
+      title: "제목입니다.",
+      replyList: [1, 1, 1, 1, 1, 1],
+      nickname: "김김김",
+      likeCount: 10,
+      readCount: 5,
+    },
+    {
+      postId: 1,
+      title: "제목입니다.",
+      replyList: [1, 1, 1, 1, 1, 1],
+      nickname: "김김김",
+      likeCount: 10,
+      readCount: 5,
+    },
+    {
+      postId: 1,
+      title: "제목입니다.",
+      replyList: [1, 1, 1, 1, 1, 1],
+      nickname: "김김김",
+      likeCount: 10,
+      readCount: 5,
+    },
+    {
+      postId: 1,
+      title: "제목입니다.",
+      replyList: [1, 1, 1, 1, 1, 1],
+      nickname: "김김김",
+      likeCount: 10,
+      readCount: 5,
+    },
+  ]);
 
   useEffect(() => {
     axios
