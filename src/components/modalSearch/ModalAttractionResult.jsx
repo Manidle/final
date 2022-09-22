@@ -70,12 +70,15 @@ const ModalAttractionResult = () => {
                 <TextField placeholder='관광지를 검색하세요' onChange={(e)=>{setSearchWord(e.target.value)}}/>
                 <Button className='attractionSearchButton' onClick={()=>{searchAttraction()}}>검색</Button>
             </Box>
-            <Box>
+            <Box  maxHeight='400px' margin='5px' overflow='auto' >
                 {attractionLists.length === 0 ?
                     <Box>관광지가 없습니다.</Box> :
                     attractionLists.map((attractionList)=>(
-                        <ListItem display='flex' justifyContent='space-between' key={attractionList.trainId}>
-                            <Typography></Typography>
+                        <ListItem display='flex' justifyContent='space-between' key={attractionList.attractionId}>
+                            <Typography>관광지 이름:{attractionList.name}</Typography>
+                            <Typography>관광지 주소:{attractionList.address}</Typography>
+                            <Typography>관광지 설명: 관광지에 대한 설명 attractionList.description 이 들어갈겁니다.</Typography>
+                            <Typography>좋아요 수:{attractionList.likeCount}</Typography>
                         </ListItem>
                     ))
                 }
