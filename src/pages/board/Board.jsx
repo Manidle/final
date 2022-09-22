@@ -1,7 +1,7 @@
-import { Button, Box, Card, CardContent, Container, Input, InputAdornment, Pagination, Stack, TextField, ThemeProvider, createTheme, ListItem, Typography } from '@mui/material'
+import { Button, Box, Container, InputAdornment, Pagination, Stack, TextField, ThemeProvider, createTheme, ListItem, Typography } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import React from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import BoardCategory from '../../components/boardcategory/BoardCategory'
 import './board.css'
 import Notice from '../../components/Notice/Notice';
@@ -106,7 +106,6 @@ const Community = () => {
                                 <BoardCategory/>
                             </div>
                             <div className="communityBoard">
-                                {/* <Notice/> */}
                                 {posts.length === 0 ? <Box padding="10px">"첫 게시글을 작성해보세요!"</Box> : postsPerPage.currentData().map((post)=>(
                                     <ListItem display='flex' justifyContent='space-between' key={post.postId} dense='true' >
                                         <Typography padding='5px' onClick={()=>{handlePostDetail(post.postId)}}>게시글 번호: {post.postId}</Typography>
