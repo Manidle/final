@@ -16,6 +16,7 @@ import CategoryBar from "../../components/CategoryBar";
 import Header from "../../components/header/Header";
 import AttractionItem from "./AttractionItem";
 import Bar from "./Bar";
+import AttractionColumn from "./Column/AttractionColumn";
 
 const SearchAttraction = () => {
   const theme = createTheme({
@@ -85,6 +86,7 @@ const SearchAttraction = () => {
         />
 
         <Box>
+          <AttractionColumn />
           {attractions.length === 0 ? (
             <Box>관광지가 없습니다.</Box>
           ) : (
