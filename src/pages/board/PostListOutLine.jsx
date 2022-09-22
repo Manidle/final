@@ -9,7 +9,9 @@ const PostListOutLine = ({ children }) => {
         marginBottom: 2,
         borderRadius: 3,
         padding: 1,
+        width: "60%",
         display: "flex",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "space-between",
       }}
