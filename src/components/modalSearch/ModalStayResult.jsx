@@ -69,11 +69,11 @@ const ModalStayResult = () => {
                 <TextField placeholder='숙소를 검색하세요' onChange={(e)=>{setSearchWord(e.target.value)}} />
                 <Button className='staySearchButton' onClick={()=>{searchStay()}}>검색</Button>
             </Box>
-            <Box>
+            <Box  maxHeight='400px' margin='5px' overflow='auto' >
                 {stayLists.length === 0 ?
                     <Box>숙소가 없습니다.</Box> :
                     stayLists.map((stayList)=>(
-                        <ListItem display='flex' justifyContent='space-between' key={stayList.trainId}>
+                        <ListItem display='flex' justifyContent='space-between' key={stayList.stayId}>
                             <Typography>숙소 이름: {stayList.name}</Typography>
                             <Typography>숙소 주소: {stayList.address}</Typography>
                             <Typography>숙소 상세주소: {stayList.detailAddress}</Typography>
