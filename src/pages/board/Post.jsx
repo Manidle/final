@@ -1,32 +1,54 @@
-import { ListItem, Typography } from "@mui/material";
+import { Grid, ListItem } from "@mui/material";
 import React from "react";
+import TextProperty from "./TextProperty";
 
 const Post = ({ post, handlePostDetail }) => {
   return (
     <ListItem
       display="flex"
       justifyContent="space-between"
+      width="40rem"
       key={post.postId}
       dense="true"
     >
-      <Typography
-        padding="5px"
-        onClick={() => {
-          handlePostDetail(post.postId);
-        }}
-      >
-        게시글 번호: {post.postId}
-      </Typography>
-      <Typography
-        padding="5px"
-        onClick={() => {
-          handlePostDetail(post.postId);
-        }}
-      >
-        게시글제목: {post.title}
-      </Typography>
-      <Typography padding="5px">게시글 작성자: {post.user}</Typography>
-      <Typography padding="5px">댓글 수: {post.replyList}</Typography>
+      <Grid container>
+        <Grid item xs={1}>
+          <TextProperty
+            onClick={() => {
+              handlePostDetail(post.postId);
+            }}
+          >
+            {post.postId}
+          </TextProperty>
+        </Grid>
+        <Grid item xs={7}>
+          <TextProperty
+            onClick={() => {
+              handlePostDetail(post.postId);
+            }}
+          >
+            {post.title}
+          </TextProperty>
+        </Grid>
+        <Grid item xs={2}>
+          <TextProperty
+            onClick={() => {
+              handlePostDetail(post.postId);
+            }}
+          >
+            {post.replyList.length}
+          </TextProperty>
+        </Grid>
+        <Grid item xs={2}>
+          <TextProperty
+            onClick={() => {
+              handlePostDetail(post.postId);
+            }}
+          >
+            {post.likeCount}
+          </TextProperty>
+        </Grid>
+      </Grid>
     </ListItem>
   );
 };
