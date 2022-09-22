@@ -1,18 +1,13 @@
 import {
   Button,
   Box,
-  Card,
-  CardContent,
   Container,
-  Input,
   InputAdornment,
   Pagination,
   Stack,
   TextField,
   ThemeProvider,
   createTheme,
-  ListItem,
-  Typography,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import React from "react";
@@ -27,6 +22,7 @@ import { useState } from "react";
 import DashboardCommunity from "../../components/dashboardcommunity/DashboardCommunity";
 import usePagination from "../../components/Pagination";
 import Post from "./Post";
+import PostListOutLine from "./PostListOutLine";
 
 const Community = () => {
   const theme = createTheme({
@@ -196,7 +192,7 @@ const Community = () => {
         <Header />
         <Box display="flex">
           <DashboardCommunity />
-          <Box>
+          <PostListOutLine>
             <div className="communityContainer">
               <div className="communityWrapper">
                 <div className="comunityCategory">
@@ -256,7 +252,7 @@ const Community = () => {
                 </div>
               </div>
             </div>
-          </Box>
+          </PostListOutLine>
         </Box>
       </Container>
     </ThemeProvider>
