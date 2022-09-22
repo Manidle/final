@@ -3,6 +3,7 @@ import React from 'react'
 import ModalAttractionResult from './modalSearch/ModalAttractionResult';
 import ModalRentcarResult from './modalSearch/ModalRentcarResult';
 import ModalStayResult from './modalSearch/ModalStayResult';
+import ModalTrainResult from './modalSearch/ModalTrainResult';
 
 const ModalDetail = ({currentCategory}) => {
     const theme = createTheme({
@@ -39,13 +40,10 @@ const ModalDetail = ({currentCategory}) => {
                     currentCategory === 'train' ?
                     <Box backgroundColor='yellow'>
                         <Typography>train</Typography>
-                        <Box>
-                            <TextField placeholder='기차를 검색하세요'/>
-                            <Button className='trainSearchButton'>검색</Button>
-                        </Box>
+                        <ModalTrainResult/>
                     </Box> :
                     (
-                        <Box backgroundColor='red'>
+                        <Box backgroundColor='red' maxHeight='500px'>
                             <Typography>rentcar</Typography>
                             <ModalRentcarResult/>
                         </Box>
