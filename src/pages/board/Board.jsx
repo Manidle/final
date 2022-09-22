@@ -200,6 +200,7 @@ const Community = () => {
                 display: "flex",
                 justifyContent: "space-between",
                 width: "40rem",
+                paddingBottom: "1rem",
               }}
             >
               <PostSearch />

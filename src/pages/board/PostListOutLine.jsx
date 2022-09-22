@@ -6,14 +6,14 @@ const PostListOutLine = ({ children }) => {
     <Box
       sx={{
         border: "2px dashed #F2E2FC",
-        marginBottom: 2,
+        margin: "10px",
         borderRadius: 3,
-        padding: 1,
+        padding: "2rem",
         width: "60%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "space-between",
+        // justifyContent: "space-between",
       }}
     >
       {children}

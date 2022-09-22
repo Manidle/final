@@ -9,7 +9,7 @@ const Post = ({ post, handlePostDetail }) => {
       justifyContent="space-between"
       width="40rem"
       key={post.postId}
-      dense="true"
+      // dense="true"
     >
       <Grid container>
         <Grid item xs={1}>
