@@ -1,8 +1,18 @@
 import { Grid, ListItem, Typography } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import TextProperty from "./TextProperty";
 
 const AttractionItem = ({ attraction }) => {
+  const navigate = useNavigate();
+
+  function handleAttractionDetail(attractionId) {
+    navigate(`/attraction/${attractionId}`, {
+      state: {
+        attractionId: attractionId,
+      },
+    });
+  }
   return (
     <ListItem display="flex" key={attraction.attractionId} dense="true">
       <Grid
@@ -13,13 +23,31 @@ const AttractionItem = ({ attraction }) => {
         justifyContent="space-between"
       >
         <Grid item xs={4}>
-          <TextProperty>{attraction.name}</TextProperty>
+          <TextProperty
+            onClick={() => {
+              handleAttractionDetail(attraction.attractionId);
+            }}
+          >
+            {attraction.name}
+          </TextProperty>
         </Grid>
         <Grid item xs={4}>
-          <TextProperty>{attraction.address}</TextProperty>{" "}
+          <TextProperty
+            onClick={() => {
+              handleAttractionDetail(attraction.attractionId);
+            }}
+          >
+            {attraction.address}
+          </TextProperty>{" "}
         </Grid>
         <Grid item xs={4}>
-          <TextProperty>{attraction.likeCount}</TextProperty>{" "}
+          <TextProperty
+            onClick={() => {
+              handleAttractionDetail(attraction.attractionId);
+            }}
+          >
+            {attraction.likeCount}
+          </TextProperty>{" "}
         </Grid>
       </Grid>
     </ListItem>

@@ -92,7 +92,10 @@ const SearchAttraction = () => {
             <NotInContents>관광지가 없습니다.</NotInContents>
           ) : (
             attractions.map((attraction) => (
-              <AttractionItem attraction={attraction} />
+              <AttractionItem
+                key={attraction.attractionId}
+                attraction={attraction}
+              />
             ))
           )}
         </Box>
