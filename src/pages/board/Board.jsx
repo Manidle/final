@@ -23,6 +23,8 @@ import DashboardCommunity from "../../components/dashboardcommunity/DashboardCom
 import usePagination from "../../components/Pagination";
 import Post from "./Post";
 import PostListOutLine from "./PostListOutLine";
+import PostColumn from "./PostColumn";
+import PostSearch from "./PostSearch";
 
 const Community = () => {
   const theme = createTheme({
@@ -193,64 +195,46 @@ const Community = () => {
         <Box display="flex">
           <DashboardCommunity />
           <PostListOutLine>
-            <div className="communityContainer">
-              <div className="communityWrapper">
-                <div className="comunityCategory">
-                  <BoardCategory />
-                </div>
-                <div className="communityBoard">
-                  {/* <Notice/> */}
-                  {posts.length === 0 ? (
-                    <Box padding="10px">"첫 게시글을 작성해보세요!"</Box>
-                  ) : (
-                    postsPerPage
-                      .currentData()
-                      .map((post) => (
-                        <Post post={post} handlePostDetail={handlePostDetail} />
-                      ))
-                  )}
-                </div>
-                <div className="boardFooter">
-                  <Stack spacing={2} padding="5px">
-                    <Pagination
-                      size="small"
-                      count={count}
-                      boundaryCount={2}
-                      onChange={handlePage}
-                    />
-                  </Stack>
-                </div>
-                <div className="boardSearchbar">
-                  <TextField
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <SearchIcon />
-                        </InputAdornment>
-                      ),
-                    }}
-                    size="small"
-                    sx={{ margin: "3px" }}
-                  />
-                  <Button
-                    variant="contained"
-                    color="action"
-                    className="postSearchButton"
-                    sx={{ margin: "3px" }}
-                  >
-                    게시글 검색
-                  </Button>
-                  <Button
-                    variant="contained"
-                    color="info"
-                    className="communityPostingButton"
-                    onClick={handlePosting}
-                    sx={{ margin: "3px" }}
-                  >
-                    게시글 등록
-                  </Button>
-                </div>
-              </div>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                width: "40rem",
+              }}
+            >
+              <PostSearch />
+              <Button
+                variant="none"
+                className="communityPostingButton"
+                onClick={handlePosting}
+                sx={{ margin: "3px", color: "#892CDC", borderRadius: "1rem" }}
+              >
+                글쓰기
+              </Button>
+            </Box>
+
+            <div className="communityBoard">
+              <PostColumn />
+              {/* <Notice/> */}
+              {posts.length === 0 ? (
+                <Box padding="10px">"첫 게시글을 작성해보세요!"</Box>
+              ) : (
+                postsPerPage
+                  .currentData()
+                  .map((post) => (
+                    <Post post={post} handlePostDetail={handlePostDetail} />
+                  ))
+              )}
+            </div>
+            <div className="boardFooter">
+              <Stack spacing={2} padding="5px">
+                <Pagination
+                  size="small"
+                  count={count}
+                  boundaryCount={2}
+                  onChange={handlePage}
+                />
+              </Stack>
             </div>
           </PostListOutLine>
         </Box>
