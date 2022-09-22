@@ -8,6 +8,7 @@ import CategoryBar from '../../components/CategoryBar';
 import Header from '../../components/header/Header'
 import './posting.css'
 import jwt_decode from 'jwt-decode';
+import CategoryBarInModal from '../../components/CategoryBarInModal';
 
 const Posting = () => {
 
@@ -159,7 +160,7 @@ const Posting = () => {
                                 <Typography id="modal-modal-title" variant="h6" component="h2" justifyContent='center' display='flex' fontWeight='bold' >
                                     새로운 항목 추가하기
                                 </Typography>
-                                <CategoryBar/>
+                                <CategoryBarInModal />
                             </Box>
                         </Modal>
                     </Box>
