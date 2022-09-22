@@ -1,6 +1,7 @@
 import { Box, Button, createTheme, TextField, ThemeProvider, Typography } from '@mui/material'
 import React from 'react'
 import ModalAttractionResult from './modalSearch/ModalAttractionResult';
+import ModalRentcarResult from './modalSearch/ModalRentcarResult';
 import ModalStayResult from './modalSearch/ModalStayResult';
 
 const ModalDetail = ({currentCategory}) => {
@@ -46,10 +47,7 @@ const ModalDetail = ({currentCategory}) => {
                     (
                         <Box backgroundColor='red'>
                             <Typography>rentcar</Typography>
-                            <Box>
-                                <TextField placeholder='렌트카를 검색하세요'/>
-                                <Button className='rentcarSearchButton'>검색</Button>
-                            </Box>
+                            <ModalRentcarResult/>
                         </Box>
                     )
                 )
