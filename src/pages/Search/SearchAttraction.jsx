@@ -60,7 +60,7 @@ const SearchAttraction = () => {
   function searchFilterAttraction() {
     axios
       .get(
-        `http://localhost:8080/api/filter/attraction/search?search=${searchAttraction}`
+        `http://localhost:8080/api/filter/list/attraction?search=${searchAttraction}`
       )
       .then((response) => {
         setAttractions(response.data);
