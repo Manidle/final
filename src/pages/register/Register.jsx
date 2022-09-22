@@ -36,7 +36,7 @@ export default function Register() {
   function userSignIn() {
     axios
       .post(
-        "http://localhost:8080/user",
+        "http://localhost:8080/all/v1/register",
         {
           username: userId,
           password: password,
