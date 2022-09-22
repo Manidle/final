@@ -1,5 +1,6 @@
 import { Box, Button, createTheme, TextField, ThemeProvider, Typography } from '@mui/material'
 import React from 'react'
+import ModalAttractionResult from './modalSearch/ModalAttractionResult';
 import ModalStayResult from './modalSearch/ModalStayResult';
 
 const ModalDetail = ({currentCategory}) => {
@@ -31,10 +32,7 @@ const ModalDetail = ({currentCategory}) => {
                 currentCategory === 'attraction' ?
                 <Box backgroundColor='green'>
                     <Typography>attraction</Typography>
-                    <Box>
-                        <TextField placeholder='관광지를 검색하세요'/>
-                        <Button className='attractionSearchButton'>검색</Button>
-                    </Box>
+                    <ModalAttractionResult/>
                 </Box> :
                 (
                     currentCategory === 'train' ?
