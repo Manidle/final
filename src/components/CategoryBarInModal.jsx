@@ -48,13 +48,8 @@ const [currentCategory, setCurrentCategory] = useState("stay")
                             </ListItem>
                         ))}
                     </Box>
-                    <Box className='categoryContents' display='row' padding='10px'>
-                        <Box>
-                            {/* 여기에 컴포넌트하나를 만들어서 props 로 Url 을 내려주면 받은 detail 은
-                            if 문이나 switch문이나 case 로 return 값을 검색창으로 보내는 거지. 그러면
-                            검색창의 함수가 어떤거냐에 따라. 받아오는 데이터가 달라질테고?
-                            아니지 데이터를 위로 올려보낼 수가 있나?????????
-                                */}
+                    <Box className='categoryContents' display='row' padding='10px' >
+                        <Box sx={{ maxHeight:'50%'}} >
                             <ModalDetail
                             currentCategory={currentCategory}
                             />
