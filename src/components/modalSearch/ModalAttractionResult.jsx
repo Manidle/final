@@ -1,4 +1,5 @@
-import { Container, createTheme, ListItem, TextField, ThemeProvider, Typography } from '@mui/material'
+import { Box, Button, Container, createTheme, ListItem, TextField, ThemeProvider, Typography } from '@mui/material'
+import axios from 'axios';
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -70,10 +71,10 @@ const ModalAttractionResult = () => {
                 <Button className='attractionSearchButton' onClick={()=>{searchAttraction()}}>검색</Button>
             </Box>
             <Box>
-                {attracionsLists.length === 0 ?
+                {attractionLists.length === 0 ?
                     <Box>관광지가 없습니다.</Box> :
                     attractionLists.map((attractionList)=>(
-                        <ListItem display='flex' justifyContent='space-between' key={stayList.trainId}>
+                        <ListItem display='flex' justifyContent='space-between' key={attractionList.trainId}>
                             <Typography></Typography>
                         </ListItem>
                     ))
