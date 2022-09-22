@@ -26,6 +26,7 @@ import axios from "axios";
 import { useState } from "react";
 import DashboardCommunity from "../../components/dashboardcommunity/DashboardCommunity";
 import usePagination from "../../components/Pagination";
+import Post from "./Post";
 
 const Community = () => {
   const theme = createTheme({
@@ -206,37 +207,11 @@ const Community = () => {
                   {posts.length === 0 ? (
                     <Box padding="10px">"첫 게시글을 작성해보세요!"</Box>
                   ) : (
-                    postsPerPage.currentData().map((post) => (
-                      <ListItem
-                        display="flex"
-                        justifyContent="space-between"
-                        key={post.postId}
-                        dense="true"
-                      >
-                        <Typography
-                          padding="5px"
-                          onClick={() => {
-                            handlePostDetail(post.postId);
-                          }}
-                        >
-                          게시글 번호: {post.postId}
-                        </Typography>
-                        <Typography
-                          padding="5px"
-                          onClick={() => {
-                            handlePostDetail(post.postId);
-                          }}
-                        >
-                          게시글제목: {post.title}
-                        </Typography>
-                        <Typography padding="5px">
-                          게시글 작성자: {post.user}
-                        </Typography>
-                        <Typography padding="5px">
-                          댓글 수: {post.replyList}
-                        </Typography>
-                      </ListItem>
-                    ))
+                    postsPerPage
+                      .currentData()
+                      .map((post) => (
+                        <Post post={post} handlePostDetail={handlePostDetail} />
+                      ))
                   )}
                 </div>
                 <div className="boardFooter">
