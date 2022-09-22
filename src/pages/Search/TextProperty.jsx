@@ -4,7 +4,7 @@ const TextProperty = ({ children, onClick }) => {
   return (
     <Typography
       textAlign="center"
-      fontWeight="light"
+      fontWeight="normal"
       fontSize={14}
       onClick={onClick}
     >

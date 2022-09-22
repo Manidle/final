@@ -1,12 +1,20 @@
-import { Grid, ListItem } from "@mui/material";
+import { Grid, ListItem, Typography } from "@mui/material";
 import React from "react";
-import TextProperty from "../TextProperty";
+
+const TextProperty = ({ children }) => {
+  return (
+    <Typography textAlign="center" fontWeight="bold" fontSize={14}>
+      {children}
+    </Typography>
+  );
+};
 
 const AttractionColumn = () => {
   return (
     <ListItem key={0}>
       <Grid
         container
+        margin="auto"
         width="40rem"
         display="flex"
         justifyContent="space-between"

@@ -4,14 +4,10 @@ import TextProperty from "./TextProperty";
 
 const AttractionItem = ({ attraction }) => {
   return (
-    <ListItem
-      display="flex"
-      justifyContent="space-between"
-      key={attraction.attractionId}
-      dense="true"
-    >
+    <ListItem display="flex" key={attraction.attractionId} dense="true">
       <Grid
         container
+        margin="auto"
         width="40rem"
         display="flex"
         justifyContent="space-between"
