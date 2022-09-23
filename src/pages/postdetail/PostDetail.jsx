@@ -8,6 +8,7 @@ import Header from '../../components/header/Header'
 import Reply from '../../components/reply/Reply';
 import { useLocation, useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
+import { BASE_URL } from '../../baseUrl';
 
 const PostDetail = () => {
 
@@ -52,7 +53,7 @@ const PostDetail = () => {
     const [postTrainList, setPostTrainList] = useState([])
 
     useEffect(()=>{
-        axios.get(`http://localhost:8080/api/auth/v1/post/${postProps.state.postId}`)
+        axios.get(`${BASE_URL}/api/auth/v1/post/${postProps.state.postId}`)
         .then((response)=>{
             console.log(response.data);
             setPostBoard(response.data.boardId);
@@ -91,7 +92,7 @@ const PostDetail = () => {
 
     // 게시글 삭제
     function deletePost(){
-        axios.delete(`http://localhost:8080/api/auth/v1/post/${postProps.state.postId}`)
+        axios.delete(`${BASE_URL}/api/auth/v1/post/${postProps.state.postId}`)
         .then((response)=>{
             console.log("삭제 했습니다.");
             console.log(response);
@@ -125,7 +126,7 @@ const PostDetail = () => {
     const [likeClick, setLikeClick] = useState(false);
 
     function handleLikeClick(){
-        axios.get('http://localhost:8080/api/auth/v1/like/click/post',{
+        axios.get(BASE_URL+'/api/auth/v1/like/click/post',{
             params:{
                 user:userData.id,
                 post:postId,
