@@ -6,7 +6,7 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { makeCarImg } from "../../image/carImg.js";
+import { makeOrderCarImg } from "../../image/carImg.js";
 
 const RentCarItem = ({ rentcar }) => {
   return (
@@ -22,7 +22,7 @@ const RentCarItem = ({ rentcar }) => {
         <CardMedia
           component="img"
           height="150px"
-          image={makeCarImg()}
+          image={makeOrderCarImg(rentcar.rentCarId, 15)}
           alt="Hot Posts"
           width="100px"
         />

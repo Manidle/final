@@ -19,3 +19,7 @@ const CAR_IMG = [
 export const makeCarImg = () => {
   return CAR_IMG[Math.floor(Math.random() * CAR_IMG.length)];
 };
+
+export const makeOrderCarImg = (i, n) => {
+  return CAR_IMG[Math.floor(i % n)];
+};
