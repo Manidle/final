@@ -21,6 +21,7 @@ import Header from "../../components/header/Header";
 import "./posting.css";
 import jwt_decode from "jwt-decode";
 import { BASE_URL } from "../../baseUrl";
+import CategoryBarInModal from "../../components/CategoryBarInModal";
 
 const Posting = () => {
   const theme = createTheme({
