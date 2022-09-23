@@ -1,4 +1,4 @@
-export const STAY_IMG = [
+const STAY_IMG = [
   "https://www.anyang.go.kr/DATA/bbs/266/thumb/t_20210618095500347oCYjBp.jpg",
   "https://t2.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/2epN/image/pEhqO5nh9bdAkeYrtEVYLMupMOo.jpg",
   "https://www.kayak.co.kr/rimg/himg/80/dc/27/revato-13901-73917-882192.jpg?width=1366&height=768&crop=true",
@@ -22,3 +22,7 @@ export const STAY_IMG = [
   "https://www.danyang.go.kr/stay/attach/stay/20180503133817_4.JPG",
   "https://static.wixstatic.com/media/4cf1af_82a5d4a812f04e5da99d4445f7edef74~mv2_d_6240_3504_s_4_2.jpg/v1/fill/w_2500,h_1403,al_c/4cf1af_82a5d4a812f04e5da99d4445f7edef74~mv2_d_6240_3504_s_4_2.jpg",
 ];
+
+export const makeStayImg = () => {
+  return STAY_IMG[Math.floor(Math.random() * STAY_IMG.length)];
+};

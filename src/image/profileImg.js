@@ -1,4 +1,4 @@
-export const PROFILE_IMG = [
+const PROFILE_IMG = [
   "https://ps.w.org/metronet-profile-picture/assets/icon-256x256.png?rev=2464419",
   "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg",
   "https://st2.depositphotos.com/1104517/11965/v/950/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg",
@@ -21,3 +21,7 @@ export const PROFILE_IMG = [
   "https://s3.ap-northeast-2.amazonaws.com/elasticbeanstalk-ap-northeast-2-176213403491/media/magazine_img/magazine_262/%EC%8D%B8%EB%84%A4%EC%9D%BC.jpg",
   "https://images.mypetlife.co.kr/content/uploads/2018/12/09154907/cotton-tulear-2422612_1280.jpg",
 ];
+
+export const makeProfileImg = () => {
+  return PROFILE_IMG[Math.floor(Math.random() * PROFILE_IMG.length)];
+};

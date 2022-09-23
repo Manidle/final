@@ -1,4 +1,4 @@
-export const ATTRACTION_IMG = [
+const ATTRACTION_IMG = [
   "https://www.lottehotel.com/content/dam/lotte-hotel/rf/g-0811.jpg.thumb.768.768.jpg",
   "https://file.mk.co.kr/meet/neds/2020/12/image_readtop_2020_1263248_16074725144464348.jpg",
   "https://cdn.beminor.com/news/photo/201807/12415_25775_3536.jpg",
@@ -19,3 +19,7 @@ export const ATTRACTION_IMG = [
   "https://www.gokseong.go.kr/tour/images/tour_mobile/main/slider_taeansa.jpg",
   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2cK7ZV9RnuNJq0zsbE3pft2ykNKABpSlGTXG_iIkU4I7yVEfld7qWosJMNJtHCNHcvA8&usqp=CAU",
 ];
+
+export const makeAttractionImg = () => {
+  return ATTRACTION_IMG[Math.floor(Math.random() * ATTRACTION_IMG.length)];
+};

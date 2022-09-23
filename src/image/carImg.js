@@ -1,4 +1,4 @@
-export const CAR_IMG = [
+const CAR_IMG = [
   "https://www.hyundai.com/contents/repn-car/side-45/sonata-hybrid-23my-45side.png",
   "https://www.hyundai.com/contents/repn-car/side-45/avante-22my-45side.png",
   "https://file.mk.co.kr/meet/yonhap/2021/05/30/image_readtop_2021_518799_0_135812.jpg",
@@ -16,3 +16,7 @@ export const CAR_IMG = [
   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnvNDgHpsINQ417ar5OReFXj78TVzeIpQMRA&usqp=CAU",
   "https://t1.daumcdn.net/cfile/tistory/2134EE4856F5604C16",
 ];
+
+export const makeCarImg = () => {
+  return CAR_IMG[Math.floor(Math.random() * CAR_IMG.length)];
+};

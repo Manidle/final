@@ -1,4 +1,4 @@
-export const CITY_IMG = [
+const CITY_IMG = [
   "https://images.mypetlife.co.kr/content/uploads/2018/12/09154907/cotton-tulear-2422612_1280.jpg",
   "https://w.namu.la/s/06bee9805286154ad08b48e3073da5fc55cd12ee4cd87bdc65424258af6675f3bb063aadf568278eeb63b883710ab0de64c63070cd64b17a95e87d986bb3770d48e327bb53e581ffde5ee5cf9f25dfe8063c584cf6f5d1c5541a70a2d50f00fc1d4b4e3d1f1965a9c15c52de85c515e5",
   "https://cdn.gjdream.com/news/photo/202202/613182_213090_365.jpg",
@@ -23,3 +23,7 @@ export const CITY_IMG = [
   "https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202105/12/7794c38c-5365-4e38-8e67-d2142cac453e.jpg",
   "https://www.anyang.go.kr/DATA/bbs/266/thumb/t_20210618095500347oCYjBp.jpg",
 ];
+
+export const makeCityImg = () => {
+  return CITY_IMG[Math.floor(Math.random() * CITY_IMG.length)];
+};
