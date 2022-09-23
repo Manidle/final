@@ -11,21 +11,12 @@ const Notice = () => {
     const [notice, setNotice] = useState([]);
 
     useEffect(()=>{
-        const getPosts = async () => {
-            const {
-                data: {
-                    data: {notice},
-                },
-            } = await axios.get('http://localhost:8080/post')
+        axios.get('http://localhost:8080/post')
         .then((response)=>{
             setNotice(response.data)
             console.log(notice);
         });
-        setNotice(notice);
-        setIsLoading(false);
-        }
-        getPosts();
-    }, [] )
+    }, [])
 
   return (
     <Container maxWidth="lg">

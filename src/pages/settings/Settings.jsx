@@ -1,8 +1,8 @@
 import "./settings.css";
 import Sidebar from "../../components/sidebar/Sidebar";
-import Topbar from "../../components/topbar/Topbar";
 import Footer from "../../components/footer/Footer";
 import { Container } from "@mui/material";
+import Header from "../../components/header/Header";
 
 export default function Settings() {
 
@@ -13,7 +13,7 @@ export default function Settings() {
 
   return (
     <Container maxWidth="lg">
-      <Topbar/>
+      <Header/>
       <div className="settings">
         <div className="settingsWrapper">
           <div className="settingsTitle">
