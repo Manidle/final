@@ -26,24 +26,24 @@ const ModalDetail = ({currentCategory}) => {
   return (
     <ThemeProvider theme={theme}>
         {currentCategory === 'stay' ?
-            <Box backgroundColor='gray'>
+            <Box>
                 <Typography>stay</Typography>
                 <ModalStayResult />
             </Box> :
             (
                 currentCategory === 'attraction' ?
-                <Box backgroundColor='green'>
+                <Box >
                     <Typography>attraction</Typography>
                     <ModalAttractionResult/>
                 </Box> :
                 (
                     currentCategory === 'train' ?
-                    <Box backgroundColor='yellow'>
+                    <Box >
                         <Typography>train</Typography>
                         <ModalTrainResult/>
                     </Box> :
                     (
-                        <Box backgroundColor='red' maxHeight='500px'>
+                        <Box >
                             <Typography>rentcar</Typography>
                             <ModalRentcarResult/>
                         </Box>

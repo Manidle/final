@@ -67,10 +67,10 @@ const ModalAttractionResult = () => {
     <ThemeProvider theme={theme}>
         <Container>
             <Box className='modalSearch'>
-                <TextField placeholder='관광지를 검색하세요' onChange={(e)=>{setSearchWord(e.target.value)}}/>
+                <TextField placeholder='관광지를 검색하세요' size='small' onChange={(e)=>{setSearchWord(e.target.value)}}/>
                 <Button className='attractionSearchButton' onClick={()=>{searchAttraction()}}>검색</Button>
             </Box>
-            <Box  maxHeight='400px' margin='5px' overflow='auto' >
+            <Box maxHeight='32vh' margin='5px' overflow='auto' >
                 {attractionLists.length === 0 ?
                     <Box>관광지가 없습니다.</Box> :
                     attractionLists.map((attractionList)=>(

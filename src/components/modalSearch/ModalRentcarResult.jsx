@@ -67,10 +67,10 @@ const ModalRentcarResult = () => {
     <ThemeProvider theme={theme}>
         <Container>
             <Box className='modalSearch'>
-                <TextField placeholder='렌트카를 검색하세요' onChange={(e)=>{setSearchWord(e.target.value)}}/>
+                <TextField placeholder='렌트카를 검색하세요' size='small' onChange={(e)=>{setSearchWord(e.target.value)}}/>
                 <Button className='rentcarSearchButton' onClick={()=>{searchRentcar()}}>검색</Button>
             </Box>
-            <Box maxHeight='400px' backgroundColor='yellow' margin='5px' overflow='auto'>
+            <Box maxHeight='32vh'  margin='5px' overflow='auto'>
                 {rentcarLists.length === 0 ?
                     <Box>렌트카가 없습니다.</Box> :
                     rentcarLists.map((rentcarList)=>(

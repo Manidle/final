@@ -53,12 +53,12 @@ const ModalTrainResult = () => {
     <ThemeProvider theme={theme}>
         <Container>
             <Box className='modalSearch'>
-                <TextField placeholder='출발지를 검색하세요' onChange={(e)=>{setSearchStartPoint(e.target.value)}}/>
-                <TextField placeholder='도착지를 검색하세요' onChange={(e)=>{setSearchEndPoint(e.target.value)}}/>
+                <TextField placeholder='출발지를 검색하세요' size='small' onChange={(e)=>{setSearchStartPoint(e.target.value)}}/>
+                <TextField placeholder='도착지를 검색하세요' size='small' onChange={(e)=>{setSearchEndPoint(e.target.value)}}/>
                 <Calendar data={searchDate}/>
                 <Button className='trainSearchButton' onClick={()=>{searchTrain()}}>검색</Button>
             </Box>
-            <Box maxHeight='400px' margin='5px' overflow='auto' >
+            <Box  maxHeight='32vh'  margin='5px' overflow='auto' >
                 {trainLists.length === 0 ?
                     <Box>출발지와 도착지를 입력해 기차를 검색해보세요!</Box> :
                     trainLists.map((trainList)=>(

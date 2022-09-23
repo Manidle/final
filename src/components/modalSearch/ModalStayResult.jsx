@@ -66,10 +66,10 @@ const ModalStayResult = () => {
     <ThemeProvider theme={theme}>
         <Container>
             <Box className='modalSearch'>
-                <TextField placeholder='숙소를 검색하세요' onChange={(e)=>{setSearchWord(e.target.value)}} />
+                <TextField placeholder='숙소를 검색하세요' size='small' onChange={(e)=>{setSearchWord(e.target.value)}} />
                 <Button className='staySearchButton' onClick={()=>{searchStay()}}>검색</Button>
             </Box>
-            <Box  maxHeight='400px' margin='5px' overflow='auto' >
+            <Box  maxHeight='32vh' margin='5px' overflow='auto' >
                 {stayLists.length === 0 ?
                     <Box>숙소가 없습니다.</Box> :
                     stayLists.map((stayList)=>(
