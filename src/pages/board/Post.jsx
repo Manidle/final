@@ -36,7 +36,8 @@ const Post = ({ post, handlePostDetail }) => {
               handlePostDetail(post.postId);
             }}
           >
-            {post.replyList.length}
+            댓글리스트자리
+            {/* {post.replyList.length} */}
           </TextProperty>
         </Grid>
         <Grid item xs={2}>
