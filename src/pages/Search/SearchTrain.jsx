@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { DateRange } from 'react-date-range';
 import CategoryBar from '../../components/CategoryBar';
 import Header from '../../components/header/Header';
+import { BASE_URL } from '../../baseUrl';
 
 
 const SearchTrain = () => {
@@ -32,7 +33,7 @@ const SearchTrain = () => {
     const [trainLists, setTrainList] = useState([])
 
     function searchAllTrain(){
-        axios.get('http://localhost:8080/api/auth/v1/list/train',{
+        axios.get(BASE_URL+'/api/auth/v1/list/train',{
             headers: {
                 'Authorization': `${localStorage.getItem('token')}`,
                 "Content-Type": "application/json; charset=UTF-8",
@@ -57,7 +58,7 @@ const SearchTrain = () => {
 
 
     function searchFilterTrainStartEnd(){
-        axios.get('http://localhost:8080/api/auth/v1/filter/list/train/dep/arr',{
+        axios.get(BASE_URL+'/api/auth/v1/filter/list/train/dep/arr',{
             endPoint:{searchEndPoint},
             startPoint:{searchStartPoint},
         })

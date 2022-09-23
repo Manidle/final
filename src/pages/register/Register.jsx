@@ -14,6 +14,7 @@ import {
 import { Assignment } from "@mui/icons-material";
 import Header from "../../components/header/Header";
 import LeftSide from "./LeftSide";
+import { BASE_URL } from "../../baseUrl";
 
 export default function Register() {
   // navigatge
@@ -36,7 +37,7 @@ export default function Register() {
   function userSignIn() {
     axios
       .post(
-        "http://localhost:8080/all/v1/register",
+        BASE_URL + "/all/v1/register",
         {
           username: userId,
           password: password,
