@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Card,
   Container,
   createTheme,
@@ -11,6 +12,7 @@ import {
   ThemeProvider,
   Typography,
 } from "@mui/material";
+import { Search } from "@mui/icons-material";
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
@@ -81,12 +83,43 @@ const SearchRentcar = () => {
       <Container maxWidth="lg">
         <Header />
         <CategoryBar category="rentcar" />
-        <Stack>
+        <Stack
+          display="flex"
+          flexDirection="row"
+          justifyContent="center"
+          sx={{
+            padding: "0.5rem",
+          }}
+        >
           <TextField
+            id="outlined-검색"
+            color="secondary"
+            borderRadius="2rem"
+            label="검색"
+            focused
+            sx={{
+              margin: "3px",
+              borderColor: "#892CDC",
+              borderRadius: "10rem",
+            }}
             onChange={(e) => {
               setSearchRentcar(e.target.value);
             }}
           />
+
+          <Button
+            variant="text"
+            color="secondary"
+            className="postSearchButton"
+            padding="0"
+            sx={{
+              borderWidth: 3,
+              borderRadius: "5rem",
+            }}
+            onClick={() => {}}
+          >
+            <Search />
+          </Button>
         </Stack>
         <Box>
           <Box
