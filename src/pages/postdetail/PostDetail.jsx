@@ -146,7 +146,7 @@ const PostDetail = () => {
 
   function handleLikeClick() {
     axios
-      .get(BASE_URL + "/api/auth/v1/like/click/post", {
+      .get(`${BASE_URL}/api/auth/v1/like/click/post`, {
         params: {
           user: userData.id,
           post: postId,
