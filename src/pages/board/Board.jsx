@@ -25,6 +25,7 @@ import Post from "./Post";
 import PostListOutLine from "./PostListOutLine";
 import PostColumn from "./PostColumn";
 import PostSearch from "./PostSearch";
+import { BASE_URL } from "../../baseUrl";
 
 const Community = () => {
   const theme = createTheme({
@@ -143,7 +144,7 @@ const Community = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/post")
+      .get(BASE_URL + "/api/post")
       .then((response) => {
         console.log(response.data);
         setPosts(response.data.reverse());

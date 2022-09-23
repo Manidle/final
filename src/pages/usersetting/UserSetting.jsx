@@ -15,6 +15,7 @@ import DashboardMyInfo from "../../components/dashboardmyinfo/DashboardMyInfo";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../baseUrl";
 
 const UserProfile = () => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const UserProfile = () => {
   // 회원 정보 변경
   function updateUserProfile(id) {
     axios
-      .put(`http://localhost:8080/user/${id}`, {
+      .put(`${BASE_URL}/user/${id}`, {
         loginId: userId,
         password: password,
         nickname: userNickname,
@@ -56,7 +57,7 @@ const UserProfile = () => {
   // 회원 정보 삭제(탈퇴)
   function deleteUser(id) {
     axios
-      .delete(`http://localhost:8080/user/${id}`)
+      .delete(`${BASE_URL}/user/${id}`)
       .then(() => {
         handler("");
       })

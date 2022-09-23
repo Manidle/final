@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { Card, CardActions, Button, CardContent, TextField, Typography, Box, Divider, createTheme, ThemeProvider } from '@mui/material'
 import axios from 'axios'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { BASE_URL } from '../../baseUrl';
 
 const Reply = (props) => {
 
@@ -29,7 +30,7 @@ const Reply = (props) => {
     const [reply, setReply] = useState([]);
 
     const getReply = async ()=>{
-        axios.get(`http://localhost:8080/reply/post/${postId}`)
+        axios.get(`${BASE_URL}/reply/post/${postId}`)
         .then((response)=>{
             setReply(response.data)
             // console.log(reply);
@@ -65,7 +66,7 @@ const Reply = (props) => {
     const [replyContent, setReplyContent] = useState("");
 
     function replySubmit(){
-        axios.get('http://localhost:8080/reply', {
+        axios.get(BASE_URL+'/reply', {
             params:{
                 user:1,
                 post:postId,
@@ -97,7 +98,7 @@ const Reply = (props) => {
     // reply 삭제
     const handleReplyDelete = (props) => {
     
-        axios.delete(`http://localhost:8080/reply/${props.replyId}`)
+        axios.delete(`${BASE_URL}/reply/${props.replyId}`)
         .then((response)=>{
             console.log(response);
             getReply();

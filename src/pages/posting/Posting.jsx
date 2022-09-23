@@ -8,6 +8,7 @@ import CategoryBar from '../../components/CategoryBar';
 import Header from '../../components/header/Header'
 import './posting.css'
 import jwt_decode from 'jwt-decode';
+import { BASE_URL } from '../../baseUrl';
 
 const Posting = () => {
 
@@ -42,7 +43,7 @@ const Posting = () => {
 
     // 게시글 data 보내기
     function postSubmit(props){
-        axios.post(`http://localhost:8080/api/auth/v1/board/${props}/post/register`, {
+        axios.post(`${BASE_URL}/api/auth/v1/board/${props}/post/register`, {
             title:postTitle,
             contents:postArticle,
             like_count:0,

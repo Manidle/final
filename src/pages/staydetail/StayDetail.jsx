@@ -17,6 +17,7 @@ import axios from "axios";
 import Header from "../../components/header/Header";
 import RightSide from "./RightSide";
 import LeftSide from "./LeftSide";
+import { BASE_URL } from "../../baseUrl";
 
 const StayDetail = () => {
   const theme = createTheme({
@@ -52,7 +53,7 @@ const StayDetail = () => {
 
   function handleLikeClick() {
     axios
-      .get("http://localhost:8080/api/auth/v1/like/click/stay", {
+      .get(BASE_URL + "/api/auth/v1/like/click/stay", {
         params: {
           user: userData.id,
           stay: 1,

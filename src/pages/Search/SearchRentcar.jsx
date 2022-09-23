@@ -2,6 +2,7 @@ import { Box, Container, createTheme, ListItem, Pagination, Stack, TextField, Th
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useEffect } from 'react';
+import { BASE_URL } from '../../baseUrl';
 import CategoryBar from '../../components/CategoryBar';
 import Header from '../../components/header/Header';
 import usePagination from '../../components/Pagination';
@@ -32,7 +33,7 @@ const SearchRentcar = () => {
     const [searchRentcar, setSearchRentcar] = useState('')
 
     function searchAllRentcar(){
-        axios.get('http://localhost:8080/api/auth/v1/list/rentcar',{
+        axios.get(BASE_URL+'/api/auth/v1/list/rentcar',{
             headers: {
                 'Authorization': `${localStorage.getItem('token')}`,
                 "Content-Type": "application/json; charset=UTF-8",

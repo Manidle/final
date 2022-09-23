@@ -16,6 +16,7 @@ import Header from "../../components/header/Header";
 import jwt_decode from "jwt-decode";
 import LeftSide from "./LeftSide";
 import RightSide from "./RightSide";
+import { BASE_URL } from "../../baseUrl";
 
 const AttractionDetail = () => {
   const theme = createTheme({
@@ -51,7 +52,7 @@ const AttractionDetail = () => {
 
   function handleLikeClick() {
     axios
-      .get("http://localhost:8080/api/auth/v1/like/click/attraction", {
+      .get(BASE_URL + "/api/auth/v1/like/click/attraction", {
         params: {
           user: userData.id,
           attraction: 1,
