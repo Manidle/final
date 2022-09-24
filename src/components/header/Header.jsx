@@ -41,7 +41,7 @@ const Header = () => {
     },
   });
 
-  const user = true;
+  const user = false;
 
   const [berger, setBerger] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -239,8 +239,32 @@ const Header = () => {
             </ul>
           ) : (
             <ul className="topList">
-              <li className="topListItem">LOGIN</li>
-              <li className="topListItem">REGISTER</li>
+              <Typography
+                className="topListItem"
+                sx={{
+                  color: "#892CDC",
+                  fontWeight: "normal",
+                  paddingRight: "1rem",
+                }}
+                onClick={() => {
+                  handleRoute("login");
+                }}
+              >
+                LOGIN
+              </Typography>
+              <Typography
+                className="topListItem"
+                sx={{
+                  color: "#892CDC",
+                  fontWeight: "normal",
+                  paddingRight: "5px",
+                }}
+                onClick={() => {
+                  handleRoute("user/regist");
+                }}
+              >
+                REGISTER
+              </Typography>
             </ul>
           )}
         </Box>
