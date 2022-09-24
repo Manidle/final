@@ -12,11 +12,14 @@ const CAR_IMG = [
   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsENlxBQiX6W3FofBYLzSIGjfdeztBlMv2Ag&usqp=CAU",
   "https://mb.hansung.co.kr/hsimg/NewCarClass/NewCar637402838796363581_0.png",
   "https://benz-all.com/wp-content/uploads/2022/07/GLE%EC%BF%A0%ED%8E%98%ED%9D%B0%EC%83%89%EC%A0%84%EB%A9%B4-1.jpg",
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbHPrl542X1qHy27sEReDzXaibg2S_pa3UbQ&usqp=CAU",
   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnvNDgHpsINQ417ar5OReFXj78TVzeIpQMRA&usqp=CAU",
   "https://t1.daumcdn.net/cfile/tistory/2134EE4856F5604C16",
 ];
 
 export const makeCarImg = () => {
   return CAR_IMG[Math.floor(Math.random() * CAR_IMG.length)];
+};
+
+export const makeOrderCarImg = (i, n) => {
+  return CAR_IMG[Math.floor(i % n)];
 };
