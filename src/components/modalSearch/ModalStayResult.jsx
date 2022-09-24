@@ -53,7 +53,6 @@ const ModalStayResult = () => {
 
   useEffect(() => {
     searchStayAll();
-    sessionStorage.removeItem("stayData");
   }, []);
 
   // stay 검색어
