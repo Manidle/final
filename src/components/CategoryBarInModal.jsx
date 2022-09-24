@@ -51,9 +51,7 @@ const CategoryBarInModal = () => {
                   dense="true"
                 >
                   <CategoryDetail
-                    setCurrentCategory={() =>
-                      setCurrentCategory(categories.thisCategory)
-                    }
+                    handler={() => setCurrentCategory(categories.thisCategory)}
                     currentCategory={currentCategory}
                     thisCategory={categories.thisCategory}
                   />
