@@ -28,6 +28,7 @@ const FooterRight = () => {
     <Box
       sx={{
         display: "flex",
+        justifyContent: "flex-end",
       }}
     >
       {Team}
