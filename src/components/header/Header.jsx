@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import SearchIcon from "@mui/icons-material/Search";
+import PlannerGramLogo from "./PlannerGramLogo";
 
 const Header = () => {
   const theme = createTheme({
@@ -71,20 +72,10 @@ const Header = () => {
       >
         <Box>
           {/* 로고 */}
-          <Button
-            id="basic-button"
-            sx={{ display: { xs: "none", sm: "block" }, borderRadius: "2rem" }}
-            color="secondary"
-          >
-            <img
-              src="https://github.com/Manidle/final-front/blob/develop/public/image/logo.png?raw=true"
-              alt="logo"
-              className="logo"
-              height="50px"
-              width="50px"
-              onClick={handleHome}
-            />
-          </Button>
+          <Box sx={{ display: { xs: "none", sm: "block" } }}>
+            <PlannerGramLogo handleHome={handleHome} />
+          </Box>
+
           {/* 햄버거메뉴 */}
           <Button
             sx={{ display: { xs: "block", sm: "none" } }}
@@ -110,19 +101,11 @@ const Header = () => {
             }}
             sx={{ display: { xs: "none", sm: "block" } }}
           />
-          <Button
-            id="basic-button"
+          <Box
             sx={{ color: "secondary", display: { xs: "block", sm: "none" } }}
           >
-            <img
-              src="image/logo.png"
-              alt="logo"
-              className="logo"
-              height="50px"
-              width="50px"
-              onClick={handleHome}
-            />
-          </Button>
+            <PlannerGramLogo handleHome={handleHome} />
+          </Box>
         </Box>
         <Box>
           {user ? (
