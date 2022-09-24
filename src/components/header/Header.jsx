@@ -1,13 +1,16 @@
 import {
   Box,
   Button,
+  Card,
   createTheme,
   Divider,
   Grid,
   Menu,
   MenuItem,
+  Modal,
   SvgIcon,
   ThemeProvider,
+  Typography,
 } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -38,6 +41,7 @@ const Header = () => {
 
   const user = true;
 
+  const [berger, setBerger] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -79,12 +83,49 @@ const Header = () => {
           </Box>
 
           {/* 햄버거메뉴 */}
-          <Button
-            sx={{ display: { xs: "block", sm: "none" } }}
-            color="secondary"
-          >
-            <MenuIcon />
-          </Button>
+          <Box sx={{ display: { xs: "block", sm: "none" } }}>
+            {!berger ? (
+              <Button color="secondary">
+                <MenuIcon
+                  onClick={() => {
+                    console.log("berger는!!!!", berger);
+                    setBerger(true);
+                  }}
+                />
+              </Button>
+            ) : (
+              //   <Modal open={!berger} onClose={() => setBerger(!berger)}>
+              <Modal
+                open={berger}
+                onClose={() => setBerger(false)}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Card>
+                  <Button
+                    onClick={() => {
+                      handleRoute("board");
+                    }}
+                  >
+                    게시글 보기
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      handleRoute("search");
+                    }}
+                  >
+                    검색창
+                  </Button>
+                </Card>
+              </Modal>
+              //   </Modal>
+            )}
+          </Box>
         </Box>
         <Box display="flex" flexDirection="row">
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
