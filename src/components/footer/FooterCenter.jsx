@@ -12,17 +12,16 @@ const FooterCenter = () => {
   return (
     <Button
       id="basic-button"
-      sx={{ display: { xs: "none", sm: "block" }, margin: "auto" }}
+      sx={{
+        display: { xs: "none", sm: "block" },
+        fontWeight: "bold",
+        margin: "auto",
+        ":hover": { background: "none" },
+        borderRadius: "2rem",
+      }}
       color="secondary"
     >
-      <img
-        src="image/logo.png"
-        alt="logo"
-        className="logo"
-        height="50px"
-        width="50px"
-        onClick={handleHome}
-      />
+      PLANNER GRAM
     </Button>
   );
 };
