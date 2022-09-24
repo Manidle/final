@@ -79,7 +79,7 @@ const Posting = () => {
           `${BASE_URL}/api/auth/v1/post-contents/post-${props}/click?post=${
             response.data.postId
           }&attraction=${
-            JSON.parse(sessionStorage.getItem("attractionData")).id
+            JSON.parse(sessionStorage.getItem("attractionData")).attractionId
           }`,
           {
             headers: {
@@ -116,7 +116,9 @@ const Posting = () => {
         .get(
           `${BASE_URL}/api/auth/v1/post-contents/post-${props}/click?post=${
             response.data.postId
-          }&rentcar=${JSON.parse(sessionStorage.getItem("rentcarData")).id}`,
+          }&rentcar=${
+            JSON.parse(sessionStorage.getItem("rentcarData")).rentcarId
+          }`,
           {
             headers: {
               Authorization: `${localStorage.getItem("token")}`,
