@@ -1,12 +1,15 @@
-import React from 'react'
-import './footer.css'
+import React from "react";
+import "./footer.css";
+import FooterLeft from "./FooterLeft";
+import FooterRight from "./FooterRight";
 
 const Footer = () => {
   return (
-    <div className='copyRight'>
-        Copyright by 남자아이들 SINCE 2022
+    <div className="copyRight">
+      <FooterLeft />
+      <FooterRight />
     </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
