@@ -22,6 +22,7 @@ import "./posting.css";
 import jwt_decode from "jwt-decode";
 import { BASE_URL } from "../../baseUrl";
 import CategoryBarInModal from "../../components/CategoryBarInModal";
+import Footer from "../../components/footer/Footer";
 
 const Posting = () => {
   const theme = createTheme({
@@ -53,6 +54,83 @@ const Posting = () => {
 
   const userData = jwt_decode(localStorage.getItem("token"));
 
+  function postConnectOther({ response, props }) {
+    if (props === "stay") {
+      axios
+        .get(
+          `${BASE_URL}/api/auth/v1/post-contents/post-${props}/click?post=${
+            response.data.postId
+          }&stay=${JSON.parse(sessionStorage.getItem("stayData")).id}`,
+          {
+            headers: {
+              Authorization: `${localStorage.getItem("token")}`,
+              "Content-Type": "application/json; charset=UTF-8",
+            },
+          }
+        )
+        .catch(function (error) {
+          console.log(error.response);
+          console.log(error.response.data);
+        });
+    }
+    if (props === "attraction") {
+      axios
+        .get(
+          `${BASE_URL}/api/auth/v1/post-contents/post-${props}/click?post=${
+            response.data.postId
+          }&attraction=${
+            JSON.parse(sessionStorage.getItem("attractionData")).id
+          }`,
+          {
+            headers: {
+              Authorization: `${localStorage.getItem("token")}`,
+              "Content-Type": "application/json; charset=UTF-8",
+            },
+          }
+        )
+        .catch(function (error) {
+          console.log(error.response);
+          console.log(error.response.data);
+        });
+    }
+    if (props === "train") {
+      axios
+        .get(
+          `${BASE_URL}/api/auth/v1/post-contents/post-${props}/click?post=${
+            response.data.postId
+          }&train=${JSON.parse(sessionStorage.getItem("trainData")).id}`,
+          {
+            headers: {
+              Authorization: `${localStorage.getItem("token")}`,
+              "Content-Type": "application/json; charset=UTF-8",
+            },
+          }
+        )
+        .catch(function (error) {
+          console.log(error.response);
+          console.log(error.response.data);
+        });
+    }
+    if (props === "rentcar") {
+      axios
+        .get(
+          `${BASE_URL}/api/auth/v1/post-contents/post-${props}/click?post=${
+            response.data.postId
+          }&rentcar=${JSON.parse(sessionStorage.getItem("rentcarData")).id}`,
+          {
+            headers: {
+              Authorization: `${localStorage.getItem("token")}`,
+              "Content-Type": "application/json; charset=UTF-8",
+            },
+          }
+        )
+        .catch(function (error) {
+          console.log(error.response);
+          console.log(error.response.data);
+        });
+    }
+  }
+
   // 게시글 data 보내기
   function postSubmit(props) {
     axios
@@ -73,13 +151,30 @@ const Posting = () => {
           },
         }
       )
+      .then((response) => {
+        if (sessionStorage.getItem("stayData") != null) {
+          postConnectOther({ response, props: "stay" });
+        }
+        if (sessionStorage.getItem("attractionData") != null) {
+          postConnectOther({ response, props: "attraction" });
+        }
+        if (sessionStorage.getItem("trainData") != null) {
+          postConnectOther({ response, props: "train" });
+        }
+        if (sessionStorage.getItem("rentcarData") != null) {
+          postConnectOther({ response, props: "rentcar" });
+        }
+      })
       .then(() => {
         handleAfterPosting();
       })
       .then(() => {
+        sessionStorage.clear();
+      })
+      .then(() => {
         setTimeout(() => {
           navigate("/board");
-        }, 2000);
+        }, 1500);
       })
       .catch(function (error) {
         if (error.response) {
@@ -103,7 +198,9 @@ const Posting = () => {
 
   // Modal
   const [openModal, setOpenModal] = React.useState(false);
-  const handleModal = () => setOpenModal(!openModal);
+  const handleModal = () => {
+    setOpenModal(!openModal);
+  };
 
   const modalStyle = {
     position: "absolute",
@@ -221,6 +318,7 @@ const Posting = () => {
             </Stack>
           </div>
         </Box>
+        <Footer />
       </Container>
     </ThemeProvider>
   );
