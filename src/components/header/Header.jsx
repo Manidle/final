@@ -7,6 +7,7 @@ import {
   Grid,
   Menu,
   MenuItem,
+  MenuList,
   Modal,
   SvgIcon,
   ThemeProvider,
@@ -211,6 +212,7 @@ const Header = () => {
                     alt=""
                   />
                 </Button>
+
                 <Menu
                   id="basic-menu"
                   anchorEl={anchorEl}
@@ -220,10 +222,18 @@ const Header = () => {
                     "aria-labelledby": "basic-button",
                   }}
                   color="secondary"
+                  elevation={0}
                 >
-                  <MenuItem onClick={handleUserProfile}>내 정보</MenuItem>
-                  <MenuItem onClick={handleClose}>내가 쓴 글</MenuItem>
-                  <MenuItem onClick={handleClose}>로그아웃</MenuItem>
+                  <Box
+                    sx={{
+                      background: "#F2E2FC",
+                      borderRadius: "0.2rem",
+                    }}
+                  >
+                    <MenuItem onClick={handleUserProfile}>내 정보</MenuItem>
+                    <MenuItem onClick={handleClose}>내가 쓴 글</MenuItem>
+                    <MenuItem onClick={handleClose}>로그아웃</MenuItem>
+                  </Box>
                 </Menu>
               </div>
             </ul>
