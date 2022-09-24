@@ -18,6 +18,7 @@ import Reply from "../../components/reply/Reply";
 import { useLocation, useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { BASE_URL } from "../../baseUrl";
+import Footer from "../../components/footer/Footer";
 
 const PostDetail = () => {
   const theme = createTheme({
@@ -245,6 +246,7 @@ const PostDetail = () => {
             </Grid>
           </Box>
         </div>
+        <Footer />
       </Container>
     </ThemeProvider>
   );
