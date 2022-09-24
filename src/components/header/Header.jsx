@@ -15,6 +15,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import SearchIcon from "@mui/icons-material/Search";
 import PlannerGramLogo from "./PlannerGramLogo";
+import Search from "./Search";
+import Board from "./Board";
 
 const Header = () => {
   const theme = createTheme({
@@ -85,22 +87,19 @@ const Header = () => {
           </Button>
         </Box>
         <Box display="flex" flexDirection="row">
-          <QuestionAnswerIcon
-            fontSize="large"
-            color="info"
-            onClick={() => {
-              handleRoute("board");
-            }}
-            sx={{ display: { xs: "none", sm: "block" } }}
-          />
-          <SearchIcon
-            fontSize="large"
-            color="info"
-            onClick={() => {
-              handleRoute("search");
-            }}
-            sx={{ display: { xs: "none", sm: "block" } }}
-          />
+          <Box sx={{ display: { xs: "none", sm: "block" } }}>
+            <Board
+              onClick={() => {
+                handleRoute("board");
+              }}
+            />
+            <Search
+              onClick={() => {
+                handleRoute("search");
+              }}
+            />
+          </Box>
+
           <Box
             sx={{ color: "secondary", display: { xs: "block", sm: "none" } }}
           >
