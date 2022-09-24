@@ -265,19 +265,6 @@ const Header = () => {
               >
                 LOGIN
               </Typography>
-              <Typography
-                className="topListItem"
-                sx={{
-                  color: "#892CDC",
-                  fontWeight: "normal",
-                  paddingRight: "5px",
-                }}
-                onClick={() => {
-                  handleRoute("user/regist");
-                }}
-              >
-                REGISTER
-              </Typography>
             </ul>
           )}
         </Box>
