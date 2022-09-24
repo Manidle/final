@@ -20,6 +20,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import PlannerGramLogo from "./PlannerGramLogo";
 import Search from "./Search";
 import Board from "./Board";
+import ModalButton from "./ModalButton";
 
 const Header = () => {
   const theme = createTheme({
@@ -84,17 +85,15 @@ const Header = () => {
 
           {/* 햄버거메뉴 */}
           <Box sx={{ display: { xs: "block", sm: "none" } }}>
-            {!berger ? (
-              <Button color="secondary">
-                <MenuIcon
-                  onClick={() => {
-                    console.log("berger는!!!!", berger);
-                    setBerger(true);
-                  }}
-                />
-              </Button>
-            ) : (
-              //   <Modal open={!berger} onClose={() => setBerger(!berger)}>
+            <Button color="secondary">
+              <MenuIcon
+                onClick={() => {
+                  console.log("berger는!!!!", berger);
+                  setBerger(true);
+                }}
+              />
+            </Button>
+            {!berger ? null : (
               <Modal
                 open={berger}
                 onClose={() => setBerger(false)}
@@ -106,20 +105,67 @@ const Header = () => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
               >
-                <Card>
-                  <Button
+                <Card
+                  variant
+                  sx={{
+                    backgroundColor: "#F2E2FC",
+                    width: 200,
+                    marginBottom: 2,
+                    borderRadius: 3,
+                    padding: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      marginTop: "10px",
+                      padding: "5px",
+                      color: "#892CDC",
+                      fontWeight: "bolder",
+                    }}
+                  >
+                    CONTENTS
+                  </Typography>
+                  <ModalButton
                     onClick={() => {
                       handleRoute("board");
                     }}
                   >
-                    게시글 보기
-                  </Button>
-                  <Button
+                    POSTS
+                  </ModalButton>
+                  <ModalButton
                     onClick={() => {
                       handleRoute("search");
                     }}
                   >
-                    검색창
+                    SEARCH
+                  </ModalButton>
+                  <Typography
+                    sx={{
+                      marginTop: "10px",
+                      padding: "5px",
+                      color: "#892CDC",
+                      fontWeight: "bolder",
+                    }}
+                  >
+                    USER
+                  </Typography>
+                  <ModalButton onClick={handleUserProfile}>MY INFO</ModalButton>
+                  <ModalButton onClick={handleClose}>MY POSTS</ModalButton>
+                  <ModalButton onClick={handleClose}>LOG OUT</ModalButton>
+
+                  <Button
+                    variant="outlined"
+                    sx={{
+                      marginTop: "10px",
+                      width: "100%",
+                    }}
+                    onClick={() => setBerger(false)}
+                  >
+                    EXIT
                   </Button>
                 </Card>
               </Modal>
