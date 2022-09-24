@@ -38,10 +38,6 @@ const CategoryBarInModal = () => {
   ];
   const [currentCategory, setCurrentCategory] = useState("stay");
 
-  function test1() {
-    console.log(JSON.parse(sessionStorage.getItem("stayData")).name);
-  }
-
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ width: "100%" }}>
@@ -69,7 +65,6 @@ const CategoryBarInModal = () => {
                 <ModalDetail currentCategory={currentCategory} />
               </Box>
             </Box>
-            <Button onClick={() => test1()}>test</Button>
           </Box>
         </Box>
       </Box>
