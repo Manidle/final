@@ -95,7 +95,6 @@ const Header = () => {
             <Button color="secondary">
               <MenuIcon
                 onClick={() => {
-                  console.log("berger는!!!!", berger);
                   setBerger(true);
                 }}
               />
@@ -160,9 +159,31 @@ const Header = () => {
                   >
                     USER
                   </Typography>
-                  <ModalButton onClick={handleUserProfile}>MY INFO</ModalButton>
-                  <ModalButton onClick={handleClose}>MY POSTS</ModalButton>
-                  <ModalButton onClick={handleClose}>LOG OUT</ModalButton>
+                  {!user ? (
+                    <ModalButton
+                      onClick={() => {
+                        handleRoute("login");
+                        setBerger(false);
+                      }}
+                    >
+                      LOGIN
+                    </ModalButton>
+                  ) : (
+                    <>
+                      <ModalButton onClick={handleUserProfile}>
+                        MY INFO
+                      </ModalButton>
+                      <ModalButton onClick={handleClose}>MY POSTS</ModalButton>
+                      <ModalButton
+                        onClick={() => {
+                          logOutClick();
+                          setBerger(false);
+                        }}
+                      >
+                        LOG OUT
+                      </ModalButton>
+                    </>
+                  )}
 
                   <Button
                     variant="outlined"
@@ -176,7 +197,6 @@ const Header = () => {
                   </Button>
                 </Card>
               </Modal>
-              //   </Modal>
             )}
           </Box>
         </Box>
