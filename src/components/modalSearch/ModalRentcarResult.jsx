@@ -12,6 +12,7 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { BASE_URL } from "../../baseUrl";
 
 const ModalRentcarResult = () => {
   const theme = createTheme({
@@ -62,15 +63,12 @@ const ModalRentcarResult = () => {
   // rentcar 검색 조회
   function searchRentcar() {
     axios
-      .get(
-        `http://localhost:8080/api/filter/list/rentcar?search=${searchWord}`,
-        {
-          headers: {
-            Authorization: `${localStorage.getItem("token")}`,
-            "Content-Type": "application/json; charset=UTF-8",
-          },
-        }
-      )
+      .get(`${BASE_URL}/api/filter/list/rentcar?search=${searchWord}`, {
+        headers: {
+          Authorization: `${localStorage.getItem("token")}`,
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+      })
       .then((response) => {
         setRentcarLists(response.data);
         console.log(rentcarLists);
