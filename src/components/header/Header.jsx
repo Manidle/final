@@ -40,8 +40,9 @@ const Header = () => {
       },
     },
   });
-
-  const user = false;
+  const [user, setUser] = React.useState(
+    localStorage.getItem("token") ? true : false
+  );
 
   const [berger, setBerger] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -51,6 +52,11 @@ const Header = () => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const logOutClick = () => {
+    localStorage.removeItem("token");
+    setUser(false);
   };
 
   const navigate = useNavigate();
@@ -232,7 +238,14 @@ const Header = () => {
                   >
                     <MenuItem onClick={handleUserProfile}>내 정보</MenuItem>
                     <MenuItem onClick={handleClose}>내가 쓴 글</MenuItem>
-                    <MenuItem onClick={handleClose}>로그아웃</MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        logOutClick();
+                        handleClose();
+                      }}
+                    >
+                      로그아웃
+                    </MenuItem>
                   </Box>
                 </Menu>
               </div>
