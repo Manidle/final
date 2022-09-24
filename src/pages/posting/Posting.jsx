@@ -65,8 +65,6 @@ const Posting = () => {
           read_count: 0,
           board_id: props,
           user_id: userData.id,
-          address: "1",
-          detailAddress: "1",
         },
         {
           headers: {
