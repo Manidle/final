@@ -51,7 +51,7 @@ export default function Login() {
         console.log("토큰은!!! ", token);
         localStorage.setItem("token", token);
         // ctx.onLogin(userId, password);
-        // navigate(-1);
+        navigate("/");
       })
       .catch((err) => {
         console.log(err);
