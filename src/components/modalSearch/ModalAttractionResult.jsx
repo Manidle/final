@@ -12,6 +12,7 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { BASE_URL } from "../../baseUrl";
 
 const ModalAttractionResult = () => {
   const theme = createTheme({
@@ -62,15 +63,12 @@ const ModalAttractionResult = () => {
   // attraction 검색 조회
   function searchAttraction() {
     axios
-      .get(
-        `http://localhost:8080/api/filter/attraction/search?search=${searchWord}`,
-        {
-          headers: {
-            Authorization: `${localStorage.getItem("token")}`,
-            "Content-Type": "application/json; charset=UTF-8",
-          },
-        }
-      )
+      .get(`${BASE_URL}/api/filter/list/attraction?search=${searchWord}`, {
+        headers: {
+          Authorization: `${localStorage.getItem("token")}`,
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+      })
       .then((response) => {
         setAttractionLists(response.data);
         console.log(attractionLists);
