@@ -20,7 +20,15 @@ const Featured = () => {
     <>
       <div className="carouselContainer">
         <div className="carouselWrapper">
-          <Carousel indicators={true} animation="slide">
+          <Carousel
+            indicators={true}
+            animation="fade"
+            autoPlay={true}
+            navButtonsAlwaysVisible={true}
+            sx={{
+              paddingBottom: "5rem",
+            }}
+          >
             {images.map((image, i) => (
               <div
                 style={{
