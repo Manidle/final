@@ -53,6 +53,7 @@ const ModalStayResult = () => {
 
   useEffect(() => {
     searchStayAll();
+    sessionStorage.removeItem("stayData");
   }, []);
 
   // stay 검색어
@@ -73,6 +74,11 @@ const ModalStayResult = () => {
         setStayLists(response.data);
         console.log(stayLists);
       });
+  }
+
+  function listClick(stayList) {
+    console.log(stayList);
+    sessionStorage.setItem("stayData", JSON.stringify(stayList));
   }
 
   return (
@@ -110,6 +116,9 @@ const ModalStayResult = () => {
                 display="flex"
                 justifyContent="space-between"
                 key={stayList.stayId}
+                onClick={() => {
+                  listClick(stayList);
+                }}
               >
                 <Typography>숙소 이름: {stayList.name}</Typography>
                 <Typography>숙소 주소: {stayList.address}</Typography>
