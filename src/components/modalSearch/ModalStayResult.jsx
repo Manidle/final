@@ -11,6 +11,7 @@ import { Box } from "@mui/system";
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { BASE_URL } from "../../baseUrl";
 
 const ModalStayResult = () => {
   const theme = createTheme({
@@ -60,15 +61,12 @@ const ModalStayResult = () => {
   // stay 검색 조회
   function searchStay() {
     axios
-      .get(
-        `http://localhost:8080/api/auth/v1/filter/list/stay/search?search=${searchWord}`,
-        {
-          headers: {
-            Authorization: `${localStorage.getItem("token")}`,
-            "Content-Type": "application/json; charset=UTF-8",
-          },
-        }
-      )
+      .get(`${BASE_URL}/api/auth/v1/filter/list/stay?search=${searchWord}`, {
+        headers: {
+          Authorization: `${localStorage.getItem("token")}`,
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+      })
       .then((response) => {
         setStayLists(response.data);
         console.log(stayLists);
