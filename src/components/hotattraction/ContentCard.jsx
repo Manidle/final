@@ -6,9 +6,9 @@ const ContentCard = ({ attraction, handleRoute }) => {
   return (
     <Card
       onClick={() => {
-        handleRoute(`attraction/${attraction.attraction_id}`);
+        handleRoute(`attraction/${attraction.attractionId}`);
       }}
-      key={attraction.attraction_id}
+      key={attraction.attractionId}
       sx={{
         width: "200px",
         display: "flex",
@@ -35,17 +35,23 @@ const ContentCard = ({ attraction, handleRoute }) => {
             padding: "10px",
           }}
         >
-          <div style={{ display: "flex", alignItems: "baseline" }}>
+          <div style={{ alignItems: "baseline" }}>
             <Typography
-              variant="h5"
+              fontSize="18px"
               color="#52057B"
               fontWeight="bold"
               margin={1}
+              noWrap
             >
-              {attraction.location}
+              {attraction.name}
             </Typography>
-            <Typography variant="body2" color="#892CDC" fontWeight="bold">
-              {attraction.title}
+            <Typography
+              color="#892CDC"
+              fontWeight="bold"
+              fontSize="14px"
+              noWrap
+            >
+              {attraction.address}
             </Typography>
           </div>
         </Box>
