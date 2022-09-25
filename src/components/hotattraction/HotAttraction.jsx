@@ -6,6 +6,7 @@ import {
   CardActionArea,
   CardMedia,
   Box,
+  Link,
 } from "@mui/material";
 
 const HotAttractions = [
