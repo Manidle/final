@@ -22,6 +22,8 @@ import PlannerGramLogo from "./PlannerGramLogo";
 import Search from "./Search";
 import Board from "./Board";
 import ModalButton from "./ModalButton";
+import jwt_decode from "jwt-decode";
+import { makeOrderProfileImg } from "../../image/profileImg";
 
 const Header = () => {
   const theme = createTheme({
@@ -245,7 +247,9 @@ const Header = () => {
                 >
                   <img
                     className="topImg"
-                    src="https://avatars.githubusercontent.com/u/102516088?v=4"
+                    src={makeOrderProfileImg(
+                      jwt_decode(localStorage.getItem("token")).id
+                    )}
                     alt=""
                   />
                 </Button>
