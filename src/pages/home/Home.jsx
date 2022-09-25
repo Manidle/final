@@ -5,7 +5,8 @@ import HotPost from "../../components/hotpost/HotPost";
 import Footer from "../../components/footer/Footer";
 import { Container, createTheme, ThemeProvider } from "@mui/material";
 import Header from "../../components/header/Header";
-import HotPosts from "../../components/hotpost/HotPosts";
+import HotArticle from "../../components/hotarticle/HotArticle";
+import HotAttraction from "../../components/hotattraction/HotAttraction";
 
 const Home = () => {
   const theme = createTheme;
@@ -15,8 +16,13 @@ const Home = () => {
       <Header />
       <div className="homeContainer">
         <Featured />
+        <Searchbar />
+        <h1 className="homeTitle">start</h1>
+        <HotArticle />
+        <HotAttraction />
+        <h1 className="homeTitle">end</h1>
+
         <HotPost />
-        <HotPosts />
       </div>
       <Footer />
     </Container>
