@@ -29,7 +29,7 @@ const Home = () => {
             handleRoute("board");
           }}
         >
-          <HotArticle />
+          <HotArticle handleRoute={handleRoute} />
         </Wrapper>
         <Wrapper
           title="HOT ATTRACTION"
@@ -37,7 +37,7 @@ const Home = () => {
             handleRoute("search/attraction");
           }}
         >
-          <HotAttraction />
+          <HotAttraction handleRoute={handleRoute} />
         </Wrapper>
       </div>
       <Footer />

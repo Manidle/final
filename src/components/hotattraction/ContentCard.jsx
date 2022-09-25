@@ -2,9 +2,12 @@ import { Card, CardActionArea, CardMedia, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 
-const ContentCard = ({ attraction }) => {
+const ContentCard = ({ attraction, handleRoute }) => {
   return (
     <Card
+      onClick={() => {
+        handleRoute(`attraction/${attraction.attraction_id}`);
+      }}
       key={attraction.attraction_id}
       sx={{
         width: "200px",

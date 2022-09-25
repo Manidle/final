@@ -3,9 +3,12 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 
 import React from "react";
 
-const HotPost = ({ article }) => {
+const HotPost = ({ article, handleRoute }) => {
   return (
     <Box
+      onClick={() => {
+        handleRoute(`post/${article.postId}`);
+      }}
       sx={{
         display: "flex",
         flexDirection: "row",

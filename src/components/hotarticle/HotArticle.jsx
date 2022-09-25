@@ -49,13 +49,13 @@ const hotArticles = [
   },
 ];
 
-const HotArticle = () => {
+const HotArticle = ({ handleRoute }) => {
   return (
     <CardContent>
       <Grid container columnSpacing={5} rowSpacing={3} paddingX={2}>
         {hotArticles.map((article) => (
           <Grid item key={article.article_id} md={6} xs={12}>
-            <HotPost article={article} />
+            <HotPost article={article} handleRoute={handleRoute} />
           </Grid>
         ))}
       </Grid>

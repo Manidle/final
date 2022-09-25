@@ -43,11 +43,11 @@ const HotAttractions = [
   },
 ];
 
-const HotAttraction = () => {
+const HotAttraction = ({ handleRoute }) => {
   return (
     <CardContent sx={{ display: "flex", justifyContent: "space-between" }}>
       {HotAttractions.map((attraction) => (
-        <ContentCard attraction={attraction} />
+        <ContentCard attraction={attraction} handleRoute={handleRoute} />
       ))}
     </CardContent>
   );
