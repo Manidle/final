@@ -1,14 +1,22 @@
 import { Box, Typography } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useNavigate } from "react-router-dom";
 
 import React from "react";
 
-const HotPost = ({ post, handleRoute }) => {
+const HotPost = ({ post }) => {
+  const navigate = useNavigate();
+
+  function handlePostDetail(props) {
+    navigate(`/post/${props}`, {
+      state: {
+        postId: props,
+      },
+    });
+  }
   return (
     <Box
-      onClick={() => {
-        handleRoute(`post/${post.postId}`);
-      }}
+      onClick={() => handlePostDetail(post.postId)}
       sx={{
         display: "flex",
         flexDirection: "row",
