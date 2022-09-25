@@ -55,7 +55,7 @@ const Featured = () => {
               );
             }}
             sx={{
-              paddingBottom: "5rem",
+              paddingBottom: "10px",
             }}
           >
             {images.map((image) => (
