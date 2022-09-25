@@ -59,12 +59,44 @@ const hotPosts = [
     readCount: 1,
     boardName: "광주",
   },
+  {
+    postId: 6,
+    title: "맛있는 매운탕 코스",
+    contents: "test contents",
+    likeCount: 1,
+    readCount: 1,
+    boardName: "서울",
+  },
+  {
+    postId: 7,
+    title: "맛있는 매운탕 코스",
+    contents: "test contents",
+    likeCount: 15,
+    readCount: 1,
+    boardName: "경주",
+  },
+  {
+    postId: 8,
+    title: "맛있는 매운탕 코스",
+    contents: "test contents",
+    likeCount: 111,
+    readCount: 1,
+    boardName: "부산",
+  },
+  {
+    postId: 9,
+    title: "맛있는 매운탕 코스",
+    contents: "test contents",
+    likeCount: 133,
+    readCount: 1,
+    boardName: "인천",
+  },
 ];
 
 const HotPostCardView = ({ handleRoute }) => {
   return (
     <CardContent>
-      <Grid container columnSpacing={5} rowSpacing={3} paddingX={2}>
+      <Grid container columnSpacing={5} rowSpacing={1} paddingX={2}>
         {hotPosts.map((post) => (
           <Grid item key={post.postId} md={6} xs={12}>
             <HotPost post={post} handleRoute={handleRoute} />
