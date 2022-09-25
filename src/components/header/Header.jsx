@@ -22,6 +22,8 @@ import PlannerGramLogo from "./PlannerGramLogo";
 import Search from "./Search";
 import Board from "./Board";
 import ModalButton from "./ModalButton";
+import jwt_decode from "jwt-decode";
+import { makeOrderProfileImg } from "../../image/profileImg";
 
 const Header = () => {
   const theme = createTheme({
@@ -83,6 +85,17 @@ const Header = () => {
         flexDirection="row"
         justifyContent="space-between"
         alignItems="center"
+        sx={{
+          position: "sticky",
+          top: "10px",
+          zIndex: 3,
+          background: "#e2d0ef",
+          width: "100%",
+          borderRadius: "1rem",
+          margin: "auto",
+          marginTop: "10px",
+          marginBottom: "10px",
+        }}
       >
         <Box>
           {/* 로고 */}
@@ -234,7 +247,9 @@ const Header = () => {
                 >
                   <img
                     className="topImg"
-                    src="https://avatars.githubusercontent.com/u/102516088?v=4"
+                    src={makeOrderProfileImg(
+                      jwt_decode(localStorage.getItem("token")).id
+                    )}
                     alt=""
                   />
                 </Button>

@@ -36,8 +36,7 @@ const Featured = () => {
                   onClick={onClick}
                   color="secondary"
                   sx={{
-                    top: "50vh",
-
+                    top: "51vh",
                     marginLeft: "5rem",
                     marginRight: "5rem",
                     color: "#892CDC",
@@ -56,7 +55,7 @@ const Featured = () => {
               );
             }}
             sx={{
-              paddingBottom: "5rem",
+              paddingBottom: "10px",
             }}
           >
             {images.map((image) => (
