@@ -16,28 +16,30 @@ const Home = () => {
   };
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="xl">
       <Header />
-      <div className="homeContainer">
-        <Featured />
-        <Wrapper
-          title="HOT POST"
-          linkHandler={() => {
-            handleRoute("board");
-          }}
-        >
-          <HotArticle handleRoute={handleRoute} />
-        </Wrapper>
-        <Wrapper
-          title="HOT ATTRACTION"
-          linkHandler={() => {
-            handleRoute("search/attraction");
-          }}
-        >
-          <HotAttraction handleRoute={handleRoute} />
-        </Wrapper>
-      </div>
-      <Footer />
+      <Container maxWidth="lg">
+        <div className="homeContainer">
+          <Featured />
+          <Wrapper
+            title="HOT POST"
+            linkHandler={() => {
+              handleRoute("board");
+            }}
+          >
+            <HotArticle handleRoute={handleRoute} />
+          </Wrapper>
+          <Wrapper
+            title="HOT ATTRACTION"
+            linkHandler={() => {
+              handleRoute("search/attraction");
+            }}
+          >
+            <HotAttraction handleRoute={handleRoute} />
+          </Wrapper>
+        </div>
+        <Footer />
+      </Container>
     </Container>
   );
 };

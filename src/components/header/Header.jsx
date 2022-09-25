@@ -83,6 +83,17 @@ const Header = () => {
         flexDirection="row"
         justifyContent="space-between"
         alignItems="center"
+        sx={{
+          position: "sticky",
+          top: "10px",
+          zIndex: 3,
+          background: "#e2d0ef",
+          width: "100%",
+          borderRadius: "1rem",
+          margin: "auto",
+          marginTop: "10px",
+          marginBottom: "10px",
+        }}
       >
         <Box>
           {/* 로고 */}
