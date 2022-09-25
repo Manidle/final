@@ -7,6 +7,7 @@ import { Container, createTheme, ThemeProvider } from "@mui/material";
 import Header from "../../components/header/Header";
 import HotArticle from "../../components/hotarticle/HotArticle";
 import HotAttraction from "../../components/hotattraction/HotAttraction";
+import Wrapper from "./Wrapper";
 
 const Home = () => {
   const theme = createTheme;
@@ -17,8 +18,12 @@ const Home = () => {
       <div className="homeContainer">
         <Featured />
         <h1 className="homeTitle">start</h1>
-        <HotArticle />
-        <HotAttraction />
+        <Wrapper>
+          <HotArticle />
+        </Wrapper>
+        <Wrapper>
+          <HotAttraction />
+        </Wrapper>
         <h1 className="homeTitle">end</h1>
       </div>
       <Footer />
