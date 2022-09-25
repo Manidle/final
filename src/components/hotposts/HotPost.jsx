@@ -4,6 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 import React from "react";
 
+const makeK = (likeCount) => {
+  if (likeCount < 1000) return likeCount;
+  if (likeCount < 1000000) return (likeCount / 1000).toFixed(1) + "K";
+  return (likeCount / 1000000).toFixed(1) + "M";
+};
+
 const HotPost = ({ post }) => {
   const navigate = useNavigate();
 
@@ -30,10 +36,10 @@ const HotPost = ({ post }) => {
           alignItems: "center",
         }}
       >
-        <Typography noWrap color="#892CDC">
+        <Typography paddingRight={"8px"} noWrap color="#892CDC">
           {post.boardName}
         </Typography>
-        <Typography noWrap fontWeight="bold" marginLeft={1}>
+        <Typography noWrap fontWeight="bold" maxWidth="150px" marginLeft={1}>
           {post.title}
         </Typography>
       </div>
@@ -48,11 +54,11 @@ const HotPost = ({ post }) => {
         <FavoriteIcon />
         <Typography
           sx={{
-            width: "50px",
+            width: "60px",
             textAlign: "center",
           }}
         >
-          {post.likeCount}
+          {makeK(post.likeCount)}
         </Typography>
       </div>
     </Box>
