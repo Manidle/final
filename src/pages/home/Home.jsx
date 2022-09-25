@@ -17,14 +17,12 @@ const Home = () => {
       <Header />
       <div className="homeContainer">
         <Featured />
-        <h1 className="homeTitle">start</h1>
-        <Wrapper>
+        <Wrapper title="핫한 게시글">
           <HotArticle />
         </Wrapper>
-        <Wrapper>
+        <Wrapper title="핫한 관광지">
           <HotAttraction />
         </Wrapper>
-        <h1 className="homeTitle">end</h1>
       </div>
       <Footer />
     </Container>
