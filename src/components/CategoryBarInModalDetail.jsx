@@ -1,7 +1,16 @@
-import { createTheme, ThemeProvider, Typography } from "@mui/material";
+import {
+  Container,
+  createTheme,
+  ThemeProvider,
+  Typography,
+} from "@mui/material";
 import React from "react";
 
-const CategoryDetail = ({ handler, currentCategory, thisCategory }) => {
+const CategoryBarInModalDetail = ({
+  handler,
+  currentCategory,
+  thisCategory,
+}) => {
   const theme = createTheme({
     palette: {
       primary: {
@@ -22,11 +31,11 @@ const CategoryDetail = ({ handler, currentCategory, thisCategory }) => {
   return (
     <ThemeProvider theme={theme}>
       {currentCategory === thisCategory ? (
-        <Typography onClick={handler} color="secondary">
+        <Typography onClick={() => handler()} color="secondary">
           {thisCategory}
         </Typography>
       ) : (
-        <Typography onClick={handler} color="main">
+        <Typography onClick={() => handler()} color="main">
           {thisCategory}
         </Typography>
       )}
@@ -34,4 +43,4 @@ const CategoryDetail = ({ handler, currentCategory, thisCategory }) => {
   );
 };
 
-export default CategoryDetail;
+export default CategoryBarInModalDetail;

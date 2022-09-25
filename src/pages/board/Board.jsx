@@ -59,92 +59,16 @@ const Community = () => {
 
   // 게시글 전체 가져오기
 
-  const [posts, setPosts] = useState([
-    {
-      postId: 1,
-      title: "제목입니다.",
-      replyList: [1, 1, 1, 1, 1, 1],
-      nickname: "김김김",
-      likeCount: 10,
-      readCount: 5,
-    },
-    {
-      postId: 1,
-      title: "제목입니다.",
-      replyList: [1, 1, 1, 1, 1, 1],
-      nickname: "김김김",
-      likeCount: 10,
-      readCount: 5,
-    },
-    {
-      postId: 1,
-      title: "제목입니다.",
-      replyList: [1, 1, 1, 1, 1, 1],
-      nickname: "김김김",
-      likeCount: 10,
-      readCount: 5,
-    },
-    {
-      postId: 1,
-      title: "제목입니다.",
-      replyList: [1, 1, 1, 1, 1, 1],
-      nickname: "김김김",
-      likeCount: 10,
-      readCount: 5,
-    },
-    {
-      postId: 1,
-      title: "제목입니다.",
-      replyList: [1, 1, 1, 1, 1, 1],
-      nickname: "김김김",
-      likeCount: 10,
-      readCount: 5,
-    },
-    {
-      postId: 1,
-      title: "제목입니다.",
-      replyList: [1, 1, 1, 1, 1, 1],
-      nickname: "김김김",
-      likeCount: 10,
-      readCount: 5,
-    },
-    {
-      postId: 1,
-      title: "제목입니다.",
-      replyList: [1, 1, 1, 1, 1, 1],
-      nickname: "김김김",
-      likeCount: 10,
-      readCount: 5,
-    },
-    {
-      postId: 1,
-      title: "제목입니다.",
-      replyList: [1, 1, 1, 1, 1, 1],
-      nickname: "김김김",
-      likeCount: 10,
-      readCount: 5,
-    },
-    {
-      postId: 1,
-      title: "제목입니다.",
-      replyList: [1, 1, 1, 1, 1, 1],
-      nickname: "김김김",
-      likeCount: 10,
-      readCount: 5,
-    },
-    {
-      postId: 1,
-      title: "제목입니다.",
-      replyList: [1, 1, 1, 1, 1, 1],
-      nickname: "김김김",
-      likeCount: 10,
-      readCount: 5,
-    },
-  ]);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     axios
-      .get(BASE_URL + "/api/post")
+      .get(`${BASE_URL}/api/post`, {
+        headers: {
+          Authorization: `${localStorage.getItem("token")}`,
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+      })
       .then((response) => {
         console.log(response.data);
         setPosts(response.data.reverse());

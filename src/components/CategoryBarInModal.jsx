@@ -1,12 +1,17 @@
-import { ThemeProvider, Box, createTheme, ListItem } from "@mui/material";
-import axios from "axios";
-import PropTypes from "prop-types";
-import React, { useState } from "react";
-import SearchIcon from "@mui/icons-material/Search";
-import { useNavigate } from "react-router-dom";
+import {
+  Box,
+  Button,
+  createTheme,
+  ListItem,
+  ThemeProvider,
+} from "@mui/material";
+import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import CategoryDetail from "./CategoryDetail";
+import ModalDetail from "./ModalDetail";
 
-const CategoryBar = ({ category }) => {
+const CategoryBarInModal = () => {
   const theme = createTheme({
     palette: {
       primary: {
@@ -26,19 +31,12 @@ const CategoryBar = ({ category }) => {
 
   // tab list
   const categoryLists = [
-    { thisCategory: "stay", Url: "stay" },
-    { thisCategory: "attraction", Url: "attraction" },
-    { thisCategory: "train", Url: "train" },
-    { thisCategory: "rentcar", Url: "rentcar" },
+    { thisCategory: "stay", url: "stay" },
+    { thisCategory: "attraction", url: "attraction" },
+    { thisCategory: "train", url: "train" },
+    { thisCategory: "rentcar", url: "rentcar" },
   ];
-
-  const navigate = useNavigate();
-  function handler(props) {
-    navigate(`/search/${props}`);
-  }
-
-  // 지역
-  const [destination, setDestination] = useState("");
+  const [currentCategory, setCurrentCategory] = useState("stay");
 
   return (
     <ThemeProvider theme={theme}>
@@ -53,14 +51,17 @@ const CategoryBar = ({ category }) => {
                   dense="true"
                 >
                   <CategoryDetail
-                    handler={() => {
-                      handler(categories.Url);
-                    }}
-                    currentCategory={category}
+                    handler={() => setCurrentCategory(categories.thisCategory)}
+                    currentCategory={currentCategory}
                     thisCategory={categories.thisCategory}
                   />
                 </ListItem>
               ))}
+            </Box>
+            <Box className="categoryContents" display="row" padding="10px">
+              <Box sx={{ maxHeight: "50%" }}>
+                <ModalDetail currentCategory={currentCategory} />
+              </Box>
             </Box>
           </Box>
         </Box>
@@ -69,4 +70,4 @@ const CategoryBar = ({ category }) => {
   );
 };
 
-export default CategoryBar;
+export default CategoryBarInModal;

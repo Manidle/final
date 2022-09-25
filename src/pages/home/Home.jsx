@@ -16,13 +16,10 @@ const Home = () => {
       <Header />
       <div className="homeContainer">
         <Featured />
-        <Searchbar />
         <h1 className="homeTitle">start</h1>
         <HotArticle />
         <HotAttraction />
         <h1 className="homeTitle">end</h1>
-
-        <HotPost />
       </div>
       <Footer />
     </Container>
