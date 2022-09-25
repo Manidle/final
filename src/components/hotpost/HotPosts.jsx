@@ -57,7 +57,11 @@ const HotPosts = () => {
   const navigate = useNavigate();
 
   function handler(props) {
-    navigate(`post/${props}`);
+    navigate(`post/${props}`, {
+      state: {
+        postId: props,
+      },
+    });
   }
 
   return (
