@@ -10,52 +10,64 @@ import {
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import HotPost from "./HotPost";
 
-const hotArticles = [
+const hotPosts = [
   {
-    article_id: "1",
-    location: "경주",
+    postId: 1,
     title: "맛있는 매운탕 코스",
-    likes: 345,
+    contents: "test contents",
+    likeCount: 1,
+    readCount: 1,
+    boardName: "서울",
   },
   {
-    article_id: "2",
-    location: "경주",
-    title: "100일 기념으로 다녀온 경주 여행!",
-    likes: 345,
-  },
-  {
-    article_id: "3",
-    location: "경주",
-    title: "이틀동안 술만 먹은 코스ㅋㅋ",
-    likes: 89,
-  },
-  {
-    article_id: "4",
-    location: "경주",
+    postId: 2,
     title: "맛있는 매운탕 코스",
-    likes: 345,
+    contents: "test contents",
+    likeCount: 15,
+    readCount: 1,
+    boardName: "경주",
   },
   {
-    article_id: "5",
-    location: "경주",
-    title: "빈티지 카페 투어 2탄",
-    likes: 124,
+    postId: 3,
+    title: "맛있는 매운탕 코스",
+    contents: "test contents",
+    likeCount: 111,
+    readCount: 1,
+    boardName: "부산",
   },
   {
-    article_id: "6",
-    location: "경주",
-    title: "형들 담주 경주갈건데 코디 추천 좀 봐줘",
-    likes: 345,
+    postId: 4,
+    title: "맛있는 매운탕 코스",
+    contents: "test contents",
+    likeCount: 133,
+    readCount: 1,
+    boardName: "인천",
+  },
+  {
+    postId: 5,
+    title: "맛있는 매운탕 코스",
+    contents: "test contents",
+    likeCount: 123,
+    readCount: 1,
+    boardName: "대구",
+  },
+  {
+    postId: 5,
+    title: "맛있는 매운탕 코스",
+    contents: "test contents",
+    likeCount: 123,
+    readCount: 1,
+    boardName: "광주",
   },
 ];
 
-const HotArticle = ({ handleRoute }) => {
+const HotPostCardView = ({ handleRoute }) => {
   return (
     <CardContent>
       <Grid container columnSpacing={5} rowSpacing={3} paddingX={2}>
-        {hotArticles.map((article) => (
-          <Grid item key={article.article_id} md={6} xs={12}>
-            <HotPost article={article} handleRoute={handleRoute} />
+        {hotPosts.map((post) => (
+          <Grid item key={post.postId} md={6} xs={12}>
+            <HotPost post={post} handleRoute={handleRoute} />
           </Grid>
         ))}
       </Grid>
@@ -63,4 +75,4 @@ const HotArticle = ({ handleRoute }) => {
   );
 };
 
-export default HotArticle;
+export default HotPostCardView;

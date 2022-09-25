@@ -3,11 +3,11 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 
 import React from "react";
 
-const HotPost = ({ article, handleRoute }) => {
+const HotPost = ({ post, handleRoute }) => {
   return (
     <Box
       onClick={() => {
-        handleRoute(`post/${article.postId}`);
+        handleRoute(`post/${post.postId}`);
       }}
       sx={{
         display: "flex",
@@ -23,10 +23,10 @@ const HotPost = ({ article, handleRoute }) => {
         }}
       >
         <Typography noWrap color="#892CDC">
-          {article.location}
+          {post.boardName}
         </Typography>
         <Typography noWrap fontWeight="bold" marginLeft={1}>
-          {article.title}
+          {post.title}
         </Typography>
       </div>
       <div
@@ -44,7 +44,7 @@ const HotPost = ({ article, handleRoute }) => {
             textAlign: "center",
           }}
         >
-          {article.likes}
+          {post.likeCount}
         </Typography>
       </div>
     </Box>
