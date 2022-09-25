@@ -35,7 +35,14 @@ const HotPost = ({ article }) => {
         }}
       >
         <FavoriteIcon />
-        <Typography>{article.likes}</Typography>
+        <Typography
+          sx={{
+            width: "50px",
+            textAlign: "center",
+          }}
+        >
+          {article.likes}
+        </Typography>
       </div>
     </Box>
   );
