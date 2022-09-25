@@ -1,4 +1,11 @@
-import { Card, CardContent, CardHeader, Grid, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  Grid,
+  Typography,
+} from "@mui/material";
 import React from "react";
 
 const Wrapper = ({ title, children, linkHandler }) => {
@@ -6,18 +13,18 @@ const Wrapper = ({ title, children, linkHandler }) => {
     <Card variant="outlined" sx={{ margin: "10px" }}>
       <CardHeader
         title={
-          <Typography variant="h5" fontWeight="bold">
+          <Typography fontSize="20px" fontWeight="bold">
             {title}
           </Typography>
         }
         action={
-          <Typography
-            variant="h5"
-            color="#892CDC"
-            fontWeight="bold"
-            onClick={linkHandler}
-          >
-            더보기
+          <Typography>
+            <Button
+              sx={{ color: "#892CDC", fontSize: "20px" }}
+              onClick={linkHandler}
+            >
+              더보기
+            </Button>
           </Typography>
         }
         sx={{

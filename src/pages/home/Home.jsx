@@ -8,19 +8,35 @@ import Header from "../../components/header/Header";
 import HotArticle from "../../components/hotarticle/HotArticle";
 import HotAttraction from "../../components/hotattraction/HotAttraction";
 import Wrapper from "./Wrapper";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const theme = createTheme;
+
+  const navigate = useNavigate();
+  const handleRoute = (props) => {
+    navigate(`/${props}`);
+  };
 
   return (
     <Container maxWidth="lg">
       <Header />
       <div className="homeContainer">
         <Featured />
-        <Wrapper title="핫한 게시글">
+        <Wrapper
+          title="HOT POST"
+          linkHandler={() => {
+            handleRoute("board");
+          }}
+        >
           <HotArticle />
         </Wrapper>
-        <Wrapper title="핫한 관광지">
+        <Wrapper
+          title="HOT ATTRACTION"
+          linkHandler={() => {
+            handleRoute("search/attraction");
+          }}
+        >
           <HotAttraction />
         </Wrapper>
       </div>
