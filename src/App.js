@@ -17,6 +17,8 @@ import SearchStay from "./pages/Search/SearchStay";
 import SearchTrain from "./pages/Search/SearchTrain";
 import SearchRentcar from "./pages/Search/SearchRentcar";
 import MyPostAndLikeDetail from "./pages/userprofile/MyPostAndLikeDetail";
+import RentCarDetail from "./pages/rentcardetail/RentCarDetail";
+import StayDetail from "./pages/staydetail/StayDetail";
 
 function App() {
   return (
@@ -56,8 +58,10 @@ function App() {
         {/* s/a/t/r 검색 페이지 */}
         <Route path="/search/rentcar" element={<SearchRentcar />} />
         {/* Stay detail */}
-        <Route path="/stay/:stayId" element={<AttractionDetail />} />
+        <Route path="/stay/:stayId" element={<StayDetail />} />
         {/* Attraction detail */}
+        <Route path="/rentcar/:rentcarId" element={<RentCarDetail />} />
+        {/* rentcar detail */}
         <Route
           path="/attraction/:attractionId"
           element={<AttractionDetail />}

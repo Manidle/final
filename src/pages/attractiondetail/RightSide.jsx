@@ -97,6 +97,7 @@ const RightSide = ({
             {attractionAddress}
             <br />
             {attractionAddressDetail}
+            <br />
             관광지 입장료
             <br />- {attractionPrice}
           </Typography>
