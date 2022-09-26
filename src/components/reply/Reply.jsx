@@ -42,10 +42,15 @@ const Reply = (props) => {
 
   const getReply = async () => {
     axios
-      .get(`${BASE_URL}/api/auth/v1/reply/post/${postId}`)
+      .get(`${BASE_URL}/api/auth/v1/reply/post/${postId}`, {
+        headers: {
+          Authorization: `${localStorage.getItem("token")}`,
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+      })
       .then((response) => {
-        setReply(response.data);
-        // console.log(reply);
+        setReply(response.data.reverse());
+        console.log(response.data);
       })
       .catch(function (error) {
         if (error.response) {
@@ -92,6 +97,9 @@ const Reply = (props) => {
       })
       .then(() => {
         getReply();
+      })
+      .then(() => {
+        document.getElementById("replyInputField").value = "";
       })
       .catch(function (error) {
         if (error.response) {
@@ -159,12 +167,15 @@ const Reply = (props) => {
               onChange={(e) => {
                 setReplyContent(e.target.value);
               }}
+              id="replyInputField"
             />
             <Button
               className="replySubmitButton"
               color="secondary"
               variant="contained"
-              onClick={replySubmit}
+              onClick={() => {
+                replySubmit();
+              }}
             >
               입력
             </Button>
@@ -178,8 +189,10 @@ const Reply = (props) => {
                   reply.map((reply) => (
                     <>
                       <Box key={reply.replyId} display="flex">
-                        <CardContent>댓글작성자: {reply.userId}</CardContent>
-                        <CardContent>replyId: {reply.replyId}</CardContent>
+                        <CardContent className="replyWriter">
+                          {reply.nickName}
+                        </CardContent>
+                        {/* <CardContent>replyId: {reply.replyId}</CardContent> */}
                         <CardActions>
                           <Button
                             size="small"
