@@ -4,6 +4,7 @@ import {
   Container,
   createTheme,
   ListItem,
+  Snackbar,
   TextField,
   ThemeProvider,
   Typography,
@@ -53,9 +54,9 @@ const ModalAttractionResult = () => {
       });
   }
 
-  useEffect(() => {
-    searchAttractionAll();
-  }, []);
+  // useEffect(() => {
+  //   searchAttractionAll();
+  // }, []);
 
   // attraction 검색어
   const [searchWord, setSearchWord] = useState("");
@@ -85,10 +86,42 @@ const ModalAttractionResult = () => {
     sessionStorage.setItem("attractionData", JSON.stringify(attractionLi));
   }
 
+  // snackbar
+  const [stateSnackbar, setStateSnackbar] = React.useState({
+    openSnackbar: false,
+    vertical: "top",
+    horizontal: "center",
+  });
+
+  const { vertical, horizontal, openSnackbar } = stateSnackbar;
+  const handleSnackbar = () => {
+    setStateSnackbar({ ...stateSnackbar, openSnackbar: !openSnackbar });
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
-        <Box className="modalSearch">
+        <Snackbar
+          color="secondary"
+          anchorOrigin={{ vertical, horizontal }}
+          open={openSnackbar}
+          onClose={handleSnackbar}
+          message="관광지 등록에 성공했습니다!"
+          key={vertical + horizontal}
+        />
+        <Box
+          className="modalSearch"
+          display="flex"
+          justifyContent="center"
+          margin="3px"
+        >
+          <Button
+            onClick={() => {
+              searchAttractionAll();
+            }}
+          >
+            전체 조회
+          </Button>
           <TextField
             placeholder="관광지를 검색하세요"
             size="small"
@@ -116,6 +149,7 @@ const ModalAttractionResult = () => {
                 key={attractionList.attractionId}
                 onClick={() => {
                   listClick(attractionList);
+                  handleSnackbar();
                 }}
               >
                 <Typography>관광지 이름:{attractionList.name}</Typography>

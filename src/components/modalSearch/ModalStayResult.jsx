@@ -3,6 +3,7 @@ import {
   Container,
   createTheme,
   ListItem,
+  Snackbar,
   TextField,
   ThemeProvider,
   Typography,
@@ -52,9 +53,9 @@ const ModalStayResult = () => {
       });
   }
 
-  useEffect(() => {
-    searchStayAll();
-  }, []);
+  // useEffect(() => {
+  //   searchStayAll();
+  // }, []);
 
   // stay 검색어
   const [searchWord, setSearchWord] = useState("");
@@ -83,10 +84,42 @@ const ModalStayResult = () => {
     sessionStorage.setItem("stayData", JSON.stringify(stayLi));
   }
 
+  // snackbar
+  const [stateSnackbar, setStateSnackbar] = React.useState({
+    openSnackbar: false,
+    vertical: "top",
+    horizontal: "center",
+  });
+
+  const { vertical, horizontal, openSnackbar } = stateSnackbar;
+  const handleSnackbar = () => {
+    setStateSnackbar({ ...stateSnackbar, openSnackbar: !openSnackbar });
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
-        <Box className="modalSearch">
+        <Snackbar
+          color="secondary"
+          anchorOrigin={{ vertical, horizontal }}
+          open={openSnackbar}
+          onClose={handleSnackbar}
+          message="숙소 등록에 성공했습니다!"
+          key={vertical + horizontal}
+        />
+        <Box
+          className="modalSearch"
+          display="flex"
+          justifyContent="center"
+          margin="3px"
+        >
+          <Button
+            onClick={() => {
+              searchStayAll();
+            }}
+          >
+            전체 조회
+          </Button>
           <TextField
             placeholder="숙소를 검색하세요"
             size="small"
@@ -120,6 +153,7 @@ const ModalStayResult = () => {
                 key={stayList.stayId}
                 onClick={() => {
                   listClick(stayList);
+                  handleSnackbar();
                 }}
               >
                 <Typography>숙소 이름: {stayList.name}</Typography>
