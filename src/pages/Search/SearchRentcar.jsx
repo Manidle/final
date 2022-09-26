@@ -64,6 +64,18 @@ const SearchRentcar = () => {
       });
   }
 
+  function searchFilterRentCar() {
+    axios
+      .get(`${BASE_URL}/api/filter/list/rentcar?search=${searchRentcar}`)
+      .then((response) => {
+        setRentcarLists(response.data);
+        console.log(rentcarLists);
+      })
+      .catch(function (error) {
+        console.log(error.response);
+      });
+  }
+
   useEffect(() => {
     searchAllRentcar();
   }, []);
@@ -123,7 +135,7 @@ const SearchRentcar = () => {
               borderWidth: 3,
               borderRadius: "5rem",
             }}
-            onClick={() => {}}
+            onClick={searchFilterRentCar}
           >
             <Search />
           </Button>
@@ -146,12 +158,9 @@ const SearchRentcar = () => {
               {rentcarLists.length === 0 ? (
                 <Card>렌트카가 없습니다.</Card>
               ) : (
-                rentcarListsPerPage.currentData().map((rentcarList) => (
+                rentcarListsPerPage.currentData().map((rentcar) => (
                   <Grid item xs={3}>
-                    <RentCarItem
-                      handleRoute={handleRoute}
-                      rentcar={rentcarList}
-                    />{" "}
+                    <RentCarItem handleRoute={handleRoute} rentcar={rentcar} />{" "}
                   </Grid>
                 ))
               )}
