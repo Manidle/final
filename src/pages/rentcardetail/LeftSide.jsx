@@ -3,7 +3,7 @@ import React from "react";
 import TextProperty from "./TextProperty";
 import Wrapper from "./Wrapper";
 
-const LeftSide = ({ imgUrl, stayPrice, stayName }) => {
+const LeftSide = ({ imgUrl, carSort, carName }) => {
   return (
     <Card
       variant
@@ -25,7 +25,7 @@ const LeftSide = ({ imgUrl, stayPrice, stayName }) => {
         >
           <Wrapper marginSize="0.1rem" bgColor="#E3E3E3">
             <TextProperty fontColor="#333333" fontSize="20" fontWeight="bold">
-              객실 정보
+              차량 정보
             </TextProperty>
           </Wrapper>
           <Wrapper marginSize="0.3rem" bgColor="#E3E3E3">
@@ -45,7 +45,7 @@ const LeftSide = ({ imgUrl, stayPrice, stayName }) => {
                 fontSize="16"
                 fontWeight="normal"
               >
-                {stayName}
+                {carName}
               </TextProperty>
             </Wrapper>
             <Wrapper marginSize="0.3rem" bgColor="#D8D8D8">
@@ -54,7 +54,7 @@ const LeftSide = ({ imgUrl, stayPrice, stayName }) => {
                 fontSize="16"
                 fontWeight="normal"
               >
-                {stayPrice} 원
+                {carSort}
               </TextProperty>
             </Wrapper>
             <Wrapper marginSize="0.3rem" bgColor="#C1C1C1">

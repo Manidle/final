@@ -4,13 +4,12 @@ import React from "react";
 import Wrapper from "./Wrapper";
 
 const RightSide = ({
-  stayAddress,
-  stayLikeCount,
-  stayName,
-  stayPrice,
-  stayCheckin,
-  stayCheckOut,
   imgUrl,
+  address,
+  companyName,
+  carSort,
+  carName,
+  likeCount,
 }) => {
   return (
     <Wrapper marginSize="0rem" bgColor="#F2E2FC">
@@ -20,7 +19,7 @@ const RightSide = ({
         fontWeight="bold"
         marginRight="1rem"
       >
-        {stayName}
+        {carName} - {carSort}
       </Typography>
       <Card
         variant="outlined"
@@ -42,8 +41,7 @@ const RightSide = ({
           fontWeight="bold"
           marginRight="1rem"
         >
-          주소 <br />
-          {stayAddress} <br />
+          {companyName} : {address} <br />
         </Typography>
       </Box>
       <Box
@@ -61,11 +59,11 @@ const RightSide = ({
           환불 및 취소 규정
         </Typography>
         <Typography className="dashBoardTitle" fontSize={14} marginRight="1rem">
-          숙박일 6일전 : 100% 환불 <br />
-          숙박일 5일전 : 90% 환불 <br />
-          숙박일 4일전 : 80% 환불 <br />
-          숙박일 3 ~ 1일전 : 50% 환불 <br />
-          숙박당일 : 환불불가
+          예약 6일전 : 100% 환불 <br />
+          예약 5일전 : 90% 환불 <br />
+          예약 4일전 : 80% 환불 <br />
+          예약 3 ~ 1일전 : 50% 환불 <br />
+          예약 당일 : 환불불가
         </Typography>
       </Box>
     </Wrapper>

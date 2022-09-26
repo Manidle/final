@@ -13,11 +13,14 @@ import React from "react";
 import { useState } from "react";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 import Header from "../../components/header/Header";
 import RightSide from "./RightSide";
 import LeftSide from "./LeftSide";
 import { BASE_URL } from "../../baseUrl";
+import { useEffect } from "react";
+import { makeOrderCarImg } from "../../image/carImg";
 
 const RentCarDetail = () => {
   const theme = createTheme({
@@ -36,36 +39,58 @@ const RentCarDetail = () => {
     },
   });
 
+  const rentcarPath = useLocation().pathname;
+
   const imgUrl =
     "http://news.samsungdisplay.com/wp-content/uploads/2018/08/8.jpg";
-  const [stayAddress, setStayAddress] = useState("경기도 양평군 어쩌고");
-  const [stayCheckin, setStayCheckIn] = useState("14:00");
-  const [stayCheckOut, setStayCheckOut] = useState("10:00");
-  const [stayLikeCount, setStayLikeCount] = useState(5);
-  const [stayName, setStayName] = useState("양평 블루밍펜션");
-  const [stayPrice, setStayPrice] = useState(500);
 
+  const [rentCarId, setRentCarId] = useState(0);
+  const [address, setAddress] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [carSort, setCarSort] = useState("");
+  const [carName, setCarName] = useState("");
+  const [likeCount, setLikeCount] = useState(0);
   // 유저 token
   const userData = jwt_decode(localStorage.getItem("token"));
 
   // 숙소 좋아요
-  const [likeClick, setLikeClick] = useState(false);
 
-  function handleLikeClick() {
+  useEffect(() => {
     axios
-      .get(BASE_URL + "/api/auth/v1/like/click/stay", {
-        params: {
-          user: userData.id,
-          stay: 1,
-        },
+      .get(`${BASE_URL}/api/auth/v1${rentcarPath}`, {
         headers: {
           Authorization: `${localStorage.getItem("token")}`,
+          "Content-Type": "application/json; charset=UTF-8",
         },
       })
-      .then(() => {
-        setLikeClick(!likeClick);
+      .then((response) => {
+        console.log(response.data);
+        setRentCarId(response.data.rentCarId);
+        setAddress(response.data.address);
+        setCompanyName(response.data.companyName);
+        setCarSort(response.data.carSort);
+        setCarName(response.data.carName);
+        setLikeCount(response.data.likeCount);
+      })
+      .catch(function (error) {
+        if (error.response) {
+          // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
+          console.log("첫번째 에러");
+          console.log(error.response.data);
+        } else if (error.request) {
+          // 요청이 이루어 졌으나 응답을 받지 못했습니다.
+          // `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
+          // Node.js의 http.ClientRequest 인스턴스입니다.
+          console.log("두번째 에러");
+          console.log(error.request);
+        } else {
+          // 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
+          console.log("세번째 에러");
+          console.log("Error", error.message);
+        }
+        console.log(error.config);
       });
-  }
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -84,22 +109,21 @@ const RentCarDetail = () => {
               <Grid xs={1}></Grid>
               <Grid xs={3}>
                 <LeftSide
-                  imgUrl={imgUrl}
-                  stayPrice={stayPrice}
-                  stayName={stayName}
+                  imgUrl={makeOrderCarImg(rentCarId, 10)}
+                  carSort={carSort}
+                  carName={carName}
                 />
               </Grid>
               <Grid xs={0.2}></Grid>
 
               <Grid xs={6.8}>
                 <RightSide
-                  stayAddress={stayAddress}
-                  stayLikeCount={stayLikeCount}
-                  stayName={stayName}
-                  stayPrice={stayPrice}
-                  stayCheckin={stayCheckin}
-                  stayCheckOut={stayCheckOut}
-                  imgUrl={imgUrl}
+                  imgUrl={makeOrderCarImg(rentCarId, 10)}
+                  address={address}
+                  companyName={companyName}
+                  carSort={carSort}
+                  carName={carName}
+                  likeCount={likeCount}
                 />
               </Grid>
               <Grid xs={1}></Grid>
