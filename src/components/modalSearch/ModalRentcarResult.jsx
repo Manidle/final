@@ -76,8 +76,12 @@ const ModalRentcarResult = () => {
   }
 
   function listClick(rentcarList) {
-    console.log(rentcarList);
-    sessionStorage.setItem("rentcarData", JSON.stringify(rentcarList));
+    if (sessionStorage.getItem("rentcarData") === null) {
+      sessionStorage.setItem("rentcarData", JSON.stringify([]));
+    }
+    let rentcarLi = JSON.parse(sessionStorage.getItem("rentcarData"));
+    rentcarLi.push(rentcarList);
+    sessionStorage.setItem("rentcarData", JSON.stringify(rentcarLi));
   }
 
   return (
