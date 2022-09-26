@@ -12,11 +12,13 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/header/Header";
 import jwt_decode from "jwt-decode";
 import LeftSide from "./LeftSide";
 import RightSide from "./RightSide";
 import { BASE_URL } from "../../baseUrl";
+import { useEffect } from "react";
 
 const AttractionDetail = () => {
   const theme = createTheme({
@@ -34,6 +36,9 @@ const AttractionDetail = () => {
       },
     },
   });
+
+  const postProps = useLocation();
+
   const date = "2022.03.21";
   const imgUrl =
     "http://news.samsungdisplay.com/wp-content/uploads/2018/08/8.jpg";
@@ -49,6 +54,45 @@ const AttractionDetail = () => {
 
   // 관광지 좋아요
   const [likeClick, setLikeClick] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get(
+        `${BASE_URL}/api/auth/v1/attraction/${postProps.state.attractionId}`,
+        {
+          headers: {
+            Authorization: `${localStorage.getItem("token")}`,
+            "Content-Type": "application/json; charset=UTF-8",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        setAttractionName(response.data.name);
+        setAttractionAddress(response.data.address);
+        setAttractionAddressDetail(response.data.description);
+        setAttractionPrice(response.data.price);
+        setAttractionLikeCount(response.data.likeCount);
+      })
+      .catch(function (error) {
+        if (error.response) {
+          // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
+          console.log("첫번째 에러");
+          console.log(error.response.data);
+        } else if (error.request) {
+          // 요청이 이루어 졌으나 응답을 받지 못했습니다.
+          // `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
+          // Node.js의 http.ClientRequest 인스턴스입니다.
+          console.log("두번째 에러");
+          console.log(error.request);
+        } else {
+          // 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
+          console.log("세번째 에러");
+          console.log("Error", error.message);
+        }
+        console.log(error.config);
+      });
+  }, []);
 
   function handleLikeClick() {
     axios

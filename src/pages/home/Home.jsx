@@ -35,7 +35,15 @@ const Home = () => {
               handleRoute("search/attraction");
             }}
           >
-            <HotAttraction handleRoute={handleRoute} />
+            <HotAttraction
+              handleRoute={(attractionId) => {
+                navigate(`/attraction/${attractionId}`, {
+                  state: {
+                    attractionId: attractionId,
+                  },
+                });
+              }}
+            />
           </Wrapper>
         </div>
         <Footer />
