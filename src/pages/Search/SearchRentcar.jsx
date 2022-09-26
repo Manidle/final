@@ -21,6 +21,7 @@ import CategoryBar from "../../components/CategoryBar";
 import Header from "../../components/header/Header";
 import usePagination from "../../components/Pagination";
 import RentCarItem from "./RentCarItem";
+import { useNavigate } from "react-router-dom";
 
 const SearchRentcar = () => {
   const theme = createTheme({
@@ -76,6 +77,12 @@ const SearchRentcar = () => {
   const handlePage = (e, p) => {
     setPage(p);
     rentcarListsPerPage.jump(p);
+  };
+
+  const navigate = useNavigate();
+
+  const handleRoute = (props) => {
+    navigate(`/${props}`);
   };
 
   return (
@@ -141,7 +148,10 @@ const SearchRentcar = () => {
               ) : (
                 rentcarListsPerPage.currentData().map((rentcarList) => (
                   <Grid item xs={3}>
-                    <RentCarItem rentcar={rentcarList} />{" "}
+                    <RentCarItem
+                      handleRoute={handleRoute}
+                      rentcar={rentcarList}
+                    />{" "}
                   </Grid>
                 ))
               )}
