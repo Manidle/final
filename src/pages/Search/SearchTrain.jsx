@@ -13,7 +13,6 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import React from "react";
-import { useEffect } from "react";
 import { useState } from "react";
 import { Calendar } from "react-date-range";
 import CategoryBar from "../../components/CategoryBar";
@@ -38,30 +37,6 @@ const SearchTrain = () => {
       },
     },
   });
-
-  //   // 기차 리스트
-  //   const [trainLists, setTrainList] = useState([]);
-
-  //   function searchAllTrain() {
-  //     axios
-  //       .get(BASE_URL + "/api/auth/v1/list/train", {
-  //         headers: {
-  //           Authorization: `${localStorage.getItem("token")}`,
-  //           "Content-Type": "application/json; charset=UTF-8",
-  //         },
-  //       })
-  //       .then((response) => {
-  //         setTrainList(response.data);
-  //         console.log(trainLists);
-  //       });
-  //   }
-
-  //   useEffect(() => {
-  //     searchAllTrain();
-  //   }, []);
-
-  //   // 전체 조회에서 사용될 검색어
-  //   const [searchTrain, setSearchTrain] = useState("");
 
   // train 리스트
   const [trainLists, setTrainLists] = useState([]);
