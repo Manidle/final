@@ -96,7 +96,6 @@ const RentCarLike = () => {
                 container
                 sx={{
                   display: "flex",
-                  justifyContent: "space-between",
                 }}
               >
                 {rentCars.length === 0 ? (

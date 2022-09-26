@@ -96,7 +96,6 @@ const AttractionLike = () => {
                 container
                 sx={{
                   display: "flex",
-                  justifyContent: "space-between",
                 }}
               >
                 {attractions.length === 0 ? (

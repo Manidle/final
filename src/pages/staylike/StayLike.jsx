@@ -96,7 +96,6 @@ const StayLike = () => {
                 container
                 sx={{
                   display: "flex",
-                  justifyContent: "space-between",
                 }}
               >
                 {stayList.length === 0 ? (
