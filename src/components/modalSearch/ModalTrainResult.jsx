@@ -1,9 +1,12 @@
 import {
   Box,
   Button,
+  Card,
   Container,
   createTheme,
+  Divider,
   ListItem,
+  Snackbar,
   Stack,
   TextField,
   ThemeProvider,
@@ -87,16 +90,43 @@ const ModalTrainResult = () => {
     sessionStorage.setItem("trainData", JSON.stringify(trainList));
   }
 
+  // snackbar
+  const [stateSnackbar, setStateSnackbar] = React.useState({
+    openSnackbar: false,
+    vertical: "top",
+    horizontal: "center",
+  });
+
+  const { vertical, horizontal, openSnackbar } = stateSnackbar;
+  const handleSnackbar = () => {
+    setStateSnackbar({ ...stateSnackbar, openSnackbar: !openSnackbar });
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
-        <Box className="modalSearch">
+        <Snackbar
+          color="secondary"
+          anchorOrigin={{ vertical, horizontal }}
+          open={openSnackbar}
+          onClose={handleSnackbar}
+          message="숙소 등록에 성공했습니다!"
+          key={vertical + horizontal}
+        />
+        <Box
+          className="modalSearch"
+          display={{ lg: "flex", md: "row" }}
+          justifyContent="center"
+          alignItems="center"
+          margin="3px"
+        >
           <TextField
             placeholder="출발지를 검색하세요"
             size="small"
             onChange={(e) => {
               setSearchStartPoint(e.target.value);
             }}
+            margin="1px"
           />
           <TextField
             placeholder="도착지를 검색하세요"
@@ -104,24 +134,31 @@ const ModalTrainResult = () => {
             onChange={(e) => {
               setSearchEndPoint(e.target.value);
             }}
+            margin="1px"
           />
           <Box>
-            <span
+            <Card
               onClick={() => {
                 handleCalendar();
               }}
             >
-              {`${format(date, "yyyy/MM/dd")}`}
-            </span>
-            {openCal && (
-              <Calendar
-                onChange={(item) => setDate(item)}
-                date={date}
-                dateDisplayFormat={"yyyy.mm.dd"}
-              />
-            )}
+              <Typography margin="4px">
+                {`${format(date, "yyyy/MM/dd")}`}
+              </Typography>
+            </Card>
+            <Box position="absolute">
+              {openCal && (
+                <Calendar
+                  onChange={(item) => {
+                    setDate(item);
+                    handleCalendar();
+                  }}
+                  date={date}
+                  dateDisplayFormat={"yyyy.mm.dd"}
+                />
+              )}
+            </Box>
           </Box>
-          ;
           <Button
             className="trainSearchButton"
             onClick={() => {
@@ -144,13 +181,40 @@ const ModalTrainResult = () => {
                   listClick(trainList);
                 }}
               >
-                <Typography>출발지: {trainList.depplacename}</Typography>
+                <Box>
+                  <Typography>출발지</Typography>
+                  <Typography fontWeight="bold" color="primary">
+                    {trainList.depplacename}
+                  </Typography>
+                </Box>
                 <Typography>---›</Typography>
-                <Typography>도착지: {trainList.arrplacename}</Typography>
-                <Typography>출발시각: {trainList.depplandtime}</Typography>
+                <Box>
+                  <Typography>도착지</Typography>
+                  <Typography fontWeight="bold" color="primary">
+                    {trainList.arrplacename}
+                  </Typography>
+                </Box>
+                <Divider variant="middle" />
+                <Box>
+                  <Typography>출발시각</Typography>
+                  <Typography fontWeight="bold">
+                    {trainList.depplandtime}
+                  </Typography>
+                </Box>
                 <Typography>---›</Typography>
-                <Typography>도착시각: {trainList.arrplandtime}</Typography>
-                <Typography>요금: {trainList.adultcharge}</Typography>
+                <Box>
+                  <Typography>도착시각</Typography>
+                  <Typography fontWeight="bold">
+                    {trainList.arrplandtime}
+                  </Typography>
+                </Box>
+                <Divider variant="middle" />
+                <Box>
+                  <Typography>요금</Typography>
+                  <Typography fontWeight="bold" color="secondary">
+                    {trainList.adultcharge}
+                  </Typography>
+                </Box>
                 {/* <Typography>좋아요 수 : {trainList.likeCount}</Typography> */}
               </ListItem>
             ))
