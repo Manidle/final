@@ -75,10 +75,10 @@ const PostDetail = () => {
         setPostContents(response.data.contents);
         setPostLikeCount(response.data.likeCount);
         setPostUser(response.data.userId);
-        setPostRentCarList(response.data.postRentCarList);
-        setPostTrainList(response.data.postTrainList);
-        setPostStayList(response.data.postStayList);
-        setPostAttractionList(response.data.postAttractionList);
+        setPostRentCarList(response.data.postRentCars);
+        setPostTrainList(response.data.postTrains);
+        setPostStayList(response.data.postStays);
+        setPostAttractionList(response.data.postAttractions);
       })
       .catch(function (error) {
         if (error.response) {
@@ -228,11 +228,20 @@ const PostDetail = () => {
                   <br />
                   게시글 작성자: {postUser}
                   <br />
-                  게시글 숙소리스트: {postStayList}
+                  게시글 숙소리스트:{" "}
+                  {postStayList.map((postStay) => (
+                    <Typography>{postStay.name}</Typography>
+                  ))}
                   <br />
-                  게시글 관광지리스트: {postAttractionList}
+                  게시글 관광지리스트:{" "}
+                  {postAttractionList.map((postAttraction) => (
+                    <Typography>{postAttraction.name}</Typography>
+                  ))}
                   <br />
-                  게시글 렌트카리스트: {postRentCarList}
+                  게시글 렌트카리스트:{" "}
+                  {postRentCarList.map((postRentCar) => (
+                    <Typography>{postRentCar.companyName}</Typography>
+                  ))}
                   <br />
                   게시글 기차리스트: {postTrainList}
                   <br />
