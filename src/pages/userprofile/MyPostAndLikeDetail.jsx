@@ -3,7 +3,10 @@ import {
   Button,
   Container,
   createTheme,
+  Divider,
   Grid,
+  Pagination,
+  Stack,
   ThemeProvider,
   Typography,
 } from "@mui/material";
@@ -15,6 +18,14 @@ import { BASE_URL } from "../../baseUrl";
 import DashboardMyInfo from "../../components/dashboardmyinfo/DashboardMyInfo";
 import Header from "../../components/header/Header";
 import { useEffect } from "react";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useNavigate } from "react-router-dom";
+import Footer from "../../components/footer/Footer";
+import Post from "./Post";
+import PostColumn from "../board/PostColumn";
+import PostListOutLine from "../board/PostListOutLine";
+import PostSearch from "../board/PostSearch";
+import usePagination from "../../components/Pagination";
 
 const MyPostAndLikeDetail = () => {
   const theme = createTheme({
@@ -35,14 +46,9 @@ const MyPostAndLikeDetail = () => {
 
   const [myLikePosts, setMyLikePosts] = useState([]);
 
-  const [myLikePostsBoardName, setMyLikePostsBoardName] = useState([]);
-  const [myLikePostsTitle, setMyLikePostsTitle] = useState([]);
-  const [myLikePostsPostId, setMyLikePostsPostId] = useState([]);
-  const [myLikePostsLikeCount, setMyLikePostsLikeCount] = useState([]);
-
   const userData = jwt_decode(localStorage.getItem("token"));
 
-  function getMyLikePostsId() {
+  async function testPromise() {
     axios
       .get(
         `${BASE_URL}/api/auth/v1/list/currentuser/like/post/${userData.id}`,
@@ -53,101 +59,102 @@ const MyPostAndLikeDetail = () => {
           },
         }
       )
-      .then((response) => {
-        console.log("1번");
-        console.log(response.data);
-      });
-    //       .then((response) => {
-    //         console.log(response.data);
-    //         response.data.map((responsedata) =>
-    //           axios
-    //             .get(`${BASE_URL}/api/auth/v1/post/${responsedata.postId}`, {
-    //               headers: {
-    //                 Authorization: `${localStorage.getItem("token")}`,
-    //                 "Content-Type": "application/json; charset=UTF-8",
-    //               },
-    //             })
-    //             .then((response2) => {
-    //               console.log(response2.data);
-    //               console.log("엥");
-    //               setMyLikePosts([...myLikePosts, response2.data]);
-    //               //   setMyLikePostsBoardName(response2.data.boardName)
-    //               //   setMyLikePostsTitle(response2.data.title)
-    //               //   setMyLikePostsPostId(response2.data.postId)
-    //               //   setMyLikePostsLikeCount(response2.data.likeCount)
-    //             })
-    //             .catch(function (error) {
-    //               console.log(error);
-    //               console.log(error.response2);
-    //             })
-    //         );
-    //       })
-    //       .then(() => {
-    //         console.log(myLikePosts);
-    //       })
-    //       .catch(function (error) {
-    //         console.log(error.response);
-    //       });
-  }
+      .then((res) => {
+        Promise.all(
+          res.data.map(async (like) => {
+            // return await mapMyLikePost(like.postId);
+            return await axios.get(
+              `${BASE_URL}/api/auth/v1/post/${like.postId}`,
+              {
+                headers: {
+                  Authorization: `${localStorage.getItem("token")}`,
+                  "Content-Type": "application/json; charset=UTF-8",
+                },
+              }
+            );
+          })
+        ).then((res) => {
+          const resArray = res.map((one) => one.data);
 
-  function getMyLikePosts(props) {
-    axios
-      .get(`${BASE_URL}/api/auth/v1/post/${props.postId}`, {
-        headers: {
-          Authorization: `${localStorage.getItem("token")}`,
-          "Content-Type": "application/json; charset=UTF-8",
-        },
-      })
-      .then((response) => {
-        console.log("2번");
-        console.log(response.data);
+          setMyLikePosts(resArray);
+          console.log("last", myLikePosts);
+        });
       });
   }
 
-  function mapMyLikePosts(props) {
-    setMyLikePosts([...myLikePosts, props]);
+  const navigate = useNavigate();
+
+  function handler(props) {
+    navigate(`post/${props}`, {
+      state: {
+        postId: props,
+      },
+    });
   }
 
-  const getMylikePosts = async () => {
-    const myLikePostsId = await getMyLikePostsId();
+  useEffect(() => {
+    testPromise();
+  }, []);
 
-    Promise.all(
-      myLikePostsId.map(async (myLikePostId) => {
-        const myLikePostsData = await getMyLikePosts(myLikePostId);
-        console.log(myLikePostsData);
+  // 게시글 페이징
+  const [page, setPage] = useState(1);
+  const perPage = 10;
+  const count = Math.ceil(myLikePosts.length / perPage);
+  const postsPerPage = usePagination(myLikePosts, perPage);
 
-        const myLikePosts = await mapMyLikePosts(myLikePostsData);
-        console.log(myLikePosts);
-      })
-    );
-    console.log(myLikePostsId);
+  const handlePage = (e, p) => {
+    setPage(p);
+    postsPerPage.jump(p);
   };
-
-  //   useEffect(() => {
-  //     getMyLikePosts();
-  //   }, []);
 
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth="xl">
         <Header />
-        <DashboardMyInfo page="MY POST LIKE" />
-        <Box>
-          <Typography>내가 좋아요 누른 게시글</Typography>{" "}
-        </Box>
-        <Grid container spacing={2}>
-          <Button onClick={() => getMylikePosts()}>test</Button>
-          {/* {myLikePosts.map((myLikePost) => (
-            <Grid item xs={12} sm={12} md={6}>
-              <Box>
-                <Box>
-                  <Typography>{myLikePost}</Typography>
+        <Box display="flex">
+          <DashboardMyInfo page="MY POST LIKE" />
+          <Container>
+            <Box display="flex" marginLeft="3%" alignItems="center">
+              <FavoriteIcon color="info" />
+              <Typography fontSize="25px" fontWeight="bold" marginLeft="10px">
+                내가 좋아요 누른 게시글
+              </Typography>
+            </Box>
+            <Grid container spacing={2}>
+              <PostListOutLine>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    width: "40rem",
+                    paddingBottom: "1rem",
+                  }}
+                >
+                  <PostSearch />
                 </Box>
-              </Box>
+
+                <div className="communityBoard">
+                  <PostColumn />
+                  {myLikePosts.map((myLikePost) => (
+                    <Post post={myLikePost} />
+                  ))}
+                </div>
+                <div className="boardFooter">
+                  <Stack spacing={2} padding="5px">
+                    <Pagination
+                      size="small"
+                      count={count}
+                      boundaryCount={2}
+                      onChange={handlePage}
+                    />
+                  </Stack>
+                </div>
+              </PostListOutLine>
             </Grid>
-          ))} */}
-        </Grid>
+          </Container>
+        </Box>
       </Container>
+      <Footer />
     </ThemeProvider>
   );
 };
