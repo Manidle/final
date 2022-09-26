@@ -114,10 +114,10 @@ const Posting = () => {
     if (props === "rentcar") {
       axios
         .get(
-          `${BASE_URL}/api/auth/v1/post-contents/post-${props}/click?post=${
+          `${BASE_URL}/api/auth/v1/post-contents/post-rent-car/click?post=${
             response.data.postId
           }&rentcar=${
-            JSON.parse(sessionStorage.getItem("rentcarData")).rentcarId
+            JSON.parse(sessionStorage.getItem("rentcarData")).rentCarId
           }`,
           {
             headers: {
