@@ -1,21 +1,15 @@
-import {
-  Box,
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Typography,
-} from "@mui/material";
+import { Card, CardActionArea, CardMedia, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import React from "react";
-import { makeOrderCarImg } from "../../image/carImg.js";
+import { makeOrderStayImg } from "../../image/stayImg";
 
-const RentCarItem = ({ rentcar, handleRoute }) => {
+const StayItem = ({ handleRoute, stay }) => {
   return (
     <Card
       onClick={() => {
-        handleRoute(`rentcar/${rentcar.rentCarId}`);
+        handleRoute(`stay/${stay.id}`);
       }}
-      key={rentcar.rentCarId}
+      key={stay.id}
       sx={{
         width: "200px",
         display: "flex",
@@ -27,7 +21,7 @@ const RentCarItem = ({ rentcar, handleRoute }) => {
       <CardActionArea>
         <CardMedia
           component="img"
-          image={makeOrderCarImg(rentcar.rentCarId, 15)}
+          image={makeOrderStayImg(stay.id)}
           alt="Hot Posts"
           height="200px"
         />
@@ -49,7 +43,7 @@ const RentCarItem = ({ rentcar, handleRoute }) => {
               fontWeight="bold"
               noWrap
             >
-              {rentcar.carName}
+              {stay.name}
             </Typography>
             <Typography
               color="#892CDC"
@@ -57,7 +51,7 @@ const RentCarItem = ({ rentcar, handleRoute }) => {
               fontSize="14px"
               noWrap
             >
-              {rentcar.companyName}
+              {stay.address}
             </Typography>
           </div>
         </Box>
@@ -66,4 +60,4 @@ const RentCarItem = ({ rentcar, handleRoute }) => {
   );
 };
 
-export default RentCarItem;
+export default StayItem;
