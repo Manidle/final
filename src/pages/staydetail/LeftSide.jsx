@@ -12,6 +12,7 @@ const LeftSide = ({ imgUrl, stayPrice, stayName }) => {
         margin: 0,
         borderRadius: "1rem",
         padding: 0,
+        height: "100%",
       }}
     >
       <Box>

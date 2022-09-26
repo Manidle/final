@@ -12,6 +12,7 @@ const LeftSide = ({ imgUrl, carSort, carName }) => {
         margin: 0,
         borderRadius: "1rem",
         padding: 0,
+        height: "100%",
       }}
     >
       <Box>

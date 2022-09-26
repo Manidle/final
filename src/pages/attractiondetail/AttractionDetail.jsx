@@ -20,6 +20,7 @@ import RightSide from "./RightSide";
 import { BASE_URL } from "../../baseUrl";
 import { useEffect } from "react";
 import { makeOrderAttractionImg } from "../../image/attractionImg";
+import Footer from "../../components/footer/Footer";
 
 const AttractionDetail = () => {
   const theme = createTheme({
@@ -108,39 +109,49 @@ const AttractionDetail = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Header />
+      <Container maxWidth="xl">
+        <Header />
+        <Container maxWidth="lg">
+          <Box
+            sx={{
+              padding: "50px",
+              paddingTop: "30px",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Grid container>
+              <Grid xs={1}></Grid>
 
-      {/* 여기부터 제작 */}
-      <Grid
-        container
-        sx={{
-          paddingTop: "10vh",
-          paddingLeft: "5%",
-        }}
-      >
-        <Grid item xs={5}>
-          <LeftSide
-            date={date}
-            attractionName={attractionName}
-            attractionPrice={attractionPrice}
-            attractionAddress={attractionAddress}
-            imgUrl={makeOrderAttractionImg(attractionId)}
-          />
-        </Grid>
-        <Grid item xs={7}>
-          <RightSide
-            attractionName={attractionName}
-            attractionPrice={attractionPrice}
-            attractionAddress={attractionAddress}
-            attractionAddressDetail={attractionAddressDetail}
-            attractionLikeCount={attractionLikeCount}
-            setAttractionLikeCount={setAttractionLikeCount}
-            handleLikeClick={handleLikeClick}
-            likeClick={likeClick}
-            imgUrl={makeOrderAttractionImg(attractionId)}
-          />
-        </Grid>
-      </Grid>
+              <Grid item xs={3}>
+                <LeftSide
+                  date={date}
+                  attractionName={attractionName}
+                  attractionPrice={attractionPrice}
+                  attractionAddress={attractionAddress}
+                  imgUrl={makeOrderAttractionImg(attractionId)}
+                />
+              </Grid>
+              <Grid xs={0.2}></Grid>
+
+              <Grid item xs={6.8}>
+                <RightSide
+                  attractionName={attractionName}
+                  attractionPrice={attractionPrice}
+                  attractionAddress={attractionAddress}
+                  attractionAddressDetail={attractionAddressDetail}
+                  attractionLikeCount={attractionLikeCount}
+                  setAttractionLikeCount={setAttractionLikeCount}
+                  handleLikeClick={handleLikeClick}
+                  likeClick={likeClick}
+                  imgUrl={makeOrderAttractionImg(attractionId)}
+                />
+              </Grid>
+            </Grid>
+          </Box>
+        </Container>
+        <Footer />
+      </Container>
     </ThemeProvider>
   );
 };
