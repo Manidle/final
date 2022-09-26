@@ -21,6 +21,7 @@ import CategoryBar from "../../components/CategoryBar";
 import Header from "../../components/header/Header";
 import usePagination from "../../components/Pagination";
 import RentCarItem from "./RentCarItem";
+import { useNavigate } from "react-router-dom";
 
 const SearchRentcar = () => {
   const theme = createTheme({
@@ -63,6 +64,18 @@ const SearchRentcar = () => {
       });
   }
 
+  function searchFilterRentCar() {
+    axios
+      .get(`${BASE_URL}/api/filter/list/rentcar?search=${searchRentcar}`)
+      .then((response) => {
+        setRentcarLists(response.data);
+        console.log(rentcarLists);
+      })
+      .catch(function (error) {
+        console.log(error.response);
+      });
+  }
+
   useEffect(() => {
     searchAllRentcar();
   }, []);
@@ -76,6 +89,12 @@ const SearchRentcar = () => {
   const handlePage = (e, p) => {
     setPage(p);
     rentcarListsPerPage.jump(p);
+  };
+
+  const navigate = useNavigate();
+
+  const handleRoute = (props) => {
+    navigate(`/${props}`);
   };
 
   return (
@@ -116,7 +135,7 @@ const SearchRentcar = () => {
               borderWidth: 3,
               borderRadius: "5rem",
             }}
-            onClick={() => {}}
+            onClick={searchFilterRentCar}
           >
             <Search />
           </Button>
@@ -139,9 +158,9 @@ const SearchRentcar = () => {
               {rentcarLists.length === 0 ? (
                 <Card>렌트카가 없습니다.</Card>
               ) : (
-                rentcarListsPerPage.currentData().map((rentcarList) => (
+                rentcarListsPerPage.currentData().map((rentcar) => (
                   <Grid item xs={3}>
-                    <RentCarItem rentcar={rentcarList} />{" "}
+                    <RentCarItem handleRoute={handleRoute} rentcar={rentcar} />{" "}
                   </Grid>
                 ))
               )}

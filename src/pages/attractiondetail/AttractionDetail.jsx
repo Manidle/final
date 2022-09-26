@@ -19,6 +19,8 @@ import LeftSide from "./LeftSide";
 import RightSide from "./RightSide";
 import { BASE_URL } from "../../baseUrl";
 import { useEffect } from "react";
+import { makeOrderAttractionImg } from "../../image/attractionImg";
+import Footer from "../../components/footer/Footer";
 
 const AttractionDetail = () => {
   const theme = createTheme({
@@ -38,18 +40,14 @@ const AttractionDetail = () => {
   });
 
   const attractionPath = useLocation().pathname;
-  console.log("로케", useLocation());
-  console.log("패쓰네임", useLocation().pathname);
   const date = "2022.03.21";
-  const imgUrl =
-    "http://news.samsungdisplay.com/wp-content/uploads/2018/08/8.jpg";
   const [attractionName, setAttractionName] = useState("소울치킨의 집");
   const [attractionAddress, setAttractionAddress] = useState("광주광역시");
   const [attractionAddressDetail, setAttractionAddressDetail] =
     useState("상무역 3번 출구");
   const [attractionPrice, setAttractionPrice] = useState(1250);
   const [attractionLikeCount, setAttractionLikeCount] = useState(999);
-
+  const [attractionId, setAttractionId] = useState(0);
   // 유저 token
   const userData = jwt_decode(localStorage.getItem("token"));
 
@@ -71,6 +69,7 @@ const AttractionDetail = () => {
         setAttractionAddressDetail(response.data.description);
         setAttractionPrice(response.data.price);
         setAttractionLikeCount(response.data.likeCount);
+        setAttractionId(response.data.attractionId);
       })
       .catch(function (error) {
         if (error.response) {
@@ -110,38 +109,49 @@ const AttractionDetail = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Header />
+      <Container maxWidth="xl">
+        <Header />
+        <Container maxWidth="lg">
+          <Box
+            sx={{
+              padding: "50px",
+              paddingTop: "30px",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Grid container>
+              <Grid xs={1}></Grid>
 
-      {/* 여기부터 제작 */}
-      <Grid
-        container
-        sx={{
-          paddingTop: "10vh",
-          paddingLeft: "5%",
-        }}
-      >
-        <Grid item xs={5}>
-          <LeftSide
-            date={date}
-            attractionName={attractionName}
-            attractionPrice={attractionPrice}
-            attractionAddress={attractionAddress}
-          />
-        </Grid>
-        <Grid item xs={7}>
-          <RightSide
-            attractionName={attractionName}
-            attractionPrice={attractionPrice}
-            attractionAddress={attractionAddress}
-            attractionAddressDetail={attractionAddressDetail}
-            attractionLikeCount={attractionLikeCount}
-            setAttractionLikeCount={setAttractionLikeCount}
-            handleLikeClick={handleLikeClick}
-            likeClick={likeClick}
-            imgUrl={imgUrl}
-          />
-        </Grid>
-      </Grid>
+              <Grid item xs={3}>
+                <LeftSide
+                  date={date}
+                  attractionName={attractionName}
+                  attractionPrice={attractionPrice}
+                  attractionAddress={attractionAddress}
+                  imgUrl={makeOrderAttractionImg(attractionId)}
+                />
+              </Grid>
+              <Grid xs={0.2}></Grid>
+
+              <Grid item xs={6.8}>
+                <RightSide
+                  attractionName={attractionName}
+                  attractionPrice={attractionPrice}
+                  attractionAddress={attractionAddress}
+                  attractionAddressDetail={attractionAddressDetail}
+                  attractionLikeCount={attractionLikeCount}
+                  setAttractionLikeCount={setAttractionLikeCount}
+                  handleLikeClick={handleLikeClick}
+                  likeClick={likeClick}
+                  imgUrl={makeOrderAttractionImg(attractionId)}
+                />
+              </Grid>
+            </Grid>
+          </Box>
+        </Container>
+        <Footer />
+      </Container>
     </ThemeProvider>
   );
 };

@@ -19,6 +19,7 @@ import SearchRentcar from "./pages/Search/SearchRentcar";
 import MyPostAndLikeDetail from "./pages/userprofile/MyPostAndLikeDetail";
 import RentCarDetail from "./pages/rentcardetail/RentCarDetail";
 import StayDetail from "./pages/staydetail/StayDetail";
+import MyPost from "./pages/mypost/MyPost";
 
 function App() {
   return (
@@ -66,6 +67,8 @@ function App() {
           path="/attraction/:attractionId"
           element={<AttractionDetail />}
         />
+        {/* my post - 내가 쓴 게시글 */}
+        <Route path="/user/myposts" element={<MyPost />} />
 
         {/* 주소를 잘못입력하면 경로가 잘못되었다는 NoMatch 라는 페이지도 만들자. */}
       </Routes>
