@@ -4,6 +4,7 @@ import {
   Container,
   createTheme,
   ListItem,
+  Stack,
   TextField,
   ThemeProvider,
   Typography,
@@ -11,6 +12,7 @@ import {
 import axios from "axios";
 import React from "react";
 import { useState } from "react";
+import { format } from "date-fns";
 import { Calendar } from "react-date-range";
 
 const ModalTrainResult = () => {
@@ -34,9 +36,17 @@ const ModalTrainResult = () => {
   // train 리스트
   const [trainLists, setTrainLists] = useState([]);
 
+  // train 출발지, 도착지
   const [searchStartPoint, setSearchStartPoint] = useState("");
   const [searchEndPoint, setSearchEndPoint] = useState("");
-  const [searchDate, setSearchDate] = useState(null);
+
+  // 날짜 (기본값 오늘)
+  const [date, setDate] = useState(new Date());
+  // 달력 열기
+  const [openCal, setOpenCal] = useState(false);
+  const handleCalendar = () => {
+    setOpenCal(!openCal);
+  };
 
   // train 검색 조회
   function searchTrain() {
@@ -52,13 +62,18 @@ const ModalTrainResult = () => {
       )
       .then((response) => {
         setTrainLists(response.data);
+        handleCalendar();
+        console.log(searchStartPoint);
+        console.log(searchEndPoint);
         console.log(trainLists);
-        console.log(searchDate);
+        console.log(date);
       })
       .catch((error) => {
         console.log(error.response);
+        console.log(searchStartPoint);
+        console.log(searchEndPoint);
         console.log(trainLists);
-        console.log(searchDate);
+        console.log(date);
       });
   }
 
@@ -85,7 +100,22 @@ const ModalTrainResult = () => {
               setSearchEndPoint(e.target.value);
             }}
           />
-          <Calendar data={searchDate} />
+          <span
+            onClick={() => {
+              handleCalendar();
+            }}
+          >
+            {`${format(date, "yyyy/MM/dd")}`}
+          </span>
+          {openCal && (
+            <Calendar
+              onChange={(item) => setDate(item)}
+              date={date}
+              dateDisplayFormat={"yyyy.mm.dd"}
+              minDate={new Date()}
+            />
+          )}
+          ;
           <Button
             className="trainSearchButton"
             onClick={() => {
