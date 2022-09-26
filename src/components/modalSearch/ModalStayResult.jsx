@@ -74,8 +74,13 @@ const ModalStayResult = () => {
   }
 
   function listClick(stayList) {
-    console.log(stayList);
-    sessionStorage.setItem("stayData", JSON.stringify(stayList));
+    if (sessionStorage.getItem("stayData") === null) {
+      sessionStorage.setItem("stayData", JSON.stringify([]));
+    }
+
+    let stayLi = JSON.parse(sessionStorage.getItem("stayData"));
+    stayLi.push(stayList);
+    sessionStorage.setItem("stayData", JSON.stringify(stayLi));
   }
 
   return (
