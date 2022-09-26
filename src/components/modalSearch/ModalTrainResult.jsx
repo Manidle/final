@@ -14,6 +14,7 @@ import React from "react";
 import { useState } from "react";
 import { format } from "date-fns";
 import { Calendar } from "react-date-range";
+import { BASE_URL } from "../../baseUrl";
 
 const ModalTrainResult = () => {
   const theme = createTheme({
@@ -52,7 +53,10 @@ const ModalTrainResult = () => {
   function searchTrain() {
     axios
       .get(
-        `http://localhost:8080/api/auth/v1/filter/list/train/dep/arr?endPoint=${searchEndPoint}&startPoint=${searchStartPoint}`,
+        `${BASE_URL}/api/auth/v1/list/trainapi?date=${format(
+          date,
+          "yyyyMMdd"
+        )}&end=${searchEndPoint}&start=${searchStartPoint}`,
         {
           headers: {
             Authorization: `${localStorage.getItem("token")}`,
@@ -61,19 +65,20 @@ const ModalTrainResult = () => {
         }
       )
       .then((response) => {
-        setTrainLists(response.data);
-        handleCalendar();
-        console.log(searchStartPoint);
-        console.log(searchEndPoint);
-        console.log(trainLists);
-        console.log(date);
+        setTrainLists(response.data.response.body.items.item);
+        console.log(response.data.response.body.items.item);
+      })
+      .then(() => {
+        {
+          openCal === true ? handleCalendar() : setOpenCal(false);
+        }
       })
       .catch((error) => {
         console.log(error.response);
         console.log(searchStartPoint);
         console.log(searchEndPoint);
         console.log(trainLists);
-        console.log(date);
+        console.log(format(date, "yyyyMMdd"));
       });
   }
 
@@ -100,21 +105,22 @@ const ModalTrainResult = () => {
               setSearchEndPoint(e.target.value);
             }}
           />
-          <span
-            onClick={() => {
-              handleCalendar();
-            }}
-          >
-            {`${format(date, "yyyy/MM/dd")}`}
-          </span>
-          {openCal && (
-            <Calendar
-              onChange={(item) => setDate(item)}
-              date={date}
-              dateDisplayFormat={"yyyy.mm.dd"}
-              minDate={new Date()}
-            />
-          )}
+          <Box>
+            <span
+              onClick={() => {
+                handleCalendar();
+              }}
+            >
+              {`${format(date, "yyyy/MM/dd")}`}
+            </span>
+            {openCal && (
+              <Calendar
+                onChange={(item) => setDate(item)}
+                date={date}
+                dateDisplayFormat={"yyyy.mm.dd"}
+              />
+            )}
+          </Box>
           ;
           <Button
             className="trainSearchButton"
@@ -138,14 +144,14 @@ const ModalTrainResult = () => {
                   listClick(trainList);
                 }}
               >
-                <Typography>출발지: {trainList.startPonint}</Typography>
+                <Typography>출발지: {trainList.depplacename}</Typography>
                 <Typography>---›</Typography>
-                <Typography>도착지: {trainList.endPoint}</Typography>
-                <Typography>출발시각: {trainList.departureTime}</Typography>
+                <Typography>도착지: {trainList.arrplacename}</Typography>
+                <Typography>출발시각: {trainList.depplandtime}</Typography>
                 <Typography>---›</Typography>
-                <Typography>도착시각: {trainList.arriveTime}</Typography>
-                <Typography>요금: {trainList.trainPrice}</Typography>
-                <Typography>좋아요 수 : {trainList.likeCount}</Typography>
+                <Typography>도착시각: {trainList.arrplandtime}</Typography>
+                <Typography>요금: {trainList.adultcharge}</Typography>
+                {/* <Typography>좋아요 수 : {trainList.likeCount}</Typography> */}
               </ListItem>
             ))
           )}
