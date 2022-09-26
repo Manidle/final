@@ -1,6 +1,15 @@
-import { Grid, ListItem, Typography } from "@mui/material";
+import {
+  Card,
+  CardActionArea,
+  CardMedia,
+  Grid,
+  ListItem,
+  Typography,
+} from "@mui/material";
+import { Box } from "@mui/system";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { makeOrderAttractionImg } from "../../image/attractionImg";
 import TextProperty from "./TextProperty";
 
 const AttractionItem = ({ attraction }) => {
@@ -14,43 +23,61 @@ const AttractionItem = ({ attraction }) => {
     });
   }
   return (
-    <ListItem display="flex" key={attraction.attractionId} dense="true">
-      <Grid
-        container
-        margin="auto"
-        width="40rem"
-        display="flex"
-        justifyContent="space-between"
+    <>
+      <Card
+        onClick={() => {
+          handleAttractionDetail(attraction.attractionId);
+        }}
+        key={attraction.attractionId}
+        sx={{
+          width: "200px",
+          display: "flex",
+          justifyContent: "space-between",
+          margin: "10px",
+          borderRadius: "30px",
+        }}
       >
-        <Grid item xs={4}>
-          <TextProperty
-            onClick={() => {
-              handleAttractionDetail(attraction.attractionId);
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            image={makeOrderAttractionImg(attraction.attractionId)}
+            alt="Hot Posts"
+            height="200px"
+          />
+
+          <Box
+            sx={{
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              width: "100%",
+              bgcolor: "rgba(255, 255, 255, 0.8)",
+              padding: "10px",
             }}
           >
-            {attraction.name}
-          </TextProperty>
-        </Grid>
-        <Grid item xs={4}>
-          <TextProperty
-            onClick={() => {
-              handleAttractionDetail(attraction.attractionId);
-            }}
-          >
-            {attraction.address}
-          </TextProperty>{" "}
-        </Grid>
-        <Grid item xs={4}>
-          <TextProperty
-            onClick={() => {
-              handleAttractionDetail(attraction.attractionId);
-            }}
-          >
-            {attraction.likeCount}
-          </TextProperty>{" "}
-        </Grid>
-      </Grid>
-    </ListItem>
+            <div style={{ alignItems: "baseline" }}>
+              <Typography
+                fontSize="18px"
+                color="#52057B"
+                fontWeight="bold"
+                margin={1}
+                noWrap
+              >
+                {attraction.name}
+              </Typography>
+              <Typography
+                color="#892CDC"
+                fontWeight="bold"
+                fontSize="14px"
+                noWrap
+              >
+                {attraction.address}
+              </Typography>
+            </div>
+          </Box>
+        </CardActionArea>
+      </Card>
+    </>
   );
 };
 

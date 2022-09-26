@@ -3,6 +3,7 @@ import {
   Button,
   Container,
   createTheme,
+  Grid,
   ListItem,
   Pagination,
   Stack,
@@ -96,19 +97,34 @@ const SearchAttraction = () => {
         />
 
         <Box>
-          <AttractionColumn />
-          {attractions.length === 0 ? (
-            <NotInContents>관광지가 없습니다.</NotInContents>
-          ) : (
-            attractionListsPerPage
-              .currentData()
-              .map((attraction) => (
-                <AttractionItem
-                  key={attraction.attractionId}
-                  attraction={attraction}
-                />
-              ))
-          )}
+          <Box
+            xs={{
+              width: "10rem",
+            }}
+          >
+            <Grid
+              container
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                paddingLeft: "7rem",
+                paddingRight: "7rem",
+              }}
+            >
+              {attractions.length === 0 ? (
+                <NotInContents>관광지가 없습니다.</NotInContents>
+              ) : (
+                attractionListsPerPage.currentData().map((attraction) => (
+                  <Grid item xs={3}>
+                    <AttractionItem
+                      key={attraction.attractionId}
+                      attraction={attraction}
+                    />
+                  </Grid>
+                ))
+              )}
+            </Grid>
+          </Box>
         </Box>
         <Stack>
           <Pagination
