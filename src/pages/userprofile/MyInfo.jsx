@@ -7,7 +7,7 @@ const MyInfo = ({ user }) => {
       <Grid item xs="3" sx={{ paddingLeft: 5 }}>
         <Avatar
           alt="Profile IMG"
-          src="https://avatars.githubusercontent.com/u/90738604?v=4"
+          src={user.profileImg}
           sx={{ width: 100, height: 100 }}
         />
       </Grid>
@@ -16,9 +16,6 @@ const MyInfo = ({ user }) => {
           <Typography component="p">ID : {user.username}</Typography>
           <Typography component="p">NICKNAME : {user.nickname}</Typography>
           <Typography component="p">EMAIL : {user.email}</Typography>
-          <Typography component="p">
-            DESCRIPTION : {user.description}
-          </Typography>
         </Typography>
       </Grid>
     </Grid>

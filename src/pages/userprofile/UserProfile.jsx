@@ -6,6 +6,8 @@ import Header from "../../components/header/Header";
 import MyInfo from "./MyInfo";
 import MyPostAndLike from "./MyPostAndLike";
 import Wrapper from "./Wrapper";
+import jwt_decode from "jwt-decode";
+import { makeOrderProfileImg } from "../../image/profileImg";
 
 const UserProfile = () => {
   // 해당주소로 보내기
@@ -14,11 +16,13 @@ const UserProfile = () => {
     navigate(`/${props}`);
   }
 
+  const userData = jwt_decode(localStorage.getItem("token"));
+  console.log(userData);
   const user = {
-    username: "soul1234",
-    nickname: "소울치킨",
-    email: "soulfever01@naver.com",
-    description: "안녕하세요 어쩌고 저쩌고 자기소개",
+    username: userData.username,
+    nickname: userData.nickname,
+    email: userData.email,
+    profileImg: makeOrderProfileImg(userData.id),
   };
 
   return (
