@@ -112,73 +112,16 @@ const AttractionDetail = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container maxWidth="xl">
-        <Header />
-        <Box className="attractionContainer">
-          <Grid container columns={{ xs: 12 }}>
-            <Grid item xs={12} sm={8}>
-              <div className="attractionTopContainer">
-                {/* 관광지 옆 글자나 숫자를 클릭하면 해당 관광지역을 검색한 화면으로 */}
-                <Box className="attractionBoard" display="flex">
-                  관광지 ›{" "}
-                  <Typography color="info" fontWeight="bold">
-                    {attractionAddress}
-                  </Typography>
-                </Box>
-                <Box>
-                  <Typography variant="h5" fontWeight="bold">
-                    {attractionName}
-                  </Typography>
-                </Box>
-                <Box className="attractionTitleFooter">
-                  <Box className="attractionLikeCount" display="flex">
-                    <span onClick={handleLikeClick}>
-                      {likeClick ? (
-                        <FavoriteIcon
-                          color="info"
-                          onClick={() => {
-                            setAttractionLikeCount(attractionLikeCount - 1);
-                          }}
-                        />
-                      ) : (
-                        <FavoriteBorderIcon
-                          color="info"
-                          onClick={() => {
-                            setAttractionLikeCount(attractionLikeCount + 1);
-                          }}
-                        />
-                      )}
-                    </span>
-                    <Typography>{attractionLikeCount}</Typography>
-                  </Box>
-                </Box>
-              </div>
-              <Divider />
-
-              {/* 전반부 */}
-              <Box className="attractionDetail">
-                <br />
-                관광지 이름: {attractionName}
-                <br />
-                관광지 주소: {attractionAddress}
-                <br />
-                관광지 상세주소: {attractionAddressDetail}
-                <br />
-                관광지 좋아요: {attractionLikeCount}
-                <br />
-                관광지 가격: {attractionPrice}
-              </Box>
-              <Divider />
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <div className="recommendAttractionContainer">추천 관광지</div>
-            </Grid>
-          </Grid>
-        </Box>
-      </Container>
+      <Header />
 
       {/* 여기부터 제작 */}
-      <Grid container>
+      <Grid
+        container
+        sx={{
+          paddingTop: "10vh",
+          paddingLeft: "5%",
+        }}
+      >
         <Grid item xs={5}>
           <LeftSide
             date={date}
