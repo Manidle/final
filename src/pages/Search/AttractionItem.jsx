@@ -57,10 +57,9 @@ const AttractionItem = ({ attraction }) => {
           >
             <div style={{ alignItems: "baseline" }}>
               <Typography
-                fontSize="18px"
+                fontSize="16px"
                 color="#52057B"
                 fontWeight="bold"
-                margin={1}
                 noWrap
               >
                 {attraction.name}
