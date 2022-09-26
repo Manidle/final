@@ -12,12 +12,16 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../../baseUrl";
+import DashboardMyInfo from "../../components/dashboardmyinfo/DashboardMyInfo";
+import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import usePagination from "../../components/Pagination";
 import AttractionItem from "./AttractionItem";
 import NotInContents from "./NotInContents";
+import Wrapper from "./Wrapper";
 
 const AttractionLike = () => {
   const theme = createTheme({
@@ -47,6 +51,12 @@ const AttractionLike = () => {
     setPage(p);
     attractionListsPerPage.jump(p);
   };
+
+  const navigate = useNavigate();
+  function handleRoute(props) {
+    navigate(`/${props}`);
+  }
+
   function searchAllAttraction() {
     axios
       .get(BASE_URL + "/api/auth/v1/user/like/attraction/list", {
@@ -64,56 +74,50 @@ const AttractionLike = () => {
     searchAllAttraction();
   }, []);
 
-  // 검색어
-  const [searchAttraction, setSearchAttraction] = useState("");
-
-  function searchFilterAttraction() {
-    axios
-      .get(`${BASE_URL}/api/filter/list/attraction?search=${searchAttraction}`)
-      .then((response) => {
-        setAttractions(response.data);
-        console.log(searchAttraction);
-      })
-      .catch(function (error) {
-        console.log(error.response);
-        console.log(searchAttraction);
-      });
-  }
-
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth="lg">
         <Header />
 
-        <Box>
-          <Box
-            xs={{
-              width: "10rem",
+        <Box display="flex">
+          <DashboardMyInfo page="ATTRACTION" />
+          <Wrapper
+            name="MY ATTRACTION LIKE"
+            onClick={() => {
+              handleRoute("search/attraction");
             }}
           >
-            <Grid
-              container
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                paddingLeft: "7rem",
-                paddingRight: "7rem",
+            <Box
+              xs={{
+                width: "10rem",
               }}
             >
-              {attractions.length === 0 ? (
-                <NotInContents>관광지가 없습니다.</NotInContents>
-              ) : (
-                attractionListsPerPage.currentData().map((attraction) => (
-                  <Grid item xs={3}>
-                    <AttractionItem
-                      key={attraction.attractionId}
-                      attraction={attraction}
-                    />
-                  </Grid>
-                ))
-              )}
-            </Grid>
-          </Box>
+              <Grid
+                container
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                {attractions.length === 0 ? (
+                  <NotInContents>관광지가 없습니다.</NotInContents>
+                ) : (
+                  attractionListsPerPage.currentData().map((attraction) => (
+                    <Grid
+                      item
+                      xs={4}
+                      sx={{ display: "flex", justifyContent: "space-between" }}
+                    >
+                      <AttractionItem
+                        key={attraction.attractionId}
+                        attraction={attraction}
+                      />
+                    </Grid>
+                  ))
+                )}
+              </Grid>
+            </Box>
+          </Wrapper>
         </Box>
         <Stack>
           <Pagination
@@ -126,6 +130,7 @@ const AttractionLike = () => {
             }}
           />
         </Stack>
+        <Footer />
       </Container>
     </ThemeProvider>
   );
