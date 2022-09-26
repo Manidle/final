@@ -1,6 +1,7 @@
 import { Card, CardActionArea, CardMedia, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
+import { makeAttractionImg } from "../../image/attractionImg";
 
 const ContentCard = ({ attraction, handleRoute }) => {
   return (
@@ -20,7 +21,7 @@ const ContentCard = ({ attraction, handleRoute }) => {
       <CardActionArea>
         <CardMedia
           component="img"
-          image={attraction.src}
+          image={makeAttractionImg(attraction.attractionId)}
           alt="Hot Posts"
           height="200px"
         />
