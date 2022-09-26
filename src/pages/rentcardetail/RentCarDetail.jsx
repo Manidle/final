@@ -71,98 +71,46 @@ const RentCarDetail = () => {
     <ThemeProvider theme={theme}>
       <Container maxWidth="xl">
         <Header />
-        <Box className="stayContainer">
-          <Box className="stayTop">
-            <Box className="stayBoard" display="flex">
-              숙소 ›{" "}
-              <Typography color="info" fontWeight="bold">
-                {stayAddress}
-              </Typography>
-            </Box>
-            <Box>
-              <Typography variant="h5" fontWeight="bold">
-                {stayName}
-              </Typography>
-            </Box>
-            <Box className="stayTitleFooter">
-              <Box className="CheckInTime">
-                <Typography>가격: {stayPrice}</Typography>
-              </Box>
-              <Box className="stayLikeCount" display="flex">
-                <span onClick={handleLikeClick}>
-                  {likeClick ? (
-                    <FavoriteIcon
-                      color="info"
-                      onClick={() => {
-                        setStayLikeCount(stayLikeCount - 1);
-                      }}
-                    />
-                  ) : (
-                    <FavoriteBorderIcon
-                      color="info"
-                      onClick={() => {
-                        setStayLikeCount(stayLikeCount + 1);
-                      }}
-                    />
-                  )}
-                </span>
-                <Typography>{stayLikeCount}</Typography>
-              </Box>
-            </Box>
+        <Container maxWidth="lg">
+          <Box
+            sx={{
+              padding: "50px",
+              paddingTop: "30px",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Grid container>
+              <Grid xs={1}></Grid>
+              <Grid xs={3}>
+                <LeftSide
+                  imgUrl={imgUrl}
+                  stayPrice={stayPrice}
+                  stayName={stayName}
+                />
+              </Grid>
+              <Grid xs={0.2}></Grid>
+
+              <Grid xs={6.8}>
+                <RightSide
+                  stayAddress={stayAddress}
+                  stayLikeCount={stayLikeCount}
+                  stayName={stayName}
+                  stayPrice={stayPrice}
+                  stayCheckin={stayCheckin}
+                  stayCheckOut={stayCheckOut}
+                  imgUrl={imgUrl}
+                />
+              </Grid>
+              <Grid xs={1}></Grid>
+            </Grid>
           </Box>
-          <Divider />
-          <Box className="stayDetail">
-            <br />
-            숙소 이름: {stayName}
-            <br />
-            숙소 주소: {stayAddress}
-            <br />
-            숙소 좋아요: {stayLikeCount}
-            <br />
-            숙소 가격: {stayPrice}
-            <br />
-            숙소 체크인, 체크아웃: {stayCheckin} , {stayCheckOut}
-          </Box>
-          <Box>
-            <div className="recommendStayContainer">추천 숙소</div>
-          </Box>
-        </Box>
+        </Container>
       </Container>
       <br />
       <br />
       <br />
       여기부터 다시 시작
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <Grid container>
-          <Grid xs={1}></Grid>
-          <Grid xs={3.9}>
-            <LeftSide
-              imgUrl={imgUrl}
-              stayPrice={stayPrice}
-              stayName={stayName}
-            />
-          </Grid>
-          <Grid xs={0.2}></Grid>
-
-          <Grid xs={5.9}>
-            <RightSide
-              stayAddress={stayAddress}
-              stayLikeCount={stayLikeCount}
-              stayName={stayName}
-              stayPrice={stayPrice}
-              stayCheckin={stayCheckin}
-              stayCheckOut={stayCheckOut}
-              imgUrl={imgUrl}
-            />
-          </Grid>
-          <Grid xs={1}></Grid>
-        </Grid>
-      </Box>
     </ThemeProvider>
   );
 };
