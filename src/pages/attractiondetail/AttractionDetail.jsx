@@ -37,8 +37,9 @@ const AttractionDetail = () => {
     },
   });
 
-  const postProps = useLocation();
-
+  const attractionPath = useLocation().pathname;
+  console.log("로케", useLocation());
+  console.log("패쓰네임", useLocation().pathname);
   const date = "2022.03.21";
   const imgUrl =
     "http://news.samsungdisplay.com/wp-content/uploads/2018/08/8.jpg";
@@ -57,15 +58,12 @@ const AttractionDetail = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `${BASE_URL}/api/auth/v1/attraction/${postProps.state.attractionId}`,
-        {
-          headers: {
-            Authorization: `${localStorage.getItem("token")}`,
-            "Content-Type": "application/json; charset=UTF-8",
-          },
-        }
-      )
+      .get(`${BASE_URL}/api/auth/v1${attractionPath}`, {
+        headers: {
+          Authorization: `${localStorage.getItem("token")}`,
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+      })
       .then((response) => {
         console.log(response.data);
         setAttractionName(response.data.name);

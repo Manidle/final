@@ -17,6 +17,7 @@ import SearchStay from "./pages/Search/SearchStay";
 import SearchTrain from "./pages/Search/SearchTrain";
 import SearchRentcar from "./pages/Search/SearchRentcar";
 import MyPostAndLikeDetail from "./pages/userprofile/MyPostAndLikeDetail";
+import RentCarDetail from "./pages/rentcardetail/RentCarDetail";
 
 function App() {
   return (
@@ -58,6 +59,8 @@ function App() {
         {/* Stay detail */}
         <Route path="/stay/:stayId" element={<AttractionDetail />} />
         {/* Attraction detail */}
+        <Route path="/rentcar/:rentcarId" element={<RentCarDetail />} />
+        {/* rentcar detail */}
         <Route
           path="/attraction/:attractionId"
           element={<AttractionDetail />}
