@@ -60,7 +60,12 @@ const LeftSide = ({ imgUrl, carSort, carName }) => {
             </Wrapper>
             <Wrapper marginSize="0.3rem" bgColor="#C1C1C1">
               <TextProperty fontColor="white" fontSize="16" fontWeight="normal">
-                예약하기
+                <a
+                  style={{ textDecoration: "none", color: "white" }}
+                  href="https://www.rentalcars.com/?affiliateCode=google&preflang=ko&label=generic-Vefp**VrmxocTPgCIRhwugS433095123808&ws=&ppc_placement=&ppc_target=&ppc_param1=&ppc_param2=&aceid=&adposition=&ppc_network=g&feeditemid=&ppc_targetid=aud-96343247783:kwd-3484178920&loc_physical_ms=1009871&loc_interest_ms=&ppc_device=c&ppc_devicemodel=&gclid=CjwKCAjwm8WZBhBUEiwA178UnInxIFeCxtmvkPlgDw6vRYikJV1MM2txjLKNL3KTP8bi_laRjj9MHBoCqVMQAvD_BwE"
+                >
+                  예약하기
+                </a>
               </TextProperty>
             </Wrapper>
           </Wrapper>

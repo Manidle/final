@@ -70,7 +70,12 @@ const LeftSide = ({
             </Wrapper>
             <Wrapper marginSize="0.3rem" bgColor="#C1C1C1">
               <TextProperty fontColor="white" fontSize="16" fontWeight="normal">
-                예약하기
+                <a
+                  style={{ textDecoration: "none", color: "white" }}
+                  href="https://www.tripadvisor.co.kr/Attractions-g294196-Activities-South_Korea.html"
+                >
+                  예약하기
+                </a>
               </TextProperty>
             </Wrapper>
           </Wrapper>
