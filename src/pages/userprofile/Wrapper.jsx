@@ -10,31 +10,33 @@ import React from "react";
 
 const Wrapper = ({ name, children, onClick }) => {
   return (
-    <Card
-      variant
-      sx={{
-        backgroundColor: "#F2E2FC",
-        marginBottom: 2,
-        borderRadius: 3,
-        padding: 1,
-      }}
-    >
-      <Box
+    <Box sx={{ paddingTop: "5px" }}>
+      <Card
+        variant
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
+          backgroundColor: "#F2E2FC",
+          marginBottom: 2,
+          borderRadius: 3,
+          padding: 1,
         }}
       >
-        <Typography padding={2}>{name}</Typography>
-        <CardActions>
-          <Button sx={{ color: "#892CDC", fontSize: 18 }} onClick={onClick}>
-            전체 보기
-          </Button>
-        </CardActions>
-      </Box>
-      <CardContent>{children}</CardContent>
-    </Card>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <Typography padding={2}>{name}</Typography>
+          <CardActions>
+            <Button sx={{ color: "#892CDC", fontSize: 18 }} onClick={onClick}>
+              전체 보기
+            </Button>
+          </CardActions>
+        </Box>
+        <CardContent>{children}</CardContent>
+      </Card>
+    </Box>
   );
 };
 
