@@ -9,89 +9,46 @@ import {
 } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import HotPost from "./HotPost";
-
-const hotPosts = [
-  {
-    postId: 1,
-    title: "맛있는 매운탕 코스",
-    contents: "test contents",
-    likeCount: 1,
-    readCount: 1,
-    boardName: "서울",
-  },
-  {
-    postId: 2,
-    title: "맛있는 매운탕 코스",
-    contents: "test contents",
-    likeCount: 1111115,
-    readCount: 1,
-    boardName: "경주",
-  },
-  {
-    postId: 3,
-    title: "맛있는 매운탕 코스",
-    contents: "test contents",
-    likeCount: 11111,
-    readCount: 1,
-    boardName: "부산",
-  },
-  {
-    postId: 4,
-    title: "맛있는 매운탕 코스",
-    contents: "test contents",
-    likeCount: 3133,
-    readCount: 1,
-    boardName: "인천",
-  },
-  {
-    postId: 5,
-    title: "맛있는 매운탕 코스",
-    contents: "test contents",
-    likeCount: 123,
-    readCount: 1,
-    boardName: "대구",
-  },
-  {
-    postId: 5,
-    title: "맛있는 매운탕 코스",
-    contents: "test contents",
-    likeCount: 123,
-    readCount: 1,
-    boardName: "광주",
-  },
-  {
-    postId: 6,
-    title: "맛있는 매운탕 코스",
-    contents: "test contents",
-    likeCount: 1,
-    readCount: 1,
-    boardName: "서울",
-  },
-  {
-    postId: 7,
-    title: "맛있는 매운탕 코스",
-    contents: "test contents",
-    likeCount: 15,
-    readCount: 1,
-    boardName: "경주",
-  },
-  {
-    postId: 8,
-    title: "맛있는 매운탕ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇ 코스",
-    contents: "test contents",
-    likeCount: 111,
-    readCount: 1,
-    boardName: "부산",
-  },
-];
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const HotPostCardView = ({ handleRoute }) => {
+  const [hotPosts, setHotPosts] = useState([]);
+
+  function getHotPosts() {
+    axios
+      .get(`http://localhost:8080/api/v1/filter/list/post/desc/top`, {
+        headers: {
+          Authorization: `${localStorage.getItem("token")}`,
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setHotPosts(response.data);
+      });
+  }
+
+  useEffect(() => {
+    getHotPosts();
+  }, []);
+
+  const navigate = useNavigate();
+
+  function handler(props) {
+    navigate(`/post/${props}`, {
+      state: {
+        postId: props,
+      },
+    });
+  }
   return (
     <CardContent>
       <Grid container columnSpacing={5} rowSpacing={1} paddingX={2}>
         {hotPosts.map((post) => (
           <Grid item key={post.postId} md={4} xs={12}>
-            <HotPost post={post} handleRoute={handleRoute} />
+            <HotPost post={post} handleRoute={handler} />
           </Grid>
         ))}
       </Grid>
