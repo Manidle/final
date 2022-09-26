@@ -4,7 +4,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../baseUrl";
-import DashboardCommunity from "../../components/dashboardcommunity/DashboardCommunity";
+import DashboardMyInfo from "../../components/dashboardmyinfo/DashboardMyInfo";
 import Header from "../../components/header/Header";
 import usePagination from "../../components/Pagination";
 import Post from "../board/Post";
@@ -79,7 +79,7 @@ const MyPost = () => {
     <Container maxWidth="lg">
       <Header />
       <Box display="flex">
-        <DashboardCommunity />
+        <DashboardMyInfo page="MY POST" />
 
         <PostListOutLine>
           <Box
@@ -89,17 +89,7 @@ const MyPost = () => {
               width: "40rem",
               paddingBottom: "1rem",
             }}
-          >
-            <PostSearch />
-            <Button
-              variant="none"
-              className="communityPostingButton"
-              onClick={handlePosting}
-              sx={{ margin: "3px", color: "#892CDC", borderRadius: "1rem" }}
-            >
-              글쓰기
-            </Button>
-          </Box>
+          ></Box>
 
           <div className="communityBoard">
             <PostColumn />
