@@ -18,6 +18,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CategoryBar from "../../components/CategoryBar";
 import Header from "../../components/header/Header";
+import CloseIcon from "@mui/icons-material/Close";
 import "./posting.css";
 import jwt_decode from "jwt-decode";
 import { BASE_URL } from "../../baseUrl";
@@ -282,6 +283,12 @@ const Posting = () => {
                 aria-describedby="modal-modal-description"
               >
                 <Box sx={modalStyle}>
+                  <CloseIcon
+                    fontSize="large"
+                    color="secondary"
+                    sx={{ position: "absolute", right: "5%" }}
+                    onClick={handleModal}
+                  />
                   <Typography
                     id="modal-modal-title"
                     variant="h6"
