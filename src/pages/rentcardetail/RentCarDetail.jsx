@@ -14,7 +14,7 @@ import { useState } from "react";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-
+import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import RightSide from "./RightSide";
 import LeftSide from "./LeftSide";
@@ -130,11 +130,8 @@ const RentCarDetail = () => {
             </Grid>
           </Box>
         </Container>
+        <Footer />
       </Container>
-      <br />
-      <br />
-      <br />
-      여기부터 다시 시작
     </ThemeProvider>
   );
 };
