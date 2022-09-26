@@ -124,6 +124,7 @@ const AttractionDetail = () => {
             attractionName={attractionName}
             attractionPrice={attractionPrice}
             attractionAddress={attractionAddress}
+            imgUrl={makeOrderAttractionImg(attractionId)}
           />
         </Grid>
         <Grid item xs={7}>
