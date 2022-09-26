@@ -3,6 +3,7 @@ import {
   Button,
   Container,
   createTheme,
+  Divider,
   ListItem,
   Snackbar,
   TextField,
@@ -14,6 +15,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { BASE_URL } from "../../baseUrl";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const ModalAttractionResult = () => {
   const theme = createTheme({
@@ -152,13 +154,26 @@ const ModalAttractionResult = () => {
                   handleSnackbar();
                 }}
               >
-                <Typography>관광지 이름:{attractionList.name}</Typography>
-                <Typography>관광지 주소:{attractionList.address}</Typography>
-                <Typography>
-                  관광지 설명: 관광지에 대한 설명 attractionList.description 이
-                  들어갈겁니다.
-                </Typography>
-                <Typography>좋아요 수:{attractionList.likeCount}</Typography>
+                <Box>
+                  <FavoriteIcon color="info" />
+                  <Typography>{attractionList.likeCount}</Typography>
+                </Box>
+                <Divider variant="middle" />
+                <Box>
+                  <Typography color="secondary" fontWeight="bold">
+                    {attractionList.name}
+                  </Typography>
+                </Box>
+                <Divider variant="middle" />
+                <Box>
+                  <Typography fontWeight="bold">설명</Typography>
+                  <Typography>{attractionList.description}</Typography>
+                </Box>
+                <Divider variant="middle" />
+                <Box>
+                  <Typography fontWeight="bold">주소</Typography>
+                  <Typography>{attractionList.address}</Typography>
+                </Box>
               </ListItem>
             ))
           )}

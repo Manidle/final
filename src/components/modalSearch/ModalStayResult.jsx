@@ -2,6 +2,7 @@ import {
   Button,
   Container,
   createTheme,
+  Divider,
   ListItem,
   Snackbar,
   TextField,
@@ -13,6 +14,7 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { BASE_URL } from "../../baseUrl";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const ModalStayResult = () => {
   const theme = createTheme({
@@ -156,10 +158,21 @@ const ModalStayResult = () => {
                   handleSnackbar();
                 }}
               >
-                <Typography>숙소 이름: {stayList.name}</Typography>
-                <Typography>숙소 주소: {stayList.address}</Typography>
-                <Typography>숙소 상세주소: {stayList.detailAddress}</Typography>
-                <Typography>숙소 좋아요 수: {stayList.likeCount}</Typography>
+                <Box>
+                  <FavoriteIcon color="info" />
+                  <Typography>{stayList.likeCount}</Typography>
+                </Box>
+                <Divider variant="middle" />
+                <Box>
+                  <Typography color="secondary" fontWeight="bold">
+                    {stayList.name}
+                  </Typography>
+                </Box>
+                <Divider variant="middle" />
+                <Box>
+                  <Typography fontWeight="bold">숙소 주소</Typography>
+                  <Typography>{stayList.address}</Typography>
+                </Box>
               </ListItem>
             ))
           )}

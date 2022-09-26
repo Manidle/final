@@ -69,7 +69,6 @@ const ModalTrainResult = () => {
       )
       .then((response) => {
         setTrainLists(response.data.response.body.items.item);
-        console.log(response.data.response.body.items.item);
       })
       .then(() => {
         {
@@ -86,7 +85,6 @@ const ModalTrainResult = () => {
   }
 
   function listClick(trainList) {
-    console.log(trainList);
     sessionStorage.setItem("trainData", JSON.stringify(trainList));
   }
 
