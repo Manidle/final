@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const HotPostCardView = ({ handleRoute }) => {
+const HotPostCardView = ({ handleRoute, view }) => {
   const [hotPosts, setHotPosts] = useState([]);
 
   function getHotPosts() {
@@ -45,13 +45,23 @@ const HotPostCardView = ({ handleRoute }) => {
   }
   return (
     <CardContent>
-      <Grid container columnSpacing={5} rowSpacing={1} paddingX={2}>
-        {hotPosts.map((post) => (
-          <Grid item key={post.postId} md={4} xs={12}>
-            <HotPost post={post} handleRoute={handler} />
-          </Grid>
-        ))}
-      </Grid>
+      {view === "main" ? (
+        <Grid container columnSpacing={5} rowSpacing={1} paddingX={2}>
+          {hotPosts.map((post) => (
+            <Grid item key={post.postId} md={4} xs={12}>
+              <HotPost post={post} handleRoute={handler} />
+            </Grid>
+          ))}
+        </Grid>
+      ) : (
+        <Grid container columnSpacing={5} rowSpacing={1} paddingX={2}>
+          {hotPosts.map((post) => (
+            <Grid item key={post.postId} xs={12}>
+              <HotPost post={post} handleRoute={handler} />
+            </Grid>
+          ))}
+        </Grid>
+      )}
     </CardContent>
   );
 };
