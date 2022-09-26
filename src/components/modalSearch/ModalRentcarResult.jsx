@@ -3,7 +3,9 @@ import {
   Button,
   Container,
   createTheme,
+  Divider,
   ListItem,
+  Snackbar,
   TextField,
   ThemeProvider,
   Typography,
@@ -13,6 +15,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { BASE_URL } from "../../baseUrl";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const ModalRentcarResult = () => {
   const theme = createTheme({
@@ -84,10 +87,42 @@ const ModalRentcarResult = () => {
     sessionStorage.setItem("rentcarData", JSON.stringify(rentcarLi));
   }
 
+  // snackbar
+  const [stateSnackbar, setStateSnackbar] = React.useState({
+    openSnackbar: false,
+    vertical: "top",
+    horizontal: "center",
+  });
+
+  const { vertical, horizontal, openSnackbar } = stateSnackbar;
+  const handleSnackbar = () => {
+    setStateSnackbar({ ...stateSnackbar, openSnackbar: !openSnackbar });
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
-        <Box className="modalSearch">
+        <Snackbar
+          color="secondary"
+          anchorOrigin={{ vertical, horizontal }}
+          open={openSnackbar}
+          onClose={handleSnackbar}
+          message="렌트카 등록에 성공했습니다!"
+          key={vertical + horizontal}
+        />
+        <Box
+          className="modalSearch"
+          display="flex"
+          justifyContent="center"
+          margin="3px"
+        >
+          <Button
+            onClick={() => {
+              searchRentcarAll();
+            }}
+          >
+            전체 조회
+          </Button>
           <TextField
             placeholder="렌트카를 검색하세요"
             size="small"
@@ -115,17 +150,32 @@ const ModalRentcarResult = () => {
                 key={rentcarList.rentCarId}
                 onClick={() => {
                   listClick(rentcarList);
+                  handleSnackbar();
                 }}
               >
-                <Typography>
-                  렌트카 회사 이름: {rentcarList.companyName}
-                </Typography>
-                <Typography>렌트카 주소 : {rentcarList.address}</Typography>
-                <Typography>렌트카 차 이름: {rentcarList.carName}</Typography>
-                <Typography>렌트카 차 종류: {rentcarList.carSort}</Typography>
-                <Typography>
-                  렌트카 좋아요 수: {rentcarList.likeCount}
-                </Typography>
+                <Box>
+                  <FavoriteIcon color="info" />
+                  <Typography>{rentcarList.likeCount}</Typography>
+                </Box>
+                <Divider variant="middle" />
+                <Box>
+                  <Typography color="secondary" fontWeight="bold">
+                    {rentcarList.companyName}
+                  </Typography>
+                </Box>
+                <Divider variant="middle" />
+                <Box>
+                  <Typography>차종</Typography>
+                  <Typography>{rentcarList.carSort}</Typography>
+                  <Typography fontWeight="bold" color="info">
+                    {rentcarList.carName}
+                  </Typography>
+                </Box>
+                <Divider variant="middle" />
+                <Box>
+                  <Typography>렌트카 주소</Typography>
+                  <Typography>{rentcarList.address}</Typography>
+                </Box>
               </ListItem>
             ))
           )}

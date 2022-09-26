@@ -7,9 +7,12 @@ import {
   ThemeProvider,
   Typography,
   Box,
+  Card,
+  CardContent,
 } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useState, useEffect } from "react";
 import React from "react";
 import axios from "axios";
@@ -19,6 +22,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { BASE_URL } from "../../baseUrl";
 import Footer from "../../components/footer/Footer";
+import { borderColor } from "@mui/system";
+import HotPost from "../../components/hotposts/HotPost";
+import HotPostCardView from "../../components/hotposts/HotPostCardView";
 
 const PostDetail = () => {
   const theme = createTheme({
@@ -33,6 +39,9 @@ const PostDetail = () => {
       },
       info: {
         main: "#892CDC",
+      },
+      disabled: {
+        main: "#8C8C8C",
       },
     },
   });
@@ -50,6 +59,7 @@ const PostDetail = () => {
   }
 
   // 게시글 데이터 가져오기
+  const [postData, setPostData] = useState([]);
   const [postBoard, setPostBoard] = useState("");
   const [postTitle, setPostTitle] = useState("");
   const [postContents, setPostContents] = useState("");
@@ -70,6 +80,7 @@ const PostDetail = () => {
       })
       .then((response) => {
         console.log(response.data);
+        setPostData(response.data);
         setPostBoard(response.data.boardId);
         setPostTitle(response.data.title);
         setPostContents(response.data.contents);
@@ -163,94 +174,151 @@ const PostDetail = () => {
         <Header />
         <div className="postContainer">
           <Box className="postWrapper" flexGrow={1}>
-            <Grid container columns={{ xs: 12 }}>
-              <Grid item xs={12} sm={8}>
-                <div className="postTopContainer">
-                  <Box className="postBoard" display="flex">
-                    게시판 ›{" "}
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={12} md={8}>
+                <Box className="postTopContainer">
+                  <Box className="postBoard" display="flex" margin="1%">
+                    게시판 ›
                     <Typography
                       color="info"
                       fontWeight="bold"
+                      marginLeft="1%"
                       onClick={() => {
-                        handleRoute(`board/${postBoard}`);
+                        handleRoute(`board/${postData.boardId}`);
                       }}
                     >
-                      {postBoard}
+                      {postData.boardName}
                     </Typography>
                   </Box>
-                  <div className="postTitle">
+                  <Box
+                    className="postTitle"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="space-between"
+                    margin="1%"
+                  >
                     <Typography variant="h5" fontWeight="bold">
-                      {postTitle}
+                      {postData.title}
                     </Typography>
-                  </div>
-                  <div className="postTitleFooter">
-                    <div className="postTime">게시글 작성시간</div>
-                    <div className="postViewCount">조회수 표시</div>
-                    <Box className="postLikeCount" display="flex">
-                      <span onClick={handleLikeClick}>
-                        {likeClick ? (
-                          <FavoriteIcon
-                            color="info"
-                            onClick={() => {
-                              setPostLikeCount(postLikeCount - 1);
-                            }}
-                          />
-                        ) : (
-                          <FavoriteBorderIcon
-                            color="info"
-                            onClick={() => {
-                              setPostLikeCount(postLikeCount + 1);
-                            }}
-                          />
-                        )}
-                      </span>
-                      <Typography>{postLikeCount}</Typography>
-                    </Box>
-                    <Button
-                      className="postDeleteButton"
-                      onClick={deletePost}
-                      color="error"
+                    <Box
+                      className="rightTitle"
+                      display="flex"
+                      marginRight="4%"
+                      alignItems="center"
                     >
-                      삭제
-                    </Button>
-                  </div>
-                </div>
-                <Divider />
-                <Box>
-                  <br />
-                  게시판: {postBoard}
-                  <br />
-                  게시글 제목: {postTitle}
-                  <br />
-                  게시글 내용: {postContents}
-                  <br />
-                  게시글 좋아요 수: {postLikeCount}
-                  <br />
-                  게시글 작성자: {postUser}
-                  <br />
-                  게시글 숙소리스트:{" "}
-                  {postStayList.map((postStay) => (
-                    <Typography>{postStay.name}</Typography>
-                  ))}
-                  <br />
-                  게시글 관광지리스트:{" "}
-                  {postAttractionList.map((postAttraction) => (
-                    <Typography>{postAttraction.name}</Typography>
-                  ))}
-                  <br />
-                  게시글 렌트카리스트:{" "}
-                  {postRentCarList.map((postRentCar) => (
-                    <Typography>{postRentCar.companyName}</Typography>
-                  ))}
-                  <br />
-                  게시글 기차리스트: {postTrainList}
-                  <br />
+                      <Typography color="secondary">
+                        {postData.nickname}
+                      </Typography>
+                      {postData.userId === userData.id ? (
+                        <Button
+                          className="postDeleteButton"
+                          onClick={deletePost}
+                          color="error"
+                        >
+                          삭제
+                        </Button>
+                      ) : (
+                        <></>
+                      )}
+                      <Box
+                        className="postViewCount"
+                        display="flex"
+                        margin="1%"
+                        alignItems="center"
+                      >
+                        <VisibilityIcon color="disabled" />
+                        <Typography>{postData.readCount}</Typography>
+                      </Box>
+                      <Box
+                        className="postLikeCount"
+                        display="flex"
+                        alignItems="center"
+                        margin="1%"
+                      >
+                        <Box onClick={handleLikeClick} margin="1%">
+                          {likeClick ? (
+                            <FavoriteIcon
+                              color="info"
+                              onClick={() => {
+                                setPostLikeCount(postData.likeCount - 1);
+                              }}
+                            />
+                          ) : (
+                            <FavoriteBorderIcon
+                              color="disabled"
+                              onClick={() => {
+                                setPostLikeCount(postData.likeCount + 1);
+                              }}
+                            />
+                          )}
+                        </Box>
+                        <Typography>{postData.likeCount}</Typography>
+                      </Box>
+                    </Box>
+                  </Box>
+                  <Box className="postTitleFooter" display="flex"></Box>
                 </Box>
+                <Divider />
+                <Grid container spacing={2} marginTop="1%">
+                  <Grid item xs={12} sm={12} md={3} className="stayList">
+                    <Box sx={{ p: 2, display: "grid" }}>
+                      <Typography margin="1%" fontWeight="bold">
+                        내가 고른 숙소
+                      </Typography>
+                      <CardContent>
+                        {postStayList.map((postStay) => (
+                          <Typography>{postStay.name}</Typography>
+                        ))}
+                      </CardContent>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} sm={12} md={3} clanssName="attractionList">
+                    <Box sx={{ p: 2, display: "grid" }}>
+                      <Typography margin="1%" fontWeight="bold">
+                        내가 고른 관광지
+                      </Typography>
+                      <CardContent>
+                        {postAttractionList.map((postAttraction) => (
+                          <Typography>{postAttraction.name}</Typography>
+                        ))}
+                      </CardContent>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} sm={12} md={3} className="rentcarList">
+                    <Box sx={{ p: 2, display: "grid" }}>
+                      <Typography margin="1%" fontWeight="bold">
+                        내가 고른 렌터카
+                      </Typography>
+                      <CardContent>
+                        {postRentCarList.map((postRentCar) => (
+                          <Typography>{postRentCar.companyName}</Typography>
+                        ))}
+                      </CardContent>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} sm={12} md={3} className="trainList">
+                    <Box sx={{ p: 2, display: "grid" }}>
+                      <Typography margin="1%" fontWeight="bold">
+                        내가 고른 기차
+                      </Typography>
+                      <CardContent>
+                        {postTrainList.map((postTrain) => (
+                          <Typography>{postTrain.id}</Typography>
+                        ))}
+                      </CardContent>
+                    </Box>
+                  </Grid>
+                </Grid>
+                <Typography padding="1%">{postData.contents}</Typography>
                 <Divider />
                 <Reply postId={postProps.state.postId} />
               </Grid>
-              <Grid item xs={12} sm={4}>
-                <div className="recommendPostContainer">추천게시글</div>
+              <Grid item xs={12} sm={12} md={4}>
+                <Divider />
+                <Typography margin="5%" color="info" fontWeight="bold">
+                  추천 게시글
+                </Typography>
+                <HotPostCardView />
               </Grid>
             </Grid>
           </Box>

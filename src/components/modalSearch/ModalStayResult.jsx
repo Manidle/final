@@ -2,7 +2,9 @@ import {
   Button,
   Container,
   createTheme,
+  Divider,
   ListItem,
+  Snackbar,
   TextField,
   ThemeProvider,
   Typography,
@@ -12,6 +14,7 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { BASE_URL } from "../../baseUrl";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const ModalStayResult = () => {
   const theme = createTheme({
@@ -52,9 +55,9 @@ const ModalStayResult = () => {
       });
   }
 
-  useEffect(() => {
-    searchStayAll();
-  }, []);
+  // useEffect(() => {
+  //   searchStayAll();
+  // }, []);
 
   // stay 검색어
   const [searchWord, setSearchWord] = useState("");
@@ -83,10 +86,42 @@ const ModalStayResult = () => {
     sessionStorage.setItem("stayData", JSON.stringify(stayLi));
   }
 
+  // snackbar
+  const [stateSnackbar, setStateSnackbar] = React.useState({
+    openSnackbar: false,
+    vertical: "top",
+    horizontal: "center",
+  });
+
+  const { vertical, horizontal, openSnackbar } = stateSnackbar;
+  const handleSnackbar = () => {
+    setStateSnackbar({ ...stateSnackbar, openSnackbar: !openSnackbar });
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
-        <Box className="modalSearch">
+        <Snackbar
+          color="secondary"
+          anchorOrigin={{ vertical, horizontal }}
+          open={openSnackbar}
+          onClose={handleSnackbar}
+          message="숙소 등록에 성공했습니다!"
+          key={vertical + horizontal}
+        />
+        <Box
+          className="modalSearch"
+          display="flex"
+          justifyContent="center"
+          margin="3px"
+        >
+          <Button
+            onClick={() => {
+              searchStayAll();
+            }}
+          >
+            전체 조회
+          </Button>
           <TextField
             placeholder="숙소를 검색하세요"
             size="small"
@@ -120,12 +155,24 @@ const ModalStayResult = () => {
                 key={stayList.stayId}
                 onClick={() => {
                   listClick(stayList);
+                  handleSnackbar();
                 }}
               >
-                <Typography>숙소 이름: {stayList.name}</Typography>
-                <Typography>숙소 주소: {stayList.address}</Typography>
-                <Typography>숙소 상세주소: {stayList.detailAddress}</Typography>
-                <Typography>숙소 좋아요 수: {stayList.likeCount}</Typography>
+                <Box>
+                  <FavoriteIcon color="info" />
+                  <Typography>{stayList.likeCount}</Typography>
+                </Box>
+                <Divider variant="middle" />
+                <Box>
+                  <Typography color="secondary" fontWeight="bold">
+                    {stayList.name}
+                  </Typography>
+                </Box>
+                <Divider variant="middle" />
+                <Box>
+                  <Typography fontWeight="bold">숙소 주소</Typography>
+                  <Typography>{stayList.address}</Typography>
+                </Box>
               </ListItem>
             ))
           )}

@@ -27,7 +27,7 @@ const Home = () => {
               handleRoute("board");
             }}
           >
-            <HotArticle handleRoute={handleRoute} />
+            <HotArticle handleRoute={handleRoute} view="main" />
           </Wrapper>
           <Wrapper
             title="HOT ATTRACTION"

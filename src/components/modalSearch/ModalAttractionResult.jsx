@@ -3,7 +3,9 @@ import {
   Button,
   Container,
   createTheme,
+  Divider,
   ListItem,
+  Snackbar,
   TextField,
   ThemeProvider,
   Typography,
@@ -13,6 +15,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { BASE_URL } from "../../baseUrl";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const ModalAttractionResult = () => {
   const theme = createTheme({
@@ -53,9 +56,9 @@ const ModalAttractionResult = () => {
       });
   }
 
-  useEffect(() => {
-    searchAttractionAll();
-  }, []);
+  // useEffect(() => {
+  //   searchAttractionAll();
+  // }, []);
 
   // attraction 검색어
   const [searchWord, setSearchWord] = useState("");
@@ -85,10 +88,42 @@ const ModalAttractionResult = () => {
     sessionStorage.setItem("attractionData", JSON.stringify(attractionLi));
   }
 
+  // snackbar
+  const [stateSnackbar, setStateSnackbar] = React.useState({
+    openSnackbar: false,
+    vertical: "top",
+    horizontal: "center",
+  });
+
+  const { vertical, horizontal, openSnackbar } = stateSnackbar;
+  const handleSnackbar = () => {
+    setStateSnackbar({ ...stateSnackbar, openSnackbar: !openSnackbar });
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
-        <Box className="modalSearch">
+        <Snackbar
+          color="secondary"
+          anchorOrigin={{ vertical, horizontal }}
+          open={openSnackbar}
+          onClose={handleSnackbar}
+          message="관광지 등록에 성공했습니다!"
+          key={vertical + horizontal}
+        />
+        <Box
+          className="modalSearch"
+          display="flex"
+          justifyContent="center"
+          margin="3px"
+        >
+          <Button
+            onClick={() => {
+              searchAttractionAll();
+            }}
+          >
+            전체 조회
+          </Button>
           <TextField
             placeholder="관광지를 검색하세요"
             size="small"
@@ -116,15 +151,29 @@ const ModalAttractionResult = () => {
                 key={attractionList.attractionId}
                 onClick={() => {
                   listClick(attractionList);
+                  handleSnackbar();
                 }}
               >
-                <Typography>관광지 이름:{attractionList.name}</Typography>
-                <Typography>관광지 주소:{attractionList.address}</Typography>
-                <Typography>
-                  관광지 설명: 관광지에 대한 설명 attractionList.description 이
-                  들어갈겁니다.
-                </Typography>
-                <Typography>좋아요 수:{attractionList.likeCount}</Typography>
+                <Box>
+                  <FavoriteIcon color="info" />
+                  <Typography>{attractionList.likeCount}</Typography>
+                </Box>
+                <Divider variant="middle" />
+                <Box>
+                  <Typography color="secondary" fontWeight="bold">
+                    {attractionList.name}
+                  </Typography>
+                </Box>
+                <Divider variant="middle" />
+                <Box>
+                  <Typography fontWeight="bold">설명</Typography>
+                  <Typography>{attractionList.description}</Typography>
+                </Box>
+                <Divider variant="middle" />
+                <Box>
+                  <Typography fontWeight="bold">주소</Typography>
+                  <Typography>{attractionList.address}</Typography>
+                </Box>
               </ListItem>
             ))
           )}

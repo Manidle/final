@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   createTheme,
+  Divider,
   TextField,
   ThemeProvider,
   Typography,
@@ -33,24 +34,21 @@ const ModalDetail = ({ currentCategory }) => {
 
   return (
     <ThemeProvider theme={theme}>
+      <Divider />
       {currentCategory === "stay" ? (
         <Box>
-          <Typography>stay</Typography>
           <ModalStayResult />
         </Box>
       ) : currentCategory === "attraction" ? (
         <Box>
-          <Typography>attraction</Typography>
           <ModalAttractionResult />
         </Box>
       ) : currentCategory === "train" ? (
         <Box>
-          <Typography>train</Typography>
           <ModalTrainResult />
         </Box>
       ) : (
         <Box>
-          <Typography>rentcar</Typography>
           <ModalRentcarResult />
         </Box>
       )}
