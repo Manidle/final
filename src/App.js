@@ -20,6 +20,9 @@ import MyPostAndLikeDetail from "./pages/userprofile/MyPostAndLikeDetail";
 import RentCarDetail from "./pages/rentcardetail/RentCarDetail";
 import StayDetail from "./pages/staydetail/StayDetail";
 import MyPost from "./pages/mypost/MyPost";
+import AttractionLike from "./pages/attractionlike/AttractionLike";
+import RentCarLike from "./pages/rentcarlike/RentCarLike";
+import StayLike from "./pages/staylike/StayLike";
 
 function App() {
   return (
@@ -71,6 +74,10 @@ function App() {
         <Route path="/user/myposts" element={<MyPost />} />
 
         {/* 주소를 잘못입력하면 경로가 잘못되었다는 NoMatch 라는 페이지도 만들자. */}
+
+        <Route path="/user/attractionlike" element={<AttractionLike />} />
+        <Route path="/user/rentcarlike" element={<RentCarLike />} />
+        <Route path="/user/staylike" element={<StayLike />} />
       </Routes>
     </BrowserRouter>
   );

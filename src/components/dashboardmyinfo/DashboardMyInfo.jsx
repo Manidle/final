@@ -20,10 +20,10 @@ const DashboardMyInfo = ({ page }) => {
   ];
 
   const likesCategories = [
-    { thisPage: "STAY", handlerUrl: "profile" },
-    { thisPage: "ATTRACTION", handlerUrl: "profile" },
-    { thisPage: "TRAIN", handlerUrl: "profile" },
-    { thisPage: "RENTCAR", handlerUrl: "profile" },
+    { thisPage: "STAY", handlerUrl: "staylike" },
+    { thisPage: "ATTRACTION", handlerUrl: "attractionlike" },
+    { thisPage: "TRAIN", handlerUrl: "attractionlike" },
+    { thisPage: "RENTCAR", handlerUrl: "rentcarlike" },
   ];
 
   return (
