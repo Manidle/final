@@ -76,8 +76,13 @@ const ModalAttractionResult = () => {
   }
 
   function listClick(attractionList) {
-    console.log(attractionList);
-    sessionStorage.setItem("attractionData", JSON.stringify(attractionList));
+    if (sessionStorage.getItem("attractionData") === null) {
+      sessionStorage.setItem("attractionData", JSON.stringify([]));
+    }
+
+    let attractionLi = JSON.parse(sessionStorage.getItem("attractionData"));
+    attractionLi.push(attractionList);
+    sessionStorage.setItem("attractionData", JSON.stringify(attractionLi));
   }
 
   return (
