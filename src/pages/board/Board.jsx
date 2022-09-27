@@ -128,7 +128,7 @@ const Community = () => {
                 paddingBottom: "1rem",
               }}
             >
-              <PostSearch />
+              <PostSearch boardId="1" setPosts={setPosts} />
               <Button
                 variant="none"
                 className="communityPostingButton"
