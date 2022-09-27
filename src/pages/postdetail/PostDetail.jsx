@@ -60,9 +60,6 @@ const PostDetail = () => {
 
   // 게시글 데이터 가져오기
   const [postData, setPostData] = useState([]);
-  const [postBoard, setPostBoard] = useState("");
-  const [postTitle, setPostTitle] = useState("");
-  const [postContents, setPostContents] = useState("");
   const [postLikeCount, setPostLikeCount] = useState(0);
   const [postUser, setPostUser] = useState("");
   const [postStayList, setPostStayList] = useState([]);
@@ -79,11 +76,7 @@ const PostDetail = () => {
         },
       })
       .then((response) => {
-        console.log(response.data);
         setPostData(response.data);
-        setPostBoard(response.data.boardId);
-        setPostTitle(response.data.title);
-        setPostContents(response.data.contents);
         setPostLikeCount(response.data.likeCount);
         setPostUser(response.data.userId);
         setPostRentCarList(response.data.postRentCars);
@@ -240,19 +233,19 @@ const PostDetail = () => {
                             <FavoriteIcon
                               color="info"
                               onClick={() => {
-                                setPostLikeCount(postData.likeCount - 1);
+                                setPostLikeCount(postLikeCount - 1);
                               }}
                             />
                           ) : (
                             <FavoriteBorderIcon
                               color="disabled"
                               onClick={() => {
-                                setPostLikeCount(postData.likeCount + 1);
+                                setPostLikeCount(postLikeCount + 1);
                               }}
                             />
                           )}
                         </Box>
-                        <Typography>{postData.likeCount}</Typography>
+                        <Typography>{postLikeCount}</Typography>
                       </Box>
                     </Box>
                   </Box>
