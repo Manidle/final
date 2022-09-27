@@ -16,7 +16,6 @@ const DashboardMyInfo = ({ page }) => {
     { thisPage: "EDIT", handlerUrl: "update" },
     { thisPage: "MY POST", handlerUrl: "myposts" },
     { thisPage: "MY POST LIKE", handlerUrl: "mylikes" },
-    { thisPage: "MY REPLY", handlerUrl: "myreply" },
   ];
 
   const likesCategories = [
