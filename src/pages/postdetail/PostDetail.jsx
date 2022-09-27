@@ -303,7 +303,11 @@ const PostDetail = () => {
                       </Typography>
                       <CardContent>
                         {postTrainList.map((postTrain) => (
-                          <Typography>{postTrain.id}</Typography>
+                          <Box display="flex">
+                            <Typography>{postTrain.depplacename}</Typography>
+                            <Typography fontWeight="bold">→</Typography>
+                            <Typography>{postTrain.arrplacename}</Typography>
+                          </Box>
                         ))}
                       </CardContent>
                     </Box>
