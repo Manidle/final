@@ -20,6 +20,7 @@ import CategoryBar from "../../components/CategoryBar";
 import Header from "../../components/header/Header";
 import usePagination from "../../components/Pagination";
 import StayItem from "./StayItem";
+import Footer from "../../components/footer/Footer";
 
 const SearchStay = () => {
   const theme = createTheme({
@@ -176,6 +177,7 @@ const SearchStay = () => {
           />
         </Stack>
       </Container>
+      <Footer />
     </ThemeProvider>
   );
 };

@@ -22,6 +22,7 @@ import Header from "../../components/header/Header";
 import usePagination from "../../components/Pagination";
 import RentCarItem from "./RentCarItem";
 import { useNavigate } from "react-router-dom";
+import Footer from "../../components/footer/Footer";
 
 const SearchRentcar = () => {
   const theme = createTheme({
@@ -179,6 +180,7 @@ const SearchRentcar = () => {
           />
         </Stack>
       </Container>
+      <Footer />
     </ThemeProvider>
   );
 };

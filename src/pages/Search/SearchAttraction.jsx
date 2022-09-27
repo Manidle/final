@@ -22,6 +22,7 @@ import Bar from "./Bar";
 import AttractionColumn from "./Column/AttractionColumn";
 import NotInContents from "./NotInContents";
 import usePagination from "../../components/Pagination";
+import Footer from "../../components/footer/Footer";
 
 const SearchAttraction = () => {
   const theme = createTheme({
@@ -138,6 +139,7 @@ const SearchAttraction = () => {
           />
         </Stack>
       </Container>
+      <Footer />
     </ThemeProvider>
   );
 };
