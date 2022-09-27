@@ -56,9 +56,9 @@ const ModalRentcarResult = () => {
       });
   }
 
-  useEffect(() => {
-    searchRentcarAll();
-  }, []);
+  // useEffect(() => {
+  //   searchRentcarAll();
+  // }, []);
 
   // rentcar 검색어
   const [searchWord, setSearchWord] = useState("");
