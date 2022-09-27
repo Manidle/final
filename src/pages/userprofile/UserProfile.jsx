@@ -21,7 +21,7 @@ const UserProfile = () => {
   }
 
   const userData = jwt_decode(localStorage.getItem("token"));
-  console.log(userData);
+
   const user = {
     username: userData.username,
     nickname: userData.nickname,
@@ -29,11 +29,12 @@ const UserProfile = () => {
     profileImg: makeOrderProfileImg(userData.id),
   };
 
-  // 게시글 전체 가져오기
+  // 내가 쓴 게시글 전체 가져오기
 
   const [posts, setPosts] = useState([]);
+  const [likePosts, setLikePosts] = useState([]);
 
-  useEffect(() => {
+  function myposts() {
     axios
       .get(`${BASE_URL}/api/auth/v1/post/user/top`, {
         headers: {
@@ -42,7 +43,6 @@ const UserProfile = () => {
         },
       })
       .then((response) => {
-        console.log("response ", response.data);
         setPosts(response.data);
       })
       .catch(function (error) {
@@ -63,6 +63,47 @@ const UserProfile = () => {
         }
         console.log(error.config);
       });
+  }
+
+  function mylikepostlists() {
+    axios
+      .get(
+        `${BASE_URL}/api/auth/v1/list/currentuser/like/post/${userData.id}`,
+        {
+          headers: {
+            Authorization: `${localStorage.getItem("token")}`,
+            "Content-Type": "application/json; charset=UTF-8",
+          },
+        }
+      )
+      .then((response) => {
+        Promise.all(
+          response.data.map(async (likepost) => {
+            return await axios.get(
+              `${BASE_URL}/api/auth/v1/post/${likepost.postId}`,
+              {
+                headers: {
+                  Authorization: `${localStorage.getItem("token")}`,
+                  "Content-Type": "application/json; charset=UTF-8",
+                },
+              }
+            );
+          })
+        ).then((res) => {
+          const resArray = res.map((resData) => resData.data);
+
+          setLikePosts(resArray);
+        });
+      })
+      .catch(function (error) {
+        console.log("에러");
+        console.log(error);
+      });
+  }
+
+  useEffect(() => {
+    myposts();
+    mylikepostlists();
   }, []);
 
   return (
@@ -95,7 +136,7 @@ const UserProfile = () => {
               handleRoute("user/mylikes");
             }}
           >
-            <MyPostAndLike posts={[]} />
+            <MyPostAndLike posts={likePosts} />
           </Wrapper>
         </Container>
       </Box>

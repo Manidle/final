@@ -114,12 +114,12 @@ const MyPostAndLikeDetail = () => {
         <Box display="flex">
           <DashboardMyInfo page="MY POST LIKE" />
           <Container>
-            <Box display="flex" marginLeft="3%" alignItems="center">
+            {/* <Box display="flex" marginLeft="3%" alignItems="center">
               <FavoriteIcon color="info" />
               <Typography fontSize="25px" fontWeight="bold" marginLeft="10px">
                 내가 좋아요 누른 게시글
               </Typography>
-            </Box>
+            </Box> */}
             <Grid container spacing={2}>
               <PostListOutLine>
                 <Box
