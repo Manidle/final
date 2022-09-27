@@ -3,8 +3,10 @@ import { format } from "date-fns";
 import {
   Box,
   Button,
+  Card,
   Container,
   createTheme,
+  Divider,
   ListItem,
   Stack,
   TextField,
@@ -70,7 +72,6 @@ const SearchTrain = () => {
       )
       .then((response) => {
         setTrainLists(response.data.response.body.items.item);
-        console.log(response.data.response.body.items.item);
       })
       .then(() => {
         {
@@ -79,10 +80,6 @@ const SearchTrain = () => {
       })
       .catch((error) => {
         console.log(error.response);
-        console.log(searchStartPoint);
-        console.log(searchEndPoint);
-        console.log(trainLists);
-        console.log(format(date, "yyyyMMdd"));
       });
   }
 
@@ -98,6 +95,7 @@ const SearchTrain = () => {
             onChange={(e) => {
               setSearchStartPoint(e.target.value);
             }}
+            margin="1px"
           />
           <TextField
             size="small"
@@ -105,23 +103,31 @@ const SearchTrain = () => {
             onChange={(e) => {
               setSearchEndPoint(e.target.value);
             }}
+            margin="1px"
           />
           {/* 달력 */}
           <Box>
-            <span
+            <Card
               onClick={() => {
                 handleCalendar();
               }}
             >
-              {`${format(date, "yyyy/MM/dd")}`}
-            </span>
-            {openCal && (
-              <Calendar
-                onChange={(item) => setDate(item)}
-                date={date}
-                dateDisplayFormat={"yyyy.mm.dd"}
-              />
-            )}
+              <Typography margin="4px">
+                {`${format(date, "yyyy/MM/dd")}`}
+              </Typography>
+            </Card>
+            <Box position="absolute">
+              {openCal && (
+                <Calendar
+                  onChange={(item) => {
+                    setDate(item);
+                    handleCalendar();
+                  }}
+                  date={date}
+                  dateDisplayFormat={"yyyy.mm.dd"}
+                />
+              )}
+            </Box>
           </Box>
           <Button
             onClick={() => {
@@ -131,9 +137,9 @@ const SearchTrain = () => {
             검색
           </Button>
         </Box>
-        <Box>
+        <Box maxWidth="50%" margin="5px" overflow="auto">
           {trainLists.legth === 0 ? (
-            <Box>기차가 없습니다.</Box>
+            <Box>출발지와 도착지를 입력해 기차를 검색해보세요!</Box>
           ) : (
             trainLists.map((trainList) => (
               <ListItem
@@ -141,13 +147,46 @@ const SearchTrain = () => {
                 justifyContent="space-between"
                 key={trainList.trainId}
               >
-                <Typography>출발지: {trainList.depplacename}</Typography>
-                <Typography>---›</Typography>
-                <Typography>도착지: {trainList.arrplacename}</Typography>
-                <Typography>출발시각: {trainList.depplandtime}</Typography>
-                <Typography>---›</Typography>
-                <Typography>도착시각: {trainList.arrplandtime}</Typography>
-                <Typography>요금: {trainList.adultcharge}</Typography>
+                <Box display="flex" alignItems="center">
+                  <Box alignItems="center" justifyContent="center">
+                    <Typography>출발지</Typography>
+                    <Typography
+                      fontWeight="bold"
+                      color="primary"
+                      justifyContent="center"
+                    >
+                      {trainList.depplacename}
+                    </Typography>
+                  </Box>
+                  <Typography margin="0 5px 0 5px">---›</Typography>
+                  <Box alignItems="center" justifyContent="center">
+                    <Typography>도착지</Typography>
+                    <Typography fontWeight="bold" color="primary">
+                      {trainList.arrplacename}
+                    </Typography>
+                  </Box>
+                  <Divider variant="middle" />
+                  <Box alignItems="center" justifyContent="center">
+                    <Typography>출발시각</Typography>
+                    <Typography fontWeight="bold">
+                      {trainList.depplandtime}
+                    </Typography>
+                  </Box>
+                  <Typography margin="0 5px 0 5px">---›</Typography>
+                  <Box alignItems="center" justifyContent="center">
+                    <Typography>도착시각</Typography>
+                    <Typography fontWeight="bold">
+                      {trainList.arrplandtime}
+                    </Typography>
+                  </Box>
+                  <Divider variant="middle" />
+                  <Box alignItems="center" justifyContent="center">
+                    <Typography>요금</Typography>
+                    <Typography fontWeight="bold" color="secondary">
+                      {trainList.adultcharge}
+                    </Typography>
+                  </Box>
+                </Box>
               </ListItem>
             ))
           )}
