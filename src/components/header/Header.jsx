@@ -157,7 +157,7 @@ const Header = () => {
                   </ModalButton>
                   <ModalButton
                     onClick={() => {
-                      handleRoute("search");
+                      handleRoute("search/stay");
                     }}
                   >
                     SEARCH
@@ -222,7 +222,7 @@ const Header = () => {
             />
             <Search
               onClick={() => {
-                handleRoute("search");
+                handleRoute("search/stay");
               }}
             />
           </Box>
