@@ -158,21 +158,22 @@ const ModalStayResult = () => {
                   handleSnackbar();
                 }}
               >
-                <Box>
-                  <FavoriteIcon color="info" />
-                  <Typography>{stayList.likeCount}</Typography>
+                <Box alignItems="center">
+                  <Box display="flex" alignItems="center">
+                    <Typography color="secondary" fontWeight="bold">
+                      {stayList.name}
+                    </Typography>
+                    <Box display="flex" marginLeft="5px">
+                      <FavoriteIcon color="info" />
+                      <Typography>{stayList.likeCount}</Typography>
+                    </Box>
+                  </Box>
+                  <Box display="flex" alignItems="center">
+                    <Typography fontWeight="bold">주소 : </Typography>
+                    <Typography marginLeft="5px">{stayList.address}</Typography>
+                  </Box>
                 </Box>
-                <Divider variant="middle" />
-                <Box>
-                  <Typography color="secondary" fontWeight="bold">
-                    {stayList.name}
-                  </Typography>
-                </Box>
-                <Divider variant="middle" />
-                <Box>
-                  <Typography fontWeight="bold">숙소 주소</Typography>
-                  <Typography>{stayList.address}</Typography>
-                </Box>
+                <Divider />
               </ListItem>
             ))
           )}
