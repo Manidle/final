@@ -7,27 +7,15 @@ import Wrapper from "./Wrapper";
 import DashboardDetail from "./DashboardDetail";
 import { BASE_URL } from "../../baseUrl";
 
-const regionAndCitiesList = [
-  { region: "강원도1", citiList: ["속초", "강릉", "양양", "원주"] },
-  { region: "강원도2", citiList: ["속초", "강릉", "양양", "원주"] },
-  { region: "강원도3", citiList: ["속초", "강릉", "양양", "원주"] },
-  { region: "강원도4", citiList: ["속초", "강릉", "양양", "원주"] },
-];
-
 const DashboardCommunity = () => {
-  const navigate = useNavigate();
-
-  function handler(props) {
-    navigate(`/board/${props}`);
-  }
-
   const [boardData, setBoardData] = useState([]);
 
   useEffect(() => {
     axios
-      .get(BASE_URL + "/board")
+      .get(`${BASE_URL}/api/board`)
       .then((response) => {
         console.log("게시판데이터");
+        console.log(response.data);
         setBoardData(response.data);
         console.log(boardData);
       })
@@ -41,9 +29,105 @@ const DashboardCommunity = () => {
   return (
     <Box sx={{ padding: "10px" }}>
       <Wrapper>
-        {regionAndCitiesList.map((regionAndCities) => {
-          return <DashboardDetail regionAndCities={regionAndCities} />;
-        })}
+        <Box>
+          <Typography fontWeight="bold" margin="3px">
+            서울 / 경기
+          </Typography>
+          <Box display="flex">
+            {boardData.map((board) =>
+              board.boardId <= 4 ? <DashboardDetail city={board} /> : <></>
+            )}
+          </Box>
+          <Typography fontWeight="bold" margin="3px">
+            강원도
+          </Typography>
+          <Box display="flex">
+            {boardData.map((board) =>
+              board.boardId > 4 && board.boardId <= 8 ? (
+                <DashboardDetail city={board} />
+              ) : (
+                <></>
+              )
+            )}
+          </Box>
+          <Typography fontWeight="bold" margin="3px">
+            광주 / 전남
+          </Typography>
+          <Box display="flex">
+            {boardData.map((board) =>
+              board.boardId > 8 && board.boardId <= 12 ? (
+                <DashboardDetail city={board} />
+              ) : (
+                <></>
+              )
+            )}
+          </Box>
+          <Typography fontWeight="bold" margin="3px">
+            대구 / 경북
+          </Typography>
+          <Box display="flex">
+            {boardData.map((board) =>
+              board.boardId > 12 && board.boardId <= 16 ? (
+                <DashboardDetail city={board} />
+              ) : (
+                <></>
+              )
+            )}
+          </Box>
+          <Typography fontWeight="bold" margin="3px">
+            부산 / 경남
+          </Typography>
+          <Box display="flex">
+            {boardData.map((board) =>
+              board.boardId > 16 && board.boardId <= 20 ? (
+                <DashboardDetail city={board} />
+              ) : (
+                <></>
+              )
+            )}
+          </Box>
+          <Typography fontWeight="bold" margin="3px">
+            전주 / 전북
+          </Typography>
+          <Box display="flex">
+            {boardData.map((board) =>
+              board.boardId > 20 && board.boardId <= 24 ? (
+                <DashboardDetail city={board} />
+              ) : (
+                <></>
+              )
+            )}
+          </Box>
+          <Typography fontWeight="bold" margin="3px">
+            충청도
+          </Typography>
+          <Box display="flex">
+            {boardData.map((board) =>
+              board.boardId > 24 && board.boardId <= 28 ? (
+                <DashboardDetail city={board} />
+              ) : (
+                <></>
+              )
+            )}
+          </Box>
+          <Box display="flex">
+            {boardData.map((board) =>
+              board.boardId > 28 && board.boardId <= 32 ? (
+                <DashboardDetail city={board} />
+              ) : (
+                <></>
+              )
+            )}
+          </Box>
+          <Typography fontWeight="bold" margin="3px">
+            제주도
+          </Typography>
+          <Box display="flex">
+            {boardData.map((board) =>
+              board.boardId > 32 ? <DashboardDetail city={board} /> : <></>
+            )}
+          </Box>
+        </Box>
       </Wrapper>
     </Box>
   );
