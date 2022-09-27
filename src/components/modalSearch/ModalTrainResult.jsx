@@ -85,7 +85,13 @@ const ModalTrainResult = () => {
   }
 
   function listClick(trainList) {
-    sessionStorage.setItem("trainData", JSON.stringify(trainList));
+    if (sessionStorage.getItem("trainData") === null) {
+      sessionStorage.setItem("trainData", JSON.stringify([]));
+    }
+
+    let trainLi = JSON.parse(sessionStorage.getItem("trainData"));
+    trainLi.push(trainList);
+    sessionStorage.setItem("trainData", JSON.stringify(trainLi));
   }
 
   // snackbar
@@ -108,7 +114,7 @@ const ModalTrainResult = () => {
           anchorOrigin={{ vertical, horizontal }}
           open={openSnackbar}
           onClose={handleSnackbar}
-          message="숙소 등록에 성공했습니다!"
+          message="기차 등록에 성공했습니다!"
           key={vertical + horizontal}
         />
         <Box
@@ -177,6 +183,7 @@ const ModalTrainResult = () => {
                 key={trainList.trainId}
                 onClick={() => {
                   listClick(trainList);
+                  handleSnackbar();
                 }}
               >
                 <Box display="flex" alignItems="center">
