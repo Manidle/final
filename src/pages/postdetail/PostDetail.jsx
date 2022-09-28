@@ -329,7 +329,9 @@ const PostDetail = () => {
                   </Grid>
                   <Divider />
                 </Box>
-                <Typography padding="1%">{postData.contents}</Typography>
+                <Typography padding="1%" whiteSpace="pre-wrap">
+                  {postData.contents}
+                </Typography>
                 <Divider />
                 <Reply postId={postProps.state.postId} />
               </Grid>

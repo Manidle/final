@@ -146,7 +146,9 @@ const ModalStayResult = () => {
           borderColor="secondary"
         >
           {stayLists.length === 0 ? (
-            <Box>숙소가 없습니다.</Box>
+            <Box display="flex">
+              <Box justifyContent="center">숙소가 없습니다.</Box>
+            </Box>
           ) : (
             stayLists.map((stayList) => (
               <ListItem
