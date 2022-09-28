@@ -30,9 +30,6 @@ const UserProfile = () => {
   const [userImg, setUserImg] = useState("");
   const [email, setEmail] = useState("");
 
-  // 정보변경 axios.patch
-  // 정보변경 후 my info 페이지로 이동
-
   // 회원 정보 변경
   function updateUserProfile(id) {
     axios
@@ -73,15 +70,6 @@ const UserProfile = () => {
       <Box display="flex">
         <DashboardMyInfo page="EDIT" />
 
-        {/* <Card
-          variant
-          sx={{
-            backgroundColor: "#F2E2FC",
-            marginBottom: 2,
-            borderRadius: 3,
-            padding: 1,
-          }}
-        > */}
         <Container
           sx={{
             backgroundColor: "#F2E2FC",
