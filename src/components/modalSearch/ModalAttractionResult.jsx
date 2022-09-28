@@ -41,7 +41,7 @@ const ModalAttractionResult = () => {
   // attraction 전체 조회
   function searchAttractionAll() {
     axios
-      .get("http://localhost:8080/api/auth/v1/list/attraction", {
+      .get(`${BASE_URL}/api/auth/v1/list/attraction`, {
         headers: {
           Authorization: `${localStorage.getItem("token")}`,
           "Content-Type": "application/json; charset=UTF-8",
