@@ -87,17 +87,24 @@ const StayLike = () => {
               handleRoute("search/stay");
             }}
           >
-            <Grid item xs={12}>
-              <Grid container>
+            <Box
+              xs={{
+                width: "10rem",
+              }}
+            >
+              <Grid
+                container
+                sx={{
+                  display: "flex",
+                }}
+              >
                 {stayList.length === 0 ? (
-                  <NotInContents>숙소가 없습니다.</NotInContents>
+                  <NotInContents>관광지가 없습니다.</NotInContents>
                 ) : (
                   stayListsPerPage.currentData().map((stay) => (
                     <Grid
                       item
-                      xs={12}
-                      sm={6}
-                      md={4}
+                      xs={4}
                       sx={{ display: "flex", justifyContent: "space-between" }}
                     >
                       <StayItem key={stay.id} stay={stay} />
@@ -105,7 +112,7 @@ const StayLike = () => {
                   ))
                 )}
               </Grid>
-            </Grid>
+            </Box>
           </Wrapper>
         </Box>
         <Stack>

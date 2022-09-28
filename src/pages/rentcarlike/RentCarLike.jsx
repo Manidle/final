@@ -87,17 +87,24 @@ const RentCarLike = () => {
               handleRoute("search/rentcar");
             }}
           >
-            <Grid item xs={12}>
-              <Grid container>
+            <Box
+              xs={{
+                width: "10rem",
+              }}
+            >
+              <Grid
+                container
+                sx={{
+                  display: "flex",
+                }}
+              >
                 {rentCars.length === 0 ? (
                   <NotInContents>랜트카가 없습니다.</NotInContents>
                 ) : (
                   rentCarListsPerPage.currentData().map((rentCar) => (
                     <Grid
                       item
-                      xs={12}
-                      sm={6}
-                      md={4}
+                      xs={4}
                       sx={{ display: "flex", justifyContent: "space-between" }}
                     >
                       <RentCarItem key={rentCar.rentCarId} rentCar={rentCar} />
@@ -105,7 +112,7 @@ const RentCarLike = () => {
                   ))
                 )}
               </Grid>
-            </Grid>
+            </Box>
           </Wrapper>
         </Box>
         <Stack>

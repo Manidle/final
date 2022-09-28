@@ -11,10 +11,10 @@ import React from "react";
 const Wrapper = ({ name, children, onClick }) => {
   return (
     <Box sx={{ paddingTop: "5px" }}>
-      <Box
+      <Card
         variant
         sx={{
-          // backgroundColor: "#F2E2FC",
+          backgroundColor: "#F2E2FC",
           marginBottom: 2,
           borderRadius: 3,
           padding: 1,
@@ -35,7 +35,7 @@ const Wrapper = ({ name, children, onClick }) => {
           </CardActions>
         </Box>
         <CardContent>{children}</CardContent>
-      </Box>
+      </Card>
     </Box>
   );
 };
