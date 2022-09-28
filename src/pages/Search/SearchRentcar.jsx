@@ -180,7 +180,7 @@ const SearchRentcar = () => {
           />
         </Stack>
       </Container>
-      <Footer />
+      {/* <Footer /> */}
     </ThemeProvider>
   );
 };
