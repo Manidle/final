@@ -53,6 +53,7 @@ const HotAttraction = ({ handleRoute }) => {
     <CardContent sx={{ display: "flex", justifyContent: "space-between" }}>
       {hotAttractions.map((attraction) => (
         <ContentCard
+          key={attraction.attractionId}
           attraction={attraction}
           handleRoute={() => handleRoute(attraction.attractionId)}
         />
