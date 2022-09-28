@@ -53,7 +53,8 @@ const RentCarDetail = () => {
   // 유저 token
   const userData = jwt_decode(localStorage.getItem("token"));
 
-  // 숙소 좋아요
+  // 렌트카 좋아요
+  const [likeClick, setLikeClick] = useState(false);
 
   useEffect(() => {
     axios
@@ -92,6 +93,22 @@ const RentCarDetail = () => {
       });
   }, []);
 
+  function handleLikeClick() {
+    axios
+      .get(BASE_URL + "/api/auth/v1/like/click/attraction", {
+        params: {
+          user: userData.id,
+          attraction: 1,
+        },
+        headers: {
+          Authorization: `${localStorage.getItem("token")}`,
+        },
+      })
+      .then(() => {
+        setLikeClick(!likeClick);
+      });
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth="xl">
@@ -123,7 +140,10 @@ const RentCarDetail = () => {
                   companyName={companyName}
                   carSort={carSort}
                   carName={carName}
+                  likeClick={likeClick}
                   likeCount={likeCount}
+                  setLikeCount={setLikeCount}
+                  handleLikeClick={handleLikeClick}
                 />
               </Grid>
               <Grid xs={1}></Grid>
