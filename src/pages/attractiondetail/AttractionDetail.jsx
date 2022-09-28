@@ -96,7 +96,7 @@ const AttractionDetail = () => {
       .get(BASE_URL + "/api/auth/v1/like/click/attraction", {
         params: {
           user: userData.id,
-          attraction: 1,
+          attraction: attractionId,
         },
         headers: {
           Authorization: `${localStorage.getItem("token")}`,

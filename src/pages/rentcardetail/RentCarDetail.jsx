@@ -95,16 +95,16 @@ const RentCarDetail = () => {
 
   function handleLikeClick() {
     axios
-      .get(BASE_URL + "/api/auth/v1/like/click/attraction", {
+      .get(BASE_URL + "/api/auth/v1/like/click/rentcar", {
         params: {
           user: userData.id,
-          attraction: 1,
+          rentcar: rentCarId,
         },
         headers: {
           Authorization: `${localStorage.getItem("token")}`,
         },
       })
-      .then(() => {
+      .then((response) => {
         setLikeClick(!likeClick);
       });
   }
