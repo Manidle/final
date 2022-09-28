@@ -40,7 +40,7 @@ const ModalStayResult = () => {
   // stay 전체 조회
   function searchStayAll() {
     axios
-      .get("http://localhost:8080/api/auth/v1/list/stay", {
+      .get(`${BASE_URL}/api/auth/v1/list/stay`, {
         headers: {
           Authorization: `${localStorage.getItem("token")}`,
           "Content-Type": "application/json; charset=UTF-8",

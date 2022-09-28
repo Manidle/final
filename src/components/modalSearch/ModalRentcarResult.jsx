@@ -41,7 +41,7 @@ const ModalRentcarResult = () => {
   // rentcar 전체 조회
   function searchRentcarAll() {
     axios
-      .get("http://localhost:8080/api/auth/v1/list/rentcar", {
+      .get(`${BASE_URL}/api/auth/v1/list/rentcar`, {
         headers: {
           Authorization: `${localStorage.getItem("token")}`,
           "Content-Type": "application/json; charset=UTF-8",
