@@ -29,21 +29,27 @@ const RightSide = ({
         {carName} - {carSort}
         <Box margin="5px" onClick={handleLikeClick}>
           {likeClick ? (
-            <FavoriteIcon
-              color="info"
-              onClick={() => {
-                setLikeCount(likeCount - 1);
-              }}
-              sx={{ paddingTop: "0.4rem" }}
-            />
+            <Box display="flex" alignItems="center">
+              <FavoriteIcon
+                color="info"
+                onClick={() => {
+                  setLikeCount(likeCount - 1);
+                }}
+                sx={{ paddingTop: "0.4rem" }}
+              />
+              <Typography margin="5px">{likeCount}</Typography>
+            </Box>
           ) : (
-            <FavoriteBorderIcon
-              color="info"
-              sx={{ paddingTop: "0.4rem" }}
-              onClick={() => {
-                setLikeCount(likeCount + 1);
-              }}
-            />
+            <Box display="flex" alignItems="center">
+              <FavoriteBorderIcon
+                color="info"
+                sx={{ paddingTop: "0.4rem" }}
+                onClick={() => {
+                  setLikeCount(likeCount + 1);
+                }}
+              />
+              <Typography margin="5px">{likeCount}</Typography>
+            </Box>
           )}
         </Box>
       </Typography>
