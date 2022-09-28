@@ -11,7 +11,7 @@ import React from "react";
 const Wrapper = ({ name, children, onClick }) => {
   return (
     <Box sx={{ paddingTop: "5px" }}>
-      <Card
+      <Box
         variant
         sx={{
           backgroundColor: "#F2E2FC",
@@ -35,7 +35,7 @@ const Wrapper = ({ name, children, onClick }) => {
           </CardActions>
         </Box>
         <CardContent>{children}</CardContent>
-      </Card>
+      </Box>
     </Box>
   );
 };
