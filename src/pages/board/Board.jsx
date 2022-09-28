@@ -49,13 +49,17 @@ const Community = () => {
   const navigate = useNavigate();
 
   // handlePosting
-  const handlePosting = () => {
+  function handlePosting(boardId) {
     {
       localStorage.getItem("token") == null
         ? navigate("/board")
-        : navigate("/posting");
+        : navigate("/posting", {
+            state: {
+              boardId: boardId,
+            },
+          });
     }
-  };
+  }
 
   // 게시글 전체 가져오기
 
@@ -133,7 +137,7 @@ const Community = () => {
     postsByBoard(props);
   }
 
-  const [boardId, setBoardId] = useState(1);
+  const [boardId, setBoardId] = useState(2);
 
   // useLocation 으로 postDetail 에 보내기.
   function handlePostDetail(props) {
@@ -179,7 +183,9 @@ const Community = () => {
               <Button
                 variant="none"
                 className="communityPostingButton"
-                onClick={handlePosting}
+                onClick={() => {
+                  handlePosting(boardId);
+                }}
                 sx={{ margin: "3px", color: "#892CDC", borderRadius: "1rem" }}
               >
                 글쓰기

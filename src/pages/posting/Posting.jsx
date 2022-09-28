@@ -16,7 +16,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import CategoryBar from "../../components/CategoryBar";
 import Header from "../../components/header/Header";
 import CloseIcon from "@mui/icons-material/Close";
@@ -44,6 +44,9 @@ const Posting = () => {
   });
 
   const navigate = useNavigate();
+
+  const boardProps = useLocation();
+  const boardId = boardProps.state.boardId;
 
   // 게시글 data
   const [postTitle, setPostTitle] = useState("");
@@ -195,6 +198,7 @@ const Posting = () => {
           // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
           console.log("첫번째 에러");
           console.log(error.response.data);
+          console.log("asdfasdfasdfasdfasdf", boardId);
         } else if (error.request) {
           // 요청이 이루어 졌으나 응답을 받지 못했습니다.
           // `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
@@ -351,7 +355,7 @@ const Posting = () => {
                 color="info"
                 className="postingButton"
                 onClick={() => {
-                  postSubmit("1");
+                  postSubmit(boardId);
                 }}
               >
                 게시글 등록
