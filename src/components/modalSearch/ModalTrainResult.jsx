@@ -85,7 +85,13 @@ const ModalTrainResult = () => {
   }
 
   function listClick(trainList) {
-    sessionStorage.setItem("trainData", JSON.stringify(trainList));
+    if (sessionStorage.getItem("trainData") === null) {
+      sessionStorage.setItem("trainData", JSON.stringify([]));
+    }
+
+    let trainLi = JSON.parse(sessionStorage.getItem("trainData"));
+    trainLi.push(trainList);
+    sessionStorage.setItem("trainData", JSON.stringify(trainLi));
   }
 
   // snackbar
@@ -108,7 +114,7 @@ const ModalTrainResult = () => {
           anchorOrigin={{ vertical, horizontal }}
           open={openSnackbar}
           onClose={handleSnackbar}
-          message="숙소 등록에 성공했습니다!"
+          message="기차 등록에 성공했습니다!"
           key={vertical + horizontal}
         />
         <Box
@@ -177,43 +183,49 @@ const ModalTrainResult = () => {
                 key={trainList.trainId}
                 onClick={() => {
                   listClick(trainList);
+                  handleSnackbar();
                 }}
               >
-                <Box>
-                  <Typography>출발지</Typography>
-                  <Typography fontWeight="bold" color="primary">
-                    {trainList.depplacename}
-                  </Typography>
+                <Box display="flex" alignItems="center">
+                  <Box alignItems="center" justifyContent="center">
+                    <Typography>출발지</Typography>
+                    <Typography
+                      fontWeight="bold"
+                      color="primary"
+                      justifyContent="center"
+                    >
+                      {trainList.depplacename}
+                    </Typography>
+                  </Box>
+                  <Typography margin="0 5px 0 5px">---›</Typography>
+                  <Box alignItems="center" justifyContent="center">
+                    <Typography>도착지</Typography>
+                    <Typography fontWeight="bold" color="primary">
+                      {trainList.arrplacename}
+                    </Typography>
+                  </Box>
+                  <Divider variant="middle" />
+                  <Box alignItems="center" justifyContent="center">
+                    <Typography>출발시각</Typography>
+                    <Typography fontWeight="bold">
+                      {trainList.depplandtime}
+                    </Typography>
+                  </Box>
+                  <Typography margin="0 5px 0 5px">---›</Typography>
+                  <Box alignItems="center" justifyContent="center">
+                    <Typography>도착시각</Typography>
+                    <Typography fontWeight="bold">
+                      {trainList.arrplandtime}
+                    </Typography>
+                  </Box>
+                  <Divider variant="middle" />
+                  <Box alignItems="center" justifyContent="center">
+                    <Typography>요금</Typography>
+                    <Typography fontWeight="bold" color="secondary">
+                      {trainList.adultcharge}
+                    </Typography>
+                  </Box>
                 </Box>
-                <Typography>---›</Typography>
-                <Box>
-                  <Typography>도착지</Typography>
-                  <Typography fontWeight="bold" color="primary">
-                    {trainList.arrplacename}
-                  </Typography>
-                </Box>
-                <Divider variant="middle" />
-                <Box>
-                  <Typography>출발시각</Typography>
-                  <Typography fontWeight="bold">
-                    {trainList.depplandtime}
-                  </Typography>
-                </Box>
-                <Typography>---›</Typography>
-                <Box>
-                  <Typography>도착시각</Typography>
-                  <Typography fontWeight="bold">
-                    {trainList.arrplandtime}
-                  </Typography>
-                </Box>
-                <Divider variant="middle" />
-                <Box>
-                  <Typography>요금</Typography>
-                  <Typography fontWeight="bold" color="secondary">
-                    {trainList.adultcharge}
-                  </Typography>
-                </Box>
-                {/* <Typography>좋아요 수 : {trainList.likeCount}</Typography> */}
               </ListItem>
             ))
           )}

@@ -37,9 +37,6 @@ const CategoryBar = ({ category }) => {
     navigate(`/search/${props}`);
   }
 
-  // 지역
-  const [destination, setDestination] = useState("");
-
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ width: "100%" }}>

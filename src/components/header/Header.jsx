@@ -74,6 +74,10 @@ const Header = () => {
     navigate("/user/profile");
   };
 
+  const handleUserMyPosts = () => {
+    navigate("/user/myposts");
+  };
+
   const [isToggled, setIsToggled] = useState(false);
   const [userToggled, setUserToggled] = useState(false);
 
@@ -157,7 +161,7 @@ const Header = () => {
                   </ModalButton>
                   <ModalButton
                     onClick={() => {
-                      handleRoute("search");
+                      handleRoute("search/stay");
                     }}
                   >
                     SEARCH
@@ -186,7 +190,9 @@ const Header = () => {
                       <ModalButton onClick={handleUserProfile}>
                         MY INFO
                       </ModalButton>
-                      <ModalButton onClick={handleClose}>MY POSTS</ModalButton>
+                      <ModalButton onClick={handleUserMyPosts}>
+                        MY POSTS
+                      </ModalButton>
                       <ModalButton
                         onClick={() => {
                           logOutClick();
@@ -222,7 +228,7 @@ const Header = () => {
             />
             <Search
               onClick={() => {
-                handleRoute("search");
+                handleRoute("search/stay");
               }}
             />
           </Box>
@@ -272,7 +278,7 @@ const Header = () => {
                     }}
                   >
                     <MenuItem onClick={handleUserProfile}>내 정보</MenuItem>
-                    <MenuItem onClick={handleClose}>내가 쓴 글</MenuItem>
+                    <MenuItem onClick={handleUserMyPosts}>내가 쓴 글</MenuItem>
                     <MenuItem
                       onClick={() => {
                         logOutClick();

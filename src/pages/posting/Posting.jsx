@@ -56,81 +56,91 @@ const Posting = () => {
   const userData = jwt_decode(localStorage.getItem("token"));
 
   function postConnectOther({ response, props }) {
+    const stays = JSON.parse(sessionStorage.getItem("stayData"));
+    const attractions = JSON.parse(sessionStorage.getItem("attractionData"));
+    const trains = JSON.parse(sessionStorage.getItem("trainData"));
+    const rentcars = JSON.parse(sessionStorage.getItem("rentcarData"));
+
     if (props === "stay") {
-      axios
-        .get(
-          `${BASE_URL}/api/auth/v1/post-contents/post-${props}/click?post=${
-            response.data.postId
-          }&stay=${JSON.parse(sessionStorage.getItem("stayData")).id}`,
-          {
-            headers: {
-              Authorization: `${localStorage.getItem("token")}`,
-              "Content-Type": "application/json; charset=UTF-8",
-            },
-          }
-        )
-        .catch(function (error) {
-          console.log(error.response);
-          console.log(error.response.data);
-        });
+      Promise.all(
+        stays.map(async (stay) => {
+          return await axios.get(
+            `${BASE_URL}/api/auth/v1/post-contents/post-${props}/click?post=${response.data.postId}&stay=${stay.id}`,
+            {
+              headers: {
+                Authorization: `${localStorage.getItem("token")}`,
+                "Content-Type": "application/json; charset=UTF-8",
+              },
+            }
+          );
+        })
+      ).catch(function (error) {
+        console.log(error.response);
+        console.log(error.response.data);
+      });
     }
     if (props === "attraction") {
-      axios
-        .get(
-          `${BASE_URL}/api/auth/v1/post-contents/post-${props}/click?post=${
-            response.data.postId
-          }&attraction=${
-            JSON.parse(sessionStorage.getItem("attractionData")).attractionId
-          }`,
-          {
-            headers: {
-              Authorization: `${localStorage.getItem("token")}`,
-              "Content-Type": "application/json; charset=UTF-8",
-            },
-          }
-        )
-        .catch(function (error) {
-          console.log(error.response);
-          console.log(error.response.data);
-        });
+      Promise.all(
+        attractions.map(async (attraction) => {
+          return await axios.get(
+            `${BASE_URL}/api/auth/v1/post-contents/post-${props}/click?post=${response.data.postId}&attraction=${attraction.attractionId}`,
+            {
+              headers: {
+                Authorization: `${localStorage.getItem("token")}`,
+                "Content-Type": "application/json; charset=UTF-8",
+              },
+            }
+          );
+        })
+      ).catch(function (error) {
+        console.log(error.response);
+        console.log(error.response.data);
+      });
     }
     if (props === "train") {
-      axios
-        .get(
-          `${BASE_URL}/api/auth/v1/post-contents/post-${props}/click?post=${
-            response.data.postId
-          }&train=${JSON.parse(sessionStorage.getItem("trainData")).id}`,
-          {
-            headers: {
-              Authorization: `${localStorage.getItem("token")}`,
-              "Content-Type": "application/json; charset=UTF-8",
+      Promise.all(
+        trains.map(async (train) => {
+          return await axios.post(
+            `${BASE_URL}/api/auth/v1/postcontents/post${props}/click/${response.data.postId}`,
+
+            {
+              adultcharge: train.adultcharge,
+              arrplacename: train.arrplacename,
+              arrplandtime: train.arrplandtime,
+              depplacename: train.depplacename,
+              depplandtime: train.depplandtime,
+              trainno: train.trainno,
             },
-          }
-        )
-        .catch(function (error) {
-          console.log(error.response);
-          console.log(error.response.data);
-        });
+            {
+              headers: {
+                Authorization: `${localStorage.getItem("token")}`,
+                "Content-Type": "application/json; charset=UTF-8",
+              },
+            }
+          );
+        })
+      ).catch(function (error) {
+        console.log(error.response);
+        console.log(error.response.data);
+      });
     }
     if (props === "rentcar") {
-      axios
-        .get(
-          `${BASE_URL}/api/auth/v1/post-contents/post-rent-car/click?post=${
-            response.data.postId
-          }&rentcar=${
-            JSON.parse(sessionStorage.getItem("rentcarData")).rentCarId
-          }`,
-          {
-            headers: {
-              Authorization: `${localStorage.getItem("token")}`,
-              "Content-Type": "application/json; charset=UTF-8",
-            },
-          }
-        )
-        .catch(function (error) {
-          console.log(error.response);
-          console.log(error.response.data);
-        });
+      Promise.all(
+        rentcars.map(async (rentcar) => {
+          return await axios.get(
+            `${BASE_URL}/api/auth/v1/post-contents/post-rent-car/click?post=${response.data.postId}&rentcar=${rentcar.rentCarId}`,
+            {
+              headers: {
+                Authorization: `${localStorage.getItem("token")}`,
+                "Content-Type": "application/json; charset=UTF-8",
+              },
+            }
+          );
+        })
+      ).catch(function (error) {
+        console.log(error.response);
+        console.log(error.response.data);
+      });
     }
   }
 
@@ -319,7 +329,7 @@ const Posting = () => {
                 color="info"
                 className="postingButton"
                 onClick={() => {
-                  postSubmit("1");
+                  postSubmit("2");
                 }}
               >
                 게시글 등록

@@ -154,25 +154,30 @@ const ModalAttractionResult = () => {
                   handleSnackbar();
                 }}
               >
-                <Box>
-                  <FavoriteIcon color="info" />
-                  <Typography>{attractionList.likeCount}</Typography>
-                </Box>
-                <Divider variant="middle" />
-                <Box>
-                  <Typography color="secondary" fontWeight="bold">
-                    {attractionList.name}
-                  </Typography>
-                </Box>
-                <Divider variant="middle" />
-                <Box>
-                  <Typography fontWeight="bold">설명</Typography>
-                  <Typography>{attractionList.description}</Typography>
-                </Box>
-                <Divider variant="middle" />
-                <Box>
-                  <Typography fontWeight="bold">주소</Typography>
-                  <Typography>{attractionList.address}</Typography>
+                <Box alignItems="center">
+                  <Box display="flex" alignItems="center">
+                    <Typography color="secondary" fontWeight="bold">
+                      {attractionList.name}
+                    </Typography>
+                    <Box display="flex" marginLeft="5px">
+                      <FavoriteIcon color="info" />
+                      <Typography marginLeft="5px">
+                        {attractionList.likeCount}
+                      </Typography>
+                    </Box>
+                  </Box>
+                  <Box display="flex">
+                    <Typography fontWeight="bold">설명 : </Typography>
+                    <Typography marginLeft="5px">
+                      {attractionList.description}
+                    </Typography>
+                  </Box>
+                  <Box display="flex">
+                    <Typography fontWeight="bold">주소 : </Typography>
+                    <Typography marginLeft="5px">
+                      {attractionList.address}
+                    </Typography>
+                  </Box>
                 </Box>
               </ListItem>
             ))

@@ -30,7 +30,7 @@ const Post = ({ post }) => {
 const PostList = ({ posts }) => {
   return (
     <div>
-      {posts.map((post) => (
+      {posts.map((post, i) => (
         <Post post={post} />
       ))}
     </div>

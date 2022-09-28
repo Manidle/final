@@ -15,10 +15,10 @@ import TextProperty from "./TextProperty";
 const StayItem = ({ stay }) => {
   const navigate = useNavigate();
 
-  function handleStayDetail(stayId) {
-    navigate(`/attraction/${stayId}`, {
+  function handleStayDetail(stay) {
+    navigate(`/stay/${stay}`, {
       state: {
-        stayId: stayId,
+        stayId: stay,
       },
     });
   }
@@ -26,9 +26,9 @@ const StayItem = ({ stay }) => {
     <>
       <Card
         onClick={() => {
-          handleStayDetail(stay.id);
+          handleStayDetail(stay.stayId);
         }}
-        key={stay.id}
+        key={stay.stayId}
         sx={{
           width: "200px",
           display: "flex",
@@ -40,7 +40,7 @@ const StayItem = ({ stay }) => {
         <CardActionArea>
           <CardMedia
             component="img"
-            image={makeOrderAttractionImg(stay.id)}
+            image={makeOrderAttractionImg(stay.stayId)}
             alt="Hot Posts"
             height="200px"
           />

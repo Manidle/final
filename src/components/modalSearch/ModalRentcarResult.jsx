@@ -56,9 +56,9 @@ const ModalRentcarResult = () => {
       });
   }
 
-  useEffect(() => {
-    searchRentcarAll();
-  }, []);
+  // useEffect(() => {
+  //   searchRentcarAll();
+  // }, []);
 
   // rentcar 검색어
   const [searchWord, setSearchWord] = useState("");
@@ -154,27 +154,35 @@ const ModalRentcarResult = () => {
                 }}
               >
                 <Box>
-                  <FavoriteIcon color="info" />
-                  <Typography>{rentcarList.likeCount}</Typography>
-                </Box>
-                <Divider variant="middle" />
-                <Box>
-                  <Typography color="secondary" fontWeight="bold">
-                    {rentcarList.companyName}
-                  </Typography>
-                </Box>
-                <Divider variant="middle" />
-                <Box>
-                  <Typography>차종</Typography>
-                  <Typography>{rentcarList.carSort}</Typography>
-                  <Typography fontWeight="bold" color="info">
-                    {rentcarList.carName}
-                  </Typography>
-                </Box>
-                <Divider variant="middle" />
-                <Box>
-                  <Typography>렌트카 주소</Typography>
-                  <Typography>{rentcarList.address}</Typography>
+                  <Box display="flex" alignItems="center">
+                    <Box display="flex" alignItems="center">
+                      <Typography color="secondary" fontWeight="bold">
+                        {rentcarList.companyName}
+                      </Typography>
+                      <Box display="flex" alignItems="center">
+                        <Typography
+                          marginLeft="5px"
+                          fontWeight="bold"
+                          color="info"
+                        >
+                          {rentcarList.carName}
+                        </Typography>
+                        <Typography marginLeft="5px">
+                          {rentcarList.carSort}
+                        </Typography>
+                      </Box>
+                      <Box display="flex" marginLeft="5px" alignItems="center">
+                        <FavoriteIcon color="info" />
+                        <Typography marginLeft="5px">
+                          {rentcarList.likeCount}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </Box>
+                  <Box display="flex" alignItems="center">
+                    <Typography fontWeight="bold">주소</Typography>
+                    <Typography margin="5px">{rentcarList.address}</Typography>
+                  </Box>
                 </Box>
               </ListItem>
             ))
