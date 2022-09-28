@@ -52,7 +52,11 @@ const DashboardCommunity = ({ handleBoard, setBoardId }) => {
           <Box display="flex">
             {boardData.map((board) =>
               board.boardId > 4 && board.boardId <= 8 ? (
-                <DashboardDetail city={board} />
+                <DashboardDetail
+                  handleBoard={handleBoard}
+                  city={board}
+                  setBoardId={setBoardId}
+                />
               ) : (
                 <></>
               )
@@ -64,7 +68,11 @@ const DashboardCommunity = ({ handleBoard, setBoardId }) => {
           <Box display="flex">
             {boardData.map((board) =>
               board.boardId > 8 && board.boardId <= 12 ? (
-                <DashboardDetail city={board} />
+                <DashboardDetail
+                  handleBoard={handleBoard}
+                  city={board}
+                  setBoardId={setBoardId}
+                />
               ) : (
                 <></>
               )
@@ -76,7 +84,11 @@ const DashboardCommunity = ({ handleBoard, setBoardId }) => {
           <Box display="flex">
             {boardData.map((board) =>
               board.boardId > 12 && board.boardId <= 16 ? (
-                <DashboardDetail city={board} />
+                <DashboardDetail
+                  handleBoard={handleBoard}
+                  city={board}
+                  setBoardId={setBoardId}
+                />
               ) : (
                 <></>
               )
@@ -88,7 +100,11 @@ const DashboardCommunity = ({ handleBoard, setBoardId }) => {
           <Box display="flex">
             {boardData.map((board) =>
               board.boardId > 16 && board.boardId <= 20 ? (
-                <DashboardDetail city={board} />
+                <DashboardDetail
+                  handleBoard={handleBoard}
+                  city={board}
+                  setBoardId={setBoardId}
+                />
               ) : (
                 <></>
               )
@@ -100,7 +116,11 @@ const DashboardCommunity = ({ handleBoard, setBoardId }) => {
           <Box display="flex">
             {boardData.map((board) =>
               board.boardId > 20 && board.boardId <= 24 ? (
-                <DashboardDetail city={board} />
+                <DashboardDetail
+                  handleBoard={handleBoard}
+                  city={board}
+                  setBoardId={setBoardId}
+                />
               ) : (
                 <></>
               )
@@ -112,7 +132,11 @@ const DashboardCommunity = ({ handleBoard, setBoardId }) => {
           <Box display="flex">
             {boardData.map((board) =>
               board.boardId > 24 && board.boardId <= 28 ? (
-                <DashboardDetail city={board} />
+                <DashboardDetail
+                  handleBoard={handleBoard}
+                  city={board}
+                  setBoardId={setBoardId}
+                />
               ) : (
                 <></>
               )
@@ -121,7 +145,11 @@ const DashboardCommunity = ({ handleBoard, setBoardId }) => {
           <Box display="flex">
             {boardData.map((board) =>
               board.boardId > 28 && board.boardId <= 32 ? (
-                <DashboardDetail city={board} />
+                <DashboardDetail
+                  handleBoard={handleBoard}
+                  city={board}
+                  setBoardId={setBoardId}
+                />
               ) : (
                 <></>
               )
@@ -132,7 +160,15 @@ const DashboardCommunity = ({ handleBoard, setBoardId }) => {
           </Typography>
           <Box display="flex">
             {boardData.map((board) =>
-              board.boardId > 32 ? <DashboardDetail city={board} /> : <></>
+              board.boardId > 32 ? (
+                <DashboardDetail
+                  handleBoard={handleBoard}
+                  city={board}
+                  setBoardId={setBoardId}
+                />
+              ) : (
+                <></>
+              )
             )}
           </Box>
         </Box>
