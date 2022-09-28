@@ -48,7 +48,27 @@ const HotAttraction = ({ handleRoute }) => {
         console.log(error.config);
       });
   }, []);
-
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("핫 어트렉션임!!!!", hotAttractions);
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
   return (
     <CardContent sx={{ display: "flex", justifyContent: "space-between" }}>
       {hotAttractions.map((attraction) => (

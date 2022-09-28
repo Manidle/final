@@ -12,14 +12,13 @@ import HotPost from "./HotPost";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../../baseUrl";
 
 const HotPostCardView = ({ handleRoute, view }) => {
   const [hotPosts, setHotPosts] = useState([]);
 
   function getHotPosts() {
     axios
-      .get(`${BASE_URL}/api/v1/filter/list/post/desc/top`, {
+      .get(`http://localhost:8080/api/v1/filter/list/post/desc/top`, {
         headers: {
           Authorization: `${localStorage.getItem("token")}`,
           "Content-Type": "application/json; charset=UTF-8",
@@ -44,6 +43,27 @@ const HotPostCardView = ({ handleRoute, view }) => {
       },
     });
   }
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("핫 포스츠임!!!!", hotPosts);
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
+  console.log("----------------");
   return (
     <CardContent>
       {view === "main" ? (
