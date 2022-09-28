@@ -26,9 +26,9 @@ import { borderColor } from "@mui/system";
 import HotPost from "../../components/hotposts/HotPost";
 import HotPostCardView from "../../components/hotposts/HotPostCardView";
 import AttractionItem from "../Search/AttractionItem";
-import StayItem from "../staylike/StayItem";
 import RentCarItem from "../Search/RentCarItem";
 import TrainList from "../../components/trainlist/TrainList";
+import StayItem from "./StayItem";
 
 const PostDetail = () => {
   const theme = createTheme({

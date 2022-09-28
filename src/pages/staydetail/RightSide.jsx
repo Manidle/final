@@ -28,23 +28,32 @@ const RightSide = ({
         alignItems="center"
       >
         {stayName}
-        <Box marginLeft="5px" onClick={handleLikeClick}>
+        <Box
+          marginLeft="5px"
+          onClick={handleLikeClick}
+          display="flex"
+          alignItems="center"
+        >
           {likeClick ? (
-            <FavoriteIcon
-              color="info"
-              onClick={() => {
-                setStayLikeCount(stayLikeCount - 1);
-              }}
-              sx={{ paddingTop: "0.4rem" }}
-            />
+            <Box display="flex" alignItems="center">
+              <FavoriteIcon
+                color="info"
+                onClick={() => {
+                  setStayLikeCount(stayLikeCount - 1);
+                }}
+              />
+              <Typography margin="5px">{stayLikeCount + 1}</Typography>
+            </Box>
           ) : (
-            <FavoriteBorderIcon
-              color="info"
-              sx={{ paddingTop: "0.4rem" }}
-              onClick={() => {
-                setStayLikeCount(stayLikeCount + 1);
-              }}
-            />
+            <Box display="flex" alignItems="center">
+              <FavoriteBorderIcon
+                color="info"
+                onClick={() => {
+                  setStayLikeCount(stayLikeCount + 1);
+                }}
+              />
+              <Typography margin="5px">{stayLikeCount}</Typography>
+            </Box>
           )}
         </Box>
       </Typography>

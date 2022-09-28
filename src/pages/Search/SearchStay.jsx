@@ -177,7 +177,7 @@ const SearchStay = () => {
           />
         </Stack>
       </Container>
-      <Footer />
+      {/* <Footer /> */}
     </ThemeProvider>
   );
 };

@@ -25,7 +25,7 @@ import PostColumn from "../board/PostColumn";
 import PostListOutLine from "../board/PostListOutLine";
 import PostSearch from "../board/PostSearch";
 import usePagination from "../../components/Pagination";
-import Post from "../board/Post";
+import Post from "./Post";
 
 const MyPostAndLikeDetail = () => {
   const theme = createTheme({

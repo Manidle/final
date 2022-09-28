@@ -32,21 +32,27 @@ const RightSide = ({
           {attractionName}{" "}
           <span onClick={handleLikeClick}>
             {likeClick ? (
-              <FavoriteIcon
-                color="info"
-                onClick={() => {
-                  setAttractionLikeCount(attractionLikeCount - 1);
-                }}
-                sx={{ paddingTop: "0.4rem" }}
-              />
+              <Box display="flex" alignItems="center">
+                <FavoriteIcon
+                  color="info"
+                  onClick={() => {
+                    setAttractionLikeCount(attractionLikeCount - 1);
+                  }}
+                  sx={{ paddingTop: "0.4rem" }}
+                />
+                <Typography margin="5px">{attractionLikeCount + 1}</Typography>
+              </Box>
             ) : (
-              <FavoriteBorderIcon
-                color="info"
-                sx={{ paddingTop: "0.4rem" }}
-                onClick={() => {
-                  setAttractionLikeCount(attractionLikeCount + 1);
-                }}
-              />
+              <Box display="flex" alignItems="center">
+                <FavoriteBorderIcon
+                  color="info"
+                  sx={{ paddingTop: "0.4rem" }}
+                  onClick={() => {
+                    setAttractionLikeCount(attractionLikeCount + 1);
+                  }}
+                />
+                <Typography margin="5px">{attractionLikeCount}</Typography>
+              </Box>
             )}
           </span>
         </Typography>

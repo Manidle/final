@@ -138,7 +138,7 @@ const SearchTrain = () => {
           </Button>
         </Box>
         <Box maxWidth="50%" margin="5px" overflow="auto">
-          {trainLists.legth === 0 ? (
+          {trainLists.length === 0 ? (
             <Box>출발지와 도착지를 입력해 기차를 검색해보세요!</Box>
           ) : (
             trainLists.map((trainList) => (
@@ -192,7 +192,7 @@ const SearchTrain = () => {
           )}
         </Box>
       </Container>
-      <Footer />
+      {/* <Footer /> */}
     </ThemeProvider>
   );
 };

@@ -16,6 +16,8 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../baseUrl";
+import jwt_decode from "jwt-decode";
+import { makeOrderProfileImg } from "../../image/profileImg";
 
 const UserProfile = () => {
   const navigate = useNavigate();
@@ -29,6 +31,8 @@ const UserProfile = () => {
   const [userNickname, setUserNickname] = useState("");
   const [userImg, setUserImg] = useState("");
   const [email, setEmail] = useState("");
+
+  const userData = jwt_decode(localStorage.getItem("token"));
 
   // 회원 정보 변경
   function updateUserProfile(id) {
@@ -101,13 +105,13 @@ const UserProfile = () => {
                   fontWeight: "bold",
                 }}
               >
-                소울치킨
+                {userData.nickname}
               </Typography>
               <Typography>님의 정보를 변경하세요!</Typography>
             </Box>
             <Avatar
               alt="Profile IMG"
-              src="https://avatars.githubusercontent.com/u/90738604?v=4"
+              src={makeOrderProfileImg(userData.id)}
               sx={{ width: "8rem", height: "8rem", marginTop: "1rem" }}
             />
             <ButtonGroup sx={{ marginTop: "2rem" }}>
@@ -159,15 +163,16 @@ const UserProfile = () => {
         >
           <TextField
             id="standard-basic"
-            label="아이디"
+            // label="아이디"
             variant="standard"
+            placeholder={userData.username}
             onChange={(e) => {
               setUserId(e.target.value);
             }}
             size="small"
             type="text"
           />
-          <TextField
+          {/* <TextField
             id="standard-basic"
             label="비밀번호"
             variant="standard"
@@ -176,12 +181,13 @@ const UserProfile = () => {
             }}
             size="small"
             type="password"
-          />
+          /> */}
 
           <TextField
             id="standard-basic"
-            label="이메일"
+            // label="이메일"
             variant="standard"
+            placeholder={userData.email}
             onChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -190,8 +196,9 @@ const UserProfile = () => {
           />
           <TextField
             id="standard-basic"
-            label="닉네임"
+            // label="닉네임"
             variant="standard"
+            placeholder={userData.nickname}
             onChange={(e) => {
               setUserNickname(e.target.value);
             }}

@@ -139,7 +139,7 @@ const SearchAttraction = () => {
           />
         </Stack>
       </Container>
-      <Footer />
+      {/* <Footer /> */}
     </ThemeProvider>
   );
 };

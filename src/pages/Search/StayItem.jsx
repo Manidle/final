@@ -21,7 +21,7 @@ const StayItem = ({ handleRoute, stay }) => {
       <CardActionArea>
         <CardMedia
           component="img"
-          image={makeOrderStayImg(stay.id)}
+          image={makeOrderStayImg(stay.id, 22)}
           alt="Hot Posts"
           height="200px"
         />
