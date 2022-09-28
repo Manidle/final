@@ -3,7 +3,9 @@ import {
   Button,
   Container,
   createTheme,
+  Grid,
   ListItem,
+  Pagination,
   Stack,
   TextField,
   ThemeProvider,
@@ -12,12 +14,15 @@ import {
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { BASE_URL } from "../../baseUrl";
 import CategoryBar from "../../components/CategoryBar";
 import Header from "../../components/header/Header";
 import AttractionItem from "./AttractionItem";
 import Bar from "./Bar";
 import AttractionColumn from "./Column/AttractionColumn";
 import NotInContents from "./NotInContents";
+import usePagination from "../../components/Pagination";
+import Footer from "../../components/footer/Footer";
 
 const SearchAttraction = () => {
   const theme = createTheme({
@@ -38,10 +43,18 @@ const SearchAttraction = () => {
   });
 
   const [attractions, setAttractions] = useState([]);
-
+  // 렌트카 페이징
+  const [page, setPage] = useState(1);
+  const perPage = 8;
+  const count = Math.ceil(attractions.length / perPage);
+  const attractionListsPerPage = usePagination(attractions, perPage);
+  const handlePage = (e, p) => {
+    setPage(p);
+    attractionListsPerPage.jump(p);
+  };
   function searchAllAttraction() {
     axios
-      .get("http://localhost:8080/api/auth/v1/list/attraction", {
+      .get(BASE_URL + "/api/auth/v1/list/attraction", {
         headers: {
           Authorization: `${localStorage.getItem("token")}`,
           "Content-Type": "application/json; charset=UTF-8",
@@ -62,9 +75,7 @@ const SearchAttraction = () => {
 
   function searchFilterAttraction() {
     axios
-      .get(
-        `http://localhost:8080/api/filter/list/attraction?search=${searchAttraction}`
-      )
+      .get(`${BASE_URL}/api/filter/list/attraction?search=${searchAttraction}`)
       .then((response) => {
         setAttractions(response.data);
         console.log(searchAttraction);
@@ -87,19 +98,48 @@ const SearchAttraction = () => {
         />
 
         <Box>
-          <AttractionColumn />
-          {attractions.length === 0 ? (
-            <NotInContents>관광지가 없습니다.</NotInContents>
-          ) : (
-            attractions.map((attraction) => (
-              <AttractionItem
-                key={attraction.attractionId}
-                attraction={attraction}
-              />
-            ))
-          )}
+          <Box
+            xs={{
+              width: "10rem",
+            }}
+          >
+            <Grid
+              container
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                paddingLeft: "7rem",
+                paddingRight: "7rem",
+              }}
+            >
+              {attractions.length === 0 ? (
+                <NotInContents>관광지가 없습니다.</NotInContents>
+              ) : (
+                attractionListsPerPage.currentData().map((attraction) => (
+                  <Grid item xs={3}>
+                    <AttractionItem
+                      key={attraction.attractionId}
+                      attraction={attraction}
+                    />
+                  </Grid>
+                ))
+              )}
+            </Grid>
+          </Box>
         </Box>
+        <Stack>
+          <Pagination
+            size="small"
+            count={count}
+            boundaryCount={2}
+            onChange={handlePage}
+            sx={{
+              margin: "auto",
+            }}
+          />
+        </Stack>
       </Container>
+      {/* <Footer /> */}
     </ThemeProvider>
   );
 };

@@ -19,6 +19,7 @@ import { Person } from "@mui/icons-material";
 import Header from "../../components/header/Header";
 import { Box } from "@mui/system";
 import LeftSide from "./LeftSide";
+import { BASE_URL } from "../../baseUrl";
 
 export default function Login() {
   //navigatge
@@ -35,7 +36,7 @@ export default function Login() {
   const loginClick = async (e) => {
     await axios
       .post(
-        "http://localhost:8080/login",
+        BASE_URL + "/login",
         JSON.stringify({
           username: userId,
           password: password,
@@ -50,7 +51,7 @@ export default function Login() {
         console.log("토큰은!!! ", token);
         localStorage.setItem("token", token);
         // ctx.onLogin(userId, password);
-        // navigate(-1);
+        navigate("/");
       })
       .catch((err) => {
         console.log(err);
