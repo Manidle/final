@@ -21,7 +21,7 @@ import axios from "axios";
 import { useState } from "react";
 import DashboardCommunity from "../../components/dashboardcommunity/DashboardCommunity";
 import usePagination from "../../components/Pagination";
-import Post from "./Post";
+import Post from "../userprofile/Post";
 import PostListOutLine from "./PostListOutLine";
 import PostColumn from "./PostColumn";
 import PostSearch from "./PostSearch";
