@@ -9,7 +9,7 @@ import {
 import { Box } from "@mui/system";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { makeOrderAttractionImg } from "../../image/attractionImg";
+import { makeOrderStayImg } from "../../image/stayImg";
 import TextProperty from "./TextProperty";
 
 const StayItem = ({ stay }) => {
@@ -26,9 +26,9 @@ const StayItem = ({ stay }) => {
     <>
       <Card
         onClick={() => {
-          handleStayDetail(stay.stayId);
+          handleStayDetail(stay.id);
         }}
-        key={stay.stayId}
+        key={stay.id}
         sx={{
           width: "200px",
           display: "flex",
@@ -40,7 +40,7 @@ const StayItem = ({ stay }) => {
         <CardActionArea>
           <CardMedia
             component="img"
-            image={makeOrderAttractionImg(stay.stayId)}
+            image={makeOrderStayImg(stay.id)}
             alt="Hot Posts"
             height="200px"
           />
