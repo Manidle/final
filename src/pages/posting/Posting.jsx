@@ -12,9 +12,10 @@ import {
   ThemeProvider,
   createTheme,
   Stack,
+  Autocomplete,
 } from "@mui/material";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CategoryBar from "../../components/CategoryBar";
 import Header from "../../components/header/Header";
@@ -238,6 +239,15 @@ const Posting = () => {
     setStateSnackbar({ ...stateSnackbar, openSnackbar: !openSnackbar });
   };
 
+  const [boardLists, setBoardLists] = useState([]);
+  const [boardSelectedId, setBoardSelectedId] = useState(1);
+
+  useEffect(() => {
+    axios.get(`${BASE_URL}/api/board`).then((response) => {
+      setBoardLists(response.data);
+    });
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth="lg">
@@ -262,7 +272,19 @@ const Posting = () => {
                 게시글 등록
               </Typography>
             </Stack>
-            <Stack className="postingItem" padding="5px">
+            <Stack className="postingItem" padding="5px" display="flex">
+              {/* <Autocomplete
+                value={boardSelectedId}
+                onChange={(event, newValue) => {
+                  setBoardSelectedId(newValue);
+                }}
+                id="controllable-states-demo"
+                options={boardLists}
+                sx={{ width: 300 }}
+                renderInput={(params) => (
+                  <TextField {...params} label="Controllable" />
+                )}
+              /> */}
               <TextField
                 variant="standard"
                 label="게시글 제목"
@@ -329,7 +351,7 @@ const Posting = () => {
                 color="info"
                 className="postingButton"
                 onClick={() => {
-                  postSubmit("2");
+                  postSubmit("1");
                 }}
               >
                 게시글 등록

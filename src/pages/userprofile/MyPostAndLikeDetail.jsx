@@ -21,11 +21,11 @@ import { useEffect } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
-import Post from "./Post";
 import PostColumn from "../board/PostColumn";
 import PostListOutLine from "../board/PostListOutLine";
 import PostSearch from "../board/PostSearch";
 import usePagination from "../../components/Pagination";
+import Post from "../board/Post";
 
 const MyPostAndLikeDetail = () => {
   const theme = createTheme({

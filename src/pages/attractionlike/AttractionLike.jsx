@@ -87,24 +87,17 @@ const AttractionLike = () => {
               handleRoute("search/attraction");
             }}
           >
-            <Box
-              xs={{
-                width: "10rem",
-              }}
-            >
-              <Grid
-                container
-                sx={{
-                  display: "flex",
-                }}
-              >
+            <Grid item xs={12}>
+              <Grid container>
                 {attractions.length === 0 ? (
                   <NotInContents>관광지가 없습니다.</NotInContents>
                 ) : (
                   attractionListsPerPage.currentData().map((attraction) => (
                     <Grid
                       item
-                      xs={4}
+                      xs={12}
+                      sm={6}
+                      md={4}
                       sx={{ display: "flex", justifyContent: "space-between" }}
                     >
                       <AttractionItem
@@ -115,7 +108,7 @@ const AttractionLike = () => {
                   ))
                 )}
               </Grid>
-            </Box>
+            </Grid>
           </Wrapper>
         </Box>
         <Stack>

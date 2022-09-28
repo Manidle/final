@@ -2,6 +2,8 @@ import { Card, CardMedia, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import Wrapper from "./Wrapper";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 const RightSide = ({
   imgUrl,
@@ -9,17 +11,41 @@ const RightSide = ({
   companyName,
   carSort,
   carName,
+  likeClick,
   likeCount,
+  setLikeCount,
+  handleLikeClick,
 }) => {
   return (
     <Wrapper marginSize="0rem" bgColor="#F2E2FC">
       <Typography
+        display="flex"
+        alignItems="center"
         className="dashBoardTitle"
         fontSize={22}
         fontWeight="bold"
         marginRight="1rem"
       >
         {carName} - {carSort}
+        <Box margin="5px" onClick={handleLikeClick}>
+          {likeClick ? (
+            <FavoriteIcon
+              color="info"
+              onClick={() => {
+                setLikeCount(likeCount - 1);
+              }}
+              sx={{ paddingTop: "0.4rem" }}
+            />
+          ) : (
+            <FavoriteBorderIcon
+              color="info"
+              sx={{ paddingTop: "0.4rem" }}
+              onClick={() => {
+                setLikeCount(likeCount + 1);
+              }}
+            />
+          )}
+        </Box>
       </Typography>
       <Card
         variant="outlined"

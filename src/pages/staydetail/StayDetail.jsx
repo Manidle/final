@@ -98,7 +98,7 @@ const StayDetail = () => {
       .get(BASE_URL + "/api/auth/v1/like/click/stay", {
         params: {
           user: userData.id,
-          stay: 1,
+          stay: stayId,
         },
         headers: {
           Authorization: `${localStorage.getItem("token")}`,
@@ -139,6 +139,9 @@ const StayDetail = () => {
                   stayLikeCount={stayLikeCount}
                   stayName={stayName}
                   stayPrice={stayPrice}
+                  setStayLikeCount={stayLikeCount}
+                  handleLikeClick={handleLikeClick}
+                  likeClick={likeClick}
                   stayCheckin={stayCheckin}
                   stayCheckOut={stayCheckOut}
                   imgUrl={makeOrderStayImg(stayId)}

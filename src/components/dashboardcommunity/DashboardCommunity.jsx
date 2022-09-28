@@ -37,9 +37,7 @@ const DashboardCommunity = ({ handleBoard, setBoardId }) => {
             {boardData.map((board) =>
               board.boardId <= 4 ? (
                 <DashboardDetail
-                  handleBoard={() => {
-                    handleBoard();
-                  }}
+                  handleBoard={handleBoard}
                   city={board}
                   setBoardId={setBoardId}
                 />

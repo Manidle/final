@@ -119,7 +119,7 @@ const Community = () => {
           console.log(res);
           const tmpArray = res.map((postdata) => postdata.data);
 
-          setPosts(tmpArray);
+          setPosts(tmpArray.reverse());
           console.log(posts);
         });
       });

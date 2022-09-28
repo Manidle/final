@@ -27,7 +27,7 @@ const RentCarItem = ({ rentcar, handleRoute }) => {
       <CardActionArea>
         <CardMedia
           component="img"
-          image={makeOrderCarImg(rentcar.rentCarId, 15)}
+          image={makeOrderCarImg(rentcar.rentCarId)}
           alt="Hot Posts"
           height="200px"
         />
