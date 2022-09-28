@@ -52,7 +52,7 @@ function App() {
         {/* 게시글 등록 버튼 클릭 시 게시판 등록화면으로 */}
         <Route path="/posting" element={<Posting />} />
         {/* s/a/t/r 검색 페이지 */}
-        <Route path="/search" element={<Search />} />
+        {/* <Route path="/search" element={<Search />} /> */}
         {/* s/a/t/r 검색 페이지 */}
         <Route path="/search/stay" element={<SearchStay />} />
         {/* s/a/t/r 검색 페이지 */}
