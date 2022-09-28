@@ -139,6 +139,9 @@ const StayDetail = () => {
                   stayLikeCount={stayLikeCount}
                   stayName={stayName}
                   stayPrice={stayPrice}
+                  setStayLikeCount={stayLikeCount}
+                  handleLikeClick={handleLikeClick}
+                  likeClick={likeClick}
                   stayCheckin={stayCheckin}
                   stayCheckOut={stayCheckOut}
                   imgUrl={makeOrderStayImg(stayId)}
