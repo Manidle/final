@@ -24,6 +24,8 @@ const Post = ({ post }) => {
       <Grid container>
         <Grid item xs={1}>
           <Typography
+            display="flex"
+            justifyContent="center"
             onClick={() => {
               handlePostDetail(post.postId);
             }}
@@ -33,6 +35,7 @@ const Post = ({ post }) => {
         </Grid>
         <Grid item xs={7}>
           <Typography
+            marginLeft="10px"
             onClick={() => {
               handlePostDetail(post.postId);
             }}
@@ -42,6 +45,8 @@ const Post = ({ post }) => {
         </Grid>
         <Grid item xs={2}>
           <Typography
+            display="flex"
+            justifyContent="center"
             onClick={() => {
               handlePostDetail(post.postId);
             }}
@@ -51,6 +56,8 @@ const Post = ({ post }) => {
         </Grid>
         <Grid item xs={2}>
           <Typography
+            display="flex"
+            justifyContent="center"
             onClick={() => {
               handlePostDetail(post.postId);
             }}
