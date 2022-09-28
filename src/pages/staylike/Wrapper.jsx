@@ -14,7 +14,7 @@ const Wrapper = ({ name, children, onClick }) => {
       <Box
         variant
         sx={{
-          // backgroundColor: "#F2E2FC",
+          backgroundColor: "#F2E2FC",
           marginBottom: 2,
           borderRadius: 3,
           padding: 1,
