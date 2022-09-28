@@ -77,10 +77,6 @@ const ModalTrainResult = () => {
       })
       .catch((error) => {
         console.log(error.response);
-        console.log(searchStartPoint);
-        console.log(searchEndPoint);
-        console.log(trainLists);
-        console.log(format(date, "yyyyMMdd"));
       });
   }
 
