@@ -25,6 +25,10 @@ import Footer from "../../components/footer/Footer";
 import { borderColor } from "@mui/system";
 import HotPost from "../../components/hotposts/HotPost";
 import HotPostCardView from "../../components/hotposts/HotPostCardView";
+import AttractionItem from "../Search/AttractionItem";
+import StayItem from "../staylike/StayItem";
+import RentCarItem from "../Search/RentCarItem";
+import TrainList from "../../components/trainlist/TrainList";
 
 const PostDetail = () => {
   const theme = createTheme({
@@ -168,7 +172,7 @@ const PostDetail = () => {
         <div className="postContainer">
           <Box className="postWrapper" flexGrow={1}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={12} md={8}>
+              <Grid item xs={12} sm={12} md={12}>
                 <Box className="postTopContainer">
                   <Box className="postBoard" display="flex" margin="1%">
                     게시판 ›
@@ -252,74 +256,93 @@ const PostDetail = () => {
                   <Box className="postTitleFooter" display="flex"></Box>
                 </Box>
                 <Divider />
-                <Grid container spacing={2} marginTop="1%">
-                  <Grid item xs={12} sm={12} md={3} className="stayList">
-                    <Box sx={{ p: 2, display: "grid" }}>
+                <Box>
+                  <Grid item xs={12} className="stayList">
+                    <Box sx={{ display: "grid" }}>
                       <Typography margin="1%" fontWeight="bold">
                         내가 고른 숙소
                       </Typography>
-                      <CardContent>
+                      <Grid container>
                         {postStayList.map((postStay) => (
-                          <Typography>{postStay.name}</Typography>
+                          <Grid item xs={6} sm={4} md={3} lg={2.3}>
+                            <StayItem handleRoute={handleRoute} stay={postStay}>
+                              {postStay.name}
+                            </StayItem>
+                          </Grid>
                         ))}
-                      </CardContent>
+                      </Grid>
                     </Box>
                   </Grid>
-                  <Grid item xs={12} sm={12} md={3} clanssName="attractionList">
-                    <Box sx={{ p: 2, display: "grid" }}>
+                  <Grid item xs={12}>
+                    <Grid sx={{ display: "grid" }}>
                       <Typography margin="1%" fontWeight="bold">
                         내가 고른 관광지
                       </Typography>
-                      <CardContent>
+                      <Grid container>
                         {postAttractionList.map((postAttraction) => (
-                          <Typography>{postAttraction.name}</Typography>
+                          <Grid item xs={6} sm={4} md={3} lg={2.3}>
+                            <AttractionItem
+                              display="flex"
+                              key={postAttraction.attractionId}
+                              attraction={postAttraction}
+                            >
+                              {postAttraction.name}
+                            </AttractionItem>
+                          </Grid>
                         ))}
-                      </CardContent>
-                    </Box>
+                      </Grid>
+                    </Grid>
                   </Grid>
-                  <Grid item xs={12} sm={12} md={3} className="rentcarList">
-                    <Box sx={{ p: 2, display: "grid" }}>
+                  <Grid item xs={12} className="rentcarList">
+                    <Box sx={{ display: "grid" }}>
                       <Typography margin="1%" fontWeight="bold">
                         내가 고른 렌터카
                       </Typography>
-                      <CardContent>
+                      <Grid container>
                         {postRentCarList.map((postRentCar) => (
-                          <Typography>{postRentCar.companyName}</Typography>
+                          <Grid item xs={6} sm={4} md={3} lg={2.3}>
+                            <RentCarItem
+                              display="flex"
+                              rentcar={postRentCar}
+                              handleRoute={handleRoute}
+                            >
+                              {postRentCar.companyName}
+                            </RentCarItem>
+                          </Grid>
                         ))}
-                      </CardContent>
+                      </Grid>
                     </Box>
                   </Grid>
-                  <Grid item xs={12} sm={12} md={3} className="trainList">
-                    <Box sx={{ p: 2, display: "grid" }}>
+                  <Grid itemclassName="trainList">
+                    <Box sx={{ display: "grid" }}>
                       <Typography margin="1%" fontWeight="bold">
                         내가 고른 기차
                       </Typography>
-                      <CardContent>
+                      <Grid container>
                         {postTrainList.map((postTrain) => (
-                          <Box display="flex">
-                            <Typography>{postTrain.depplacename}</Typography>
-                            <Typography fontWeight="bold">→</Typography>
-                            <Typography>{postTrain.arrplacename}</Typography>
-                          </Box>
+                          <Grid item xs={6} sm={4} md={3} lg={2.3}>
+                            <TrainList train={postTrain} />
+                          </Grid>
                         ))}
-                      </CardContent>
+                      </Grid>
                     </Box>
                   </Grid>
-                </Grid>
+                  <Divider />
+                </Box>
                 <Typography padding="1%">{postData.contents}</Typography>
                 <Divider />
                 <Reply postId={postProps.state.postId} />
               </Grid>
-              <Grid item xs={12} sm={12} md={4}>
-                <Divider />
-                <Typography margin="5%" color="info" fontWeight="bold">
-                  추천 게시글
-                </Typography>
-                <HotPostCardView />
-              </Grid>
             </Grid>
           </Box>
         </div>
+        <Grid item xs={12} sm={12} md={12}>
+          <Divider />
+          <Typography margin="5%" color="info" fontWeight="bold">
+            추천 게시글
+          </Typography>
+          <HotPostCardView />
+        </Grid>
         <Footer />
       </Container>
     </ThemeProvider>
