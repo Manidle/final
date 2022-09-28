@@ -7,7 +7,7 @@ import Wrapper from "./Wrapper";
 import DashboardDetail from "./DashboardDetail";
 import { BASE_URL } from "../../baseUrl";
 
-const DashboardCommunity = () => {
+const DashboardCommunity = ({ handleBoard, setBoardId }) => {
   const [boardData, setBoardData] = useState([]);
 
   useEffect(() => {
@@ -35,7 +35,17 @@ const DashboardCommunity = () => {
           </Typography>
           <Box display="flex">
             {boardData.map((board) =>
-              board.boardId <= 4 ? <DashboardDetail city={board} /> : <></>
+              board.boardId <= 4 ? (
+                <DashboardDetail
+                  handleBoard={() => {
+                    handleBoard();
+                  }}
+                  city={board}
+                  setBoardId={setBoardId}
+                />
+              ) : (
+                <></>
+              )
             )}
           </Box>
           <Typography fontWeight="bold" margin="3px">

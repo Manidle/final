@@ -3,7 +3,7 @@ import { Box } from "@mui/system";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const DashboardDetail = ({ city }) => {
+const DashboardDetail = ({ handleBoard, setBoardId, city }) => {
   const navigate = useNavigate();
 
   function handler(props) {
@@ -16,6 +16,8 @@ const DashboardDetail = ({ city }) => {
         sx={{ display: "flex" }}
         onClick={() => {
           handler(city.boardId);
+          setBoardId(city.boardId);
+          handleBoard();
         }}
       >
         <CityComponent>{city.boardName}</CityComponent>

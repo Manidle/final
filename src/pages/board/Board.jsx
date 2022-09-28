@@ -61,7 +61,7 @@ const Community = () => {
 
   const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
+  function postsAllBoard() {
     axios
       .get(`${BASE_URL}/api/post`, {
         headers: {
@@ -91,7 +91,49 @@ const Community = () => {
         }
         console.log(error.config);
       });
+  }
+
+  // 게시판에 맞는 게시글만 가져오기
+  async function postsByBoard(props) {
+    axios
+      .get(`${BASE_URL}/api/auth/v1/board/${props}`, {
+        headers: {
+          Authorization: `${localStorage.getItem("token")}`,
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        const tmpData = response.data.postDTOList;
+
+        Promise.all(
+          tmpData.map(async (post) => {
+            return await axios.get(`${BASE_URL}/api/auth/v1/post/${post}`, {
+              headers: {
+                Authorization: `${localStorage.getItem("token")}`,
+                "Content-Type": "application/json; charset=UTF-8",
+              },
+            });
+          })
+        ).then((res) => {
+          console.log(res);
+          const tmpArray = res.map((postdata) => postdata.data);
+
+          setPosts(tmpArray);
+          console.log(posts);
+        });
+      });
+  }
+
+  useEffect((props) => {
+    postsByBoard(props);
   }, []);
+
+  function handleBoard(props) {
+    postsByBoard(props);
+  }
+
+  const [boardId, setBoardId] = useState(1);
 
   // useLocation 으로 postDetail 에 보내기.
   function handlePostDetail(props) {
@@ -118,7 +160,12 @@ const Community = () => {
       <Container maxWidth="lg">
         <Header />
         <Box display="flex">
-          <DashboardCommunity />
+          <DashboardCommunity
+            handleBoard={() => {
+              handleBoard(boardId);
+            }}
+            setBoardId={setBoardId}
+          />
           <PostListOutLine>
             <Box
               sx={{
@@ -128,7 +175,7 @@ const Community = () => {
                 paddingBottom: "1rem",
               }}
             >
-              <PostSearch boardId="1" setPosts={setPosts} />
+              <PostSearch boardId={boardId} setPosts={setPosts} />
               <Button
                 variant="none"
                 className="communityPostingButton"

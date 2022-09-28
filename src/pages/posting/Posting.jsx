@@ -329,7 +329,7 @@ const Posting = () => {
                 color="info"
                 className="postingButton"
                 onClick={() => {
-                  postSubmit("1");
+                  postSubmit("2");
                 }}
               >
                 게시글 등록
